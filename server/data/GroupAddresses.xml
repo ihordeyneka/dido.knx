@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<GroupAddress-Export xmlns="http://knx.org/xml/ga-export/01">
+  <GroupRange Name="Home" RangeStart="1" RangeEnd="2047">
+    <GroupRange Name="Light" RangeStart="1" RangeEnd="255">
+      <GroupAddress Name="Garage" Address="0/0/1" DPTs="DPST-1-1" />
+      <GroupAddress Name="Basement stairs" Address="0/0/2" DPTs="DPST-1-1" />
+      <GroupAddress Name="Storage" Address="0/0/3" DPTs="DPST-1-1" />
+      <GroupAddress Name="Entrance" Address="0/0/4" DPTs="DPST-1-1" />
+      <GroupAddress Name="Corridor 1" Address="0/0/5" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bathroom" Address="0/0/6" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen Aisle" Address="0/0/7" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen Sink" Address="0/0/8" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen Island" Address="0/0/9" DPTs="DPST-1-1" />
+      <GroupAddress Name="Office" Address="0/0/10" DPTs="DPST-1-1" />
+      <GroupAddress Name="Office Alt" Address="0/0/11" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living Sofa" Address="0/0/12" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living Table" Address="0/0/13" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living Fireplace" Address="0/0/14" DPTs="DPST-1-1" />
+      <GroupAddress Name="Stairs 1-2" Address="0/0/15" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bedroom" Address="0/0/16" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bedroom Alt" Address="0/0/17" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard Aisle" Address="0/0/18" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard Table" Address="0/0/19" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 1 Alt" Address="0/0/20" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 1" Address="0/0/21" DPTs="DPST-1-1" />
+      <GroupAddress Name="Shower" Address="0/0/22" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 2 Alt" Address="0/0/23" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 2" Address="0/0/24" DPTs="DPST-1-1" />
+      <GroupAddress Name="Corridor 2" Address="0/0/25" DPTs="DPST-1-1" />
+      <GroupAddress Name="Entrance outside" Address="0/0/26" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living outside rear" Address="0/0/27" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living outside front" Address="0/0/28" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen outside" Address="0/0/29" DPTs="DPST-1-1" />
+      <GroupAddress Name="Biliard outside" Address="0/0/30" DPTs="DPST-1-1" />
+    </GroupRange>
+    <GroupRange Name="Blinds" RangeStart="256" RangeEnd="511">
+      <GroupAddress Name="Basement down" Address="0/1/0" DPTs="DPST-1-1" />
+      <GroupAddress Name="Basement up" Address="0/1/1" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bathroom up" Address="0/1/2" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bathroom down" Address="0/1/3" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen window down" Address="0/1/4" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen window up" Address="0/1/5" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen door down" Address="0/1/6" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen door up" Address="0/1/7" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living rear up" Address="0/1/8" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living rear down" Address="0/1/9" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living front up" Address="0/1/10" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living front down" Address="0/1/11" DPTs="DPST-1-1" />
+      <GroupAddress Name="Office up" Address="0/1/12" DPTs="DPST-1-1" />
+      <GroupAddress Name="Office down" Address="0/1/13" DPTs="DPST-1-1" />
+      <GroupAddress Name="Stairs 1-2 down" Address="0/1/14" DPTs="DPST-1-1" />
+      <GroupAddress Name="Stairs 1-2 up" Address="0/1/15" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bedroom down" Address="0/1/16" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bedroom up" Address="0/1/17" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 1 up" Address="0/1/18" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 1 down" Address="0/1/19" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 2 down" Address="0/1/20" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 2 up" Address="0/1/21" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard window up" Address="0/1/22" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard window down" Address="0/1/23" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard door up" Address="0/1/24" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard door down" Address="0/1/25" DPTs="DPST-1-1" />
+      <GroupAddress Name="Basement stop" Address="0/1/26" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bathroom stop" Address="0/1/27" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen window stop" Address="0/1/28" DPTs="DPST-1-1" />
+      <GroupAddress Name="Kitchen door stop" Address="0/1/29" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living rear stop" Address="0/1/30" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living front stop" Address="0/1/31" DPTs="DPST-1-1" />
+      <GroupAddress Name="Office stop" Address="0/1/32" DPTs="DPST-1-1" />
+      <GroupAddress Name="Step 1-2 stop" Address="0/1/33" DPTs="DPST-1-1" />
+      <GroupAddress Name="Bedroom stop" Address="0/1/34" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 1 stop" Address="0/1/35" DPTs="DPST-1-1" />
+      <GroupAddress Name="Children 2 stop" Address="0/1/36" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billliard window stop" Address="0/1/37" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billliard door stop" Address="0/1/38" DPTs="DPST-1-1" />
+    </GroupRange>
+    <GroupRange Name="Vents" RangeStart="512" RangeEnd="767">
+      <GroupAddress Name="Bathroom Vent" Address="0/2/0" DPTs="DPST-1-1" />
+      <GroupAddress Name="Shower Vent" Address="0/2/1" DPTs="DPST-1-1" />
+    </GroupRange>
+    <GroupRange Name="On/Off" RangeStart="768" RangeEnd="1023">
+      <GroupAddress Name="On" Address="0/3/0" DPTs="DPST-1-1" />
+      <GroupAddress Name="Off" Address="0/3/1" DPTs="DPST-1-1" />
+    </GroupRange>
+    <GroupRange Name="Heating" RangeStart="1024" RangeEnd="1279" />
+    <GroupRange Name="Set Temperature" RangeStart="1280" RangeEnd="1535" />
+    <GroupRange Name="Current Temperature" RangeStart="1536" RangeEnd="1791" />
+  </GroupRange>
+</GroupAddress-Export>

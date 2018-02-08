@@ -1,0 +1,22 @@
+{
+  "name": "dido.knx",
+  "version": "0.1.0",
+  "description": "KNX home automation project",
+  "main": "server/bootstrap.js",
+  "scripts": {
+    "build": "node ./server/bootstrap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihordeyneka/dido.knx.git"
+  },
+  "author": "Ihor Deyneka <ihordeyneka@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "knx": "^2.2.8",
+    "lodash": "^4.17.5",
+    "restify": "^6.3.4",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {}
+}
