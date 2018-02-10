@@ -1,10 +1,10 @@
 var self = {
   data: null,
-  find: function (category, name) {
+  findAddress: function (category, name) {
     return _.find(self.data, { Category: category, Name: name }).Address;
   },
   filter: function (category) {
-    return _.map(_.filter(self.data, { Category: category }), function (i) { return i.Address; });
+    return _.filter(self.data, { Category: category });
   }
 };
 
@@ -39,8 +39,8 @@ var flattenData = function (data) {
 fs.readFile(__dirname + '/data/GroupAddresses.xml', function (err, xml) {
   parser.parseString(xml, function (err, result) {
     var flat = flattenData(result);
-    console.log("received group addresses from the file system")
     self.data = flat;
+    console.log("received group addresses from the file system")
   });
 });
 

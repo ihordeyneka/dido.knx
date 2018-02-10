@@ -4,7 +4,8 @@
   "description": "KNX home automation project",
   "main": "server/bootstrap.js",
   "scripts": {
-    "build": "node ./server/bootstrap.js"
+    "server": "node ./server/bootstrap.js",
+    "client": "webpack"
   },
   "repository": {
     "type": "git",
@@ -13,10 +14,17 @@
   "author": "Ihor Deyneka <ihordeyneka@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "jsrender": "^0.9.90",
     "knx": "^2.2.8",
+    "lightrouter": "^0.3.3",
     "lodash": "^4.17.5",
+    "node-cleanup": "^2.1.2",
     "restify": "^6.3.4",
+    "simplegrid": "^1.0.2",
+    "webpack": "^3.10.0",
     "xml2js": "^0.4.19"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "html-webpack-plugin": "^2.30.1"
+  }
 }
