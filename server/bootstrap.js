@@ -21,7 +21,7 @@ server.get('/hello/:name', function (req, res, next) {
 server.get('/light/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Light", req.params.name);
   didoKnx.light.state(address).then(function (result) {
-    res.send(200, JSON.stringify(result));
+    res.send(200, JSON.stringify(result[0]));
     next();
   });
 });
@@ -42,35 +42,12 @@ server.get('/light', function (req, res, next) {
         result.push({
           Name: address.Name,
           Address: address.Address,
-          State: state
+          State: state[0]
         });
       });
   }
 
   chain.then(function () {
-    res.send(200, JSON.stringify(result));
-    next();
-  });
-
-  return;
-
-  //--old code
-  var promises = [];
-
-  for (var i = 0; i < addresses.length; i++) {
-    let address = addresses[i];
-
-    let promise = didoKnx.light.state(address.Address).then(function (state) {
-      result.push({
-        Name: address.Name,
-        Address: address.Address,
-        State: state
-      });
-    });
-    promises.push(promise);
-  }
-
-  Promise.all(promises).then(function () {
     res.send(200, JSON.stringify(result));
     next();
   });
@@ -96,20 +73,37 @@ server.post('/light/:operation/:name', function (req, res, next) {
 server.get('/blinds', function (req, res, next) {
   var addresses = groupAddresses.filter("Blinds");
   var result = [];
+
+  var chain = Promise.resolve(null);
+
   for (var i = 0; i < addresses.length; i++) {
-    var address = addresses[i];
-    var state = didoKnx.blinds.state(address);
-    result.push({
-      Name: address.Name,
-      Address: address.Address,
-      State: state
-    });
+    let address = addresses[i];
+    chain = chain
+      .then(function () {
+        return didoKnx.light.state(address.Address)
+      })
+      .then(function (state) {
+        result.push({
+          Name: address.Name,
+          Address: address.Address,
+          State: state[0]
+        });
+      });
   }
-  res.send(200, JSON.stringify(result));
-  next();
+
+  chain.then(function () {
+    res.send(200, JSON.stringify(result));
+    next();
+  });
 });
 
-//get single blind
+server.get('/blinds/:name', function (req, res, next) {
+  var address = groupAddresses.findAddress("Blinds", req.params.name + " move");
+  didoKnx.light.state(address).then(function (result) {
+    res.send(200, JSON.stringify(result[0]));
+    next();
+  });
+});
 
 server.post('/blinds/:operation/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Blinds", req.params.name + " " + req.params.operation);
