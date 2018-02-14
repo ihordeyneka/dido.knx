@@ -98,7 +98,7 @@ server.get('/blinds', function (req, res, next) {
 });
 
 server.get('/blinds/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress("Blinds", req.params.name + " move");
+  var address = groupAddresses.findAddress("Blinds", req.params.name);
   didoKnx.light.state(address).then(function (result) {
     res.send(200, JSON.stringify(result[0]));
     next();
@@ -106,15 +106,18 @@ server.get('/blinds/:name', function (req, res, next) {
 });
 
 server.post('/blinds/:operation/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress("Blinds", req.params.name + " " + req.params.operation);
+  var address = groupAddresses.findAddress("Blinds", req.params.name);
 
-  if (!address) {
-    res.send(400, "Could not find address by operation and name.");
+  if (req.params.operation == "up")
+    didoKnx.blinds.up(address);
+  else if (req.params.operation == "down")
+    didoKnx.blinds.down(address);
+  else {
+    res.send(400, "Unsupported operation.");
     next();
     return;
   }
 
-  didoKnx.blinds.execute(address);
   res.send(200);
   next();
 });

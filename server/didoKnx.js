@@ -1,44 +1,50 @@
+var knx = require("knx");
+
+var writeTrue = function (arg) {
+  iterate(arg, function (address) {
+    connection.write(address, 1);
+  });
+}
+
+var writeFalse = function (arg) {
+  iterate(arg, function (address) {
+    connection.write(address, 0);
+  });
+}
+
+var readAsPromise = function (address) {
+  var promise = new Promise(function (resolve, reject) {
+    connection.read(address, function (src, responsevalue) {
+      resolve(responsevalue);
+    });
+  });
+  return promise;
+}
+
+var iterate = function (arg, func) {
+  if (Array.isArray(arg)) {
+    for (var i = 0; i < arg.length; i++) {
+      func(arg(i));
+    }
+  } else if (typeof (arg) === "string") {
+    func(arg);
+  }
+}
+
 var self = {
   connected: false,
-  connection: null,
+  connection: connection,
   light: {
-    on: function (arg) {
-      iterate(arg, function (address) {
-        connection.write(address, 1);
-      });
-    },
-    off: function (arg) {
-      iterate(arg, function (address) {
-        connection.write(address, 0);
-      });
-    },
-    state: function (address) {
-      var promise = new Promise(function (resolve, reject) {
-        connection.read(address, function (src, responsevalue) {
-          resolve(responsevalue);
-        });
-      });
-      return promise;
-    }
+    on: writeTrue,
+    off: writeFalse,
+    state: readAsPromise
   },
   blinds: {
-    execute: function (arg) {
-      iterate(arg, function (address) {
-        connection.write(address, 1);
-      });
-    },
-    state: function (address) {
-      var promise = new Promise(function (resolve, reject) {
-        connection.read(address, function (src, responsevalue) {
-          resolve(responsevalue);
-        });
-      });
-      return promise;
-    }
+    up: writeTrue,
+    down: writeFalse,
+    state: readAsPromise
   }
 };
-
-var knx = require("knx");
 
 //MOCK
 //self.connected = true;
@@ -76,16 +82,5 @@ var connection = new knx.Connection({
     }
   }
 });
-
-var iterate = function (arg, func) {
-  if (Array.isArray(arg)) {
-    for (var i = 0; i < arg.length; i++) {
-      func(arg(i));
-    }
-  } else if (typeof (arg) === "string") {
-    func(arg);
-  }
-}
-self.connection = connection;
 
 module.exports = self;

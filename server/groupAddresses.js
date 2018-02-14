@@ -1,3 +1,10 @@
+var naming = {
+  suffixes: {
+    move: " move", //blinds move
+    stop: " stop" //blinds stop
+  }
+}
+
 var self = {
   data: null,
   findAddress: function (category, name) {
@@ -28,12 +35,26 @@ var flattenData = function (data) {
 
     for (var j = 0; j < addresses.length; j++) {
       var groupAddress = addresses[j].$;
-      groupAddress.Category = category;
-      result.push(groupAddress);
+      var parsed = parseGroupAddress(groupAddress, category);
+
+      if (parsed)
+        result.push(parsed);
     }
   }
 
   return result;
+}
+
+var parseGroupAddress = function (groupAddress, category) {
+  if (groupAddress.Name.endsWith(naming.suffixes.stop))
+    return null;
+
+  if (groupAddress.Name.endsWith(naming.suffixes.move))
+    groupAddress.Name = groupAddress.Name.replace(naming.suffixes.move, '');
+
+  groupAddress.Category = category;
+
+  return groupAddress;
 }
 
 fs.readFile(__dirname + '/data/GroupAddresses.xml', function (err, xml) {
