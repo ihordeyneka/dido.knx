@@ -6,7 +6,7 @@ var cleanup = require('node-cleanup');
 var server = restify.createServer();
 
 server.pre(function (req, res, next) {
-  if (!didoKnx.connected)
+  if (!didoKnx.connection.connected)
     res.send(500, "Connection to KNX is not established.");
   else if (!groupAddresses.data)
     res.send(500, "Group Addresses XML could not be parsed.");
@@ -128,8 +128,8 @@ server.get(/\/?.*/, restify.plugins.serveStatic({
 }));
 
 cleanup(function (exitCode, signal) {
- console.log("restify server closing...");
-  if (didoKnx.connected)
+  console.log("restify server closing...");
+  if (didoKnx.connection.connected)
     didoKnx.connection.Disconnect();
 });
 
