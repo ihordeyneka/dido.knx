@@ -40,8 +40,8 @@ var self = {
     state: readAsPromise
   },
   blinds: {
-    up: writeTrue,
-    down: writeFalse,
+    up: writeFalse,
+    down: writeTrue,
     state: readAsPromise
   }
 };
