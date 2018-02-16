@@ -1,7 +1,9 @@
+import HtmlContent from '../../html/light.html';
+
 var self = {};
 
 self.render = function () {
-  console.log("RENDER LIGHT");
+  document.body.innerHTML = HtmlContent;
 };
 
-module.exports = self;
+export default self;

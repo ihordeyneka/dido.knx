@@ -74,11 +74,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_hashchange__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_hashchange___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_hashchange__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__pages_home__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_light__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_light___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__pages_light__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_blinds__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_blinds___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__pages_blinds__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_light__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_blinds__ = __webpack_require__(8);
 
 
 
@@ -88,9 +85,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var router = new __WEBPACK_IMPORTED_MODULE_0_lightrouter___default.a({
   type: 'hash',
   handler: {
-    home: function () { __WEBPACK_IMPORTED_MODULE_2__pages_home___default.a.render(); },
-    light: function () { __WEBPACK_IMPORTED_MODULE_3__pages_light___default.a.render(); },
-    blinds: function (params) { __WEBPACK_IMPORTED_MODULE_4__pages_blinds___default.a.render(); }
+    home: function () { __WEBPACK_IMPORTED_MODULE_2__pages_home__["a" /* default */].render(); },
+    light: function () { __WEBPACK_IMPORTED_MODULE_3__pages_light__["a" /* default */].render(); },
+    blinds: function (params) { __WEBPACK_IMPORTED_MODULE_4__pages_blinds__["a" /* default */].render(); }
   },
   pathRoot: 'my-app/path',
   routes: {
@@ -584,39 +581,72 @@ module.exports = function(arr, obj){
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__html_home_html__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__html_home_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__html_home_html__);
+
 
 var self = {};
 
 self.render = function () {
-  console.log("RENDER HOME");
+  document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_home_html___default.a;
 };
 
-module.exports = self;
+/* harmony default export */ __webpack_exports__["a"] = (self);
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-var self = {};
-
-self.render = function () {
-  console.log("RENDER LIGHT");
-};
-
-module.exports = self;
+module.exports = "<div>HOME RENDERED</div>";
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__html_light_html__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__html_light_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__html_light_html__);
+
 
 var self = {};
 
 self.render = function () {
-  console.log("RENDER BLINDS");
+  document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_light_html___default.a;
 };
 
-module.exports = self;
+/* harmony default export */ __webpack_exports__["a"] = (self);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__html_blinds_html__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__html_blinds_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__html_blinds_html__);
+
+
+var self = {};
+
+self.render = function () {
+  document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_blinds_html___default.a;
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (self);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>BLINDS RENDERED</div>";
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>LIGHT RENDERED</div>";
 
 /***/ })
 /******/ ]);

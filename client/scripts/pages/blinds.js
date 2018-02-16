@@ -1,7 +1,9 @@
+import HtmlContent from '../../html/blinds.html';
+
 var self = {};
 
 self.render = function () {
-  console.log("RENDER BLINDS");
+  document.body.innerHTML = HtmlContent;
 };
 
-module.exports = self;
+export default self;

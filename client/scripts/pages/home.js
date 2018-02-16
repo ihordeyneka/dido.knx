@@ -1,7 +1,9 @@
+import HtmlContent from '../../html/home.html';
+
 var self = {};
 
 self.render = function () {
-  console.log("RENDER HOME");
+  document.body.innerHTML = HtmlContent;
 };
 
-module.exports = self;
+export default self;

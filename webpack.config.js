@@ -13,8 +13,8 @@ module.exports = {
     publicPath: "/"
   },
   module: {
-    loaders: [
-      { test: /\.html$/, loader: "raw-loader" }
+    rules: [
+      { test: /\.html$/, exclude: /node_modules/, use: { loader: "html-loader" } }
     ]
   },
   plugins: [new HtmlWebpackPlugin({
