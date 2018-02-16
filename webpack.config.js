@@ -4,6 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: "source-map",
+  watch: true,
   context: path.resolve(__dirname, "client/scripts"),
   entry: "./startup",
   output: {

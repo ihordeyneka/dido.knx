@@ -13,12 +13,12 @@ server.pre(function (req, res, next) {
   else next();
 });
 
-server.get('/hello/:name', function (req, res, next) {
+server.get('/api/hello/:name', function (req, res, next) {
   res.send(200, req.params.name);
   next();
 });
 
-server.get('/light/:name', function (req, res, next) {
+server.get('/api/light/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Light", req.params.name);
   didoKnx.light.state(address).then(function (result) {
     res.send(200, JSON.stringify(result[0]));
@@ -26,7 +26,7 @@ server.get('/light/:name', function (req, res, next) {
   });
 });
 
-server.get('/light', function (req, res, next) {
+server.get('/api/light', function (req, res, next) {
   var addresses = groupAddresses.filter("Light");
   var result = [];
 
@@ -53,7 +53,7 @@ server.get('/light', function (req, res, next) {
   });
 });
 
-server.post('/light/:operation/:name', function (req, res, next) {
+server.post('/api/light/:operation/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Light", req.params.name);
 
   if (req.params.operation == "on")
@@ -70,7 +70,7 @@ server.post('/light/:operation/:name', function (req, res, next) {
   next();
 });
 
-server.get('/blinds', function (req, res, next) {
+server.get('/api/blinds', function (req, res, next) {
   var addresses = groupAddresses.filter("Blinds");
   var result = [];
 
@@ -97,7 +97,7 @@ server.get('/blinds', function (req, res, next) {
   });
 });
 
-server.get('/blinds/:name', function (req, res, next) {
+server.get('/api/blinds/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Blinds", req.params.name);
   didoKnx.light.state(address).then(function (result) {
     res.send(200, JSON.stringify(result[0]));
@@ -105,7 +105,7 @@ server.get('/blinds/:name', function (req, res, next) {
   });
 });
 
-server.post('/blinds/:operation/:name', function (req, res, next) {
+server.post('/api/blinds/:operation/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Blinds", req.params.name);
 
   if (req.params.operation == "up")

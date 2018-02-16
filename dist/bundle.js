@@ -65,10 +65,46 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var router = __webpack_require__(1);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lightrouter__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lightrouter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lightrouter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_hashchange__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_hashchange___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_hashchange__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__pages_home__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_light__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_light___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__pages_light__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_blinds__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_blinds___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__pages_blinds__);
 
+
+
+
+
+
+var router = new __WEBPACK_IMPORTED_MODULE_0_lightrouter___default.a({
+  type: 'hash',
+  handler: {
+    home: function () { __WEBPACK_IMPORTED_MODULE_2__pages_home___default.a.render(); },
+    light: function () { __WEBPACK_IMPORTED_MODULE_3__pages_light___default.a.render(); },
+    blinds: function (params) { __WEBPACK_IMPORTED_MODULE_4__pages_blinds___default.a.render(); }
+  },
+  pathRoot: 'my-app/path',
+  routes: {
+    '': 'home',
+    'light': 'light',
+    'blinds': 'blinds'
+  }
+});
+
+router.run();
+
+__WEBPACK_IMPORTED_MODULE_1_hashchange___default.a.update(function () {
+  router.run();
+});
 
 /***/ }),
 /* 1 */
@@ -410,6 +446,177 @@ var router = __webpack_require__(1);
 	return LightRouter;
 
 }));
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var each = __webpack_require__(3),
+	indexOf = __webpack_require__(4);
+
+var getFragment = function( url ){
+
+	var url = url || window.location.href;
+	return url.replace( /^[^#]*#?(.*)$/, '$1' );
+
+};
+
+var HashChange = function(){
+
+	var self = this;
+
+	this.onChangeCallbacks = [];
+
+	window.addEventListener("hashchange", function(e){
+		
+		self.hashChanged( getFragment(e.newURL) );
+
+	}, false);
+
+	return this;
+
+};
+
+HashChange.prototype = {
+
+	update : function( callback ){
+
+		if(callback){
+
+			this.onChangeCallbacks.push( callback );
+			return this;
+
+		} else {
+
+			this.hashChanged( getFragment() );
+
+		}
+
+	},
+
+	unbind : function( callback ){
+
+		var i = indexOf( this.onChangeCallbacks , callback);
+
+		if(i !== -1){
+
+			this.onChangeCallbacks.splice(i - 1, 1);
+
+		}
+
+		return this;
+
+	},
+	
+	updateHash : function( hash ){
+ 
+			this.currentHash = hash;
+ 
+			window.location.href = window.location.href.replace( /#.*/, '') + '#' + hash;
+ 
+		},
+
+	hashChanged : function( frag ){
+
+		if(this.onChangeCallbacks.length){
+
+			each(this.onChangeCallbacks, function( callback ){
+
+				callback( frag );
+
+				return true;
+
+			});
+
+		}
+
+		return this;
+
+	},
+
+
+}
+
+hashChange = new HashChange();
+
+module.exports = hashChange;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+
+var hasOwn = Object.prototype.hasOwnProperty;
+var toString = Object.prototype.toString;
+
+module.exports = function forEach (obj, fn, ctx) {
+    if (toString.call(fn) !== '[object Function]') {
+        throw new TypeError('iterator must be a function');
+    }
+    var l = obj.length;
+    if (l === +l) {
+        for (var i = 0; i < l; i++) {
+            fn.call(ctx, obj[i], i, obj);
+        }
+    } else {
+        for (var k in obj) {
+            if (hasOwn.call(obj, k)) {
+                fn.call(ctx, obj[k], k, obj);
+            }
+        }
+    }
+};
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = function(arr, obj){
+  if (arr.indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+var self = {};
+
+self.render = function () {
+  console.log("RENDER HOME");
+};
+
+module.exports = self;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+var self = {};
+
+self.render = function () {
+  console.log("RENDER LIGHT");
+};
+
+module.exports = self;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+var self = {};
+
+self.render = function () {
+  console.log("RENDER BLINDS");
+};
+
+module.exports = self;
 
 /***/ })
 /******/ ]);
