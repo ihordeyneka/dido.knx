@@ -1,5 +1,6 @@
 import LightRouter from "lightrouter"
 import HashChange from "hashchange"
+import SimpleGrid from "simplegrid/simple-grid.scss"
 import Home from "./pages/home"
 import Light from "./pages/light"
 import Blinds from "./pages/blinds"
