@@ -1,25 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1>Light</h1>
+      <h1 class="flex">
+        <span>Light</span>
+        <a href="#"><img src="../images/general/back.png" class="title-back" /></a>
+      </h1>
     </div>
   </div>
-  <div class="row">
-    <label class="switch-light switch-dido">
-      <input type="checkbox">
-      <span class="col-2 columns float-left">
-        <span>Off</span><span>On</span><a></a>
-      </span>
-      <strong class="col-8">Basement</strong>
-    </label>
-  </div>
-  <div class="row">
-    <label class="switch-light switch-dido">
-      <input type="checkbox">
-      <span class="col-2 columns float-left">
-        <span>Off</span><span>On</span><a></a>
-      </span>
-      <strong class="col-8">Kitchen Sink</strong>
-    </label>
+  <div id="switches" class="row">
+    <div class="lds-hourglass"></div>
   </div>
 </div>
+<script type="text/html" id="tmplLight">
+  <label class="switch-light switch-dido col-6" data-name="<%= Name %>">
+    <input type="checkbox" <%= (State) ? 'checked' : ''%> />
+    <span class="col-2">
+      <span>Off</span><span>On</span><a></a>
+    </span>
+    <strong class="col-8"><%= Name %></strong>
+  </label>
+</script>

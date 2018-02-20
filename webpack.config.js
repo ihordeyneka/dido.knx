@@ -7,6 +7,9 @@ module.exports = {
   watch: true,
   context: path.resolve(__dirname, "client/scripts"),
   entry: "./startup",
+  node: {
+    fs: "empty",
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: "bundle.js",

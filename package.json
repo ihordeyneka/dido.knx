@@ -14,9 +14,10 @@
   "author": "Ihor Deyneka <ihordeyneka@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ajax-request": "^1.2.3",
     "css-toggle-switch": "^4.1.0",
+    "file-system": "^2.2.2",
     "hashchange": "^1.0.0",
-    "jsrender": "^0.9.90",
     "knx": "^2.2.8",
     "lightrouter": "^0.3.3",
     "lodash": "^4.17.5",

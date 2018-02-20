@@ -21,7 +21,7 @@ server.get('/api/hello/:name', function (req, res, next) {
 server.get('/api/light/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Light", req.params.name);
   didoKnx.light.state(address).then(function (result) {
-    res.send(200, JSON.stringify(result[0]));
+    res.send(200, result[0]);
     next();
   });
 });
@@ -48,7 +48,7 @@ server.get('/api/light', function (req, res, next) {
   }
 
   chain.then(function () {
-    res.send(200, JSON.stringify(result));
+    res.send(200, result);
     next();
   });
 });
@@ -92,7 +92,7 @@ server.get('/api/blinds', function (req, res, next) {
   }
 
   chain.then(function () {
-    res.send(200, JSON.stringify(result));
+    res.send(200, result);
     next();
   });
 });
@@ -100,7 +100,7 @@ server.get('/api/blinds', function (req, res, next) {
 server.get('/api/blinds/:name', function (req, res, next) {
   var address = groupAddresses.findAddress("Blinds", req.params.name);
   didoKnx.light.state(address).then(function (result) {
-    res.send(200, JSON.stringify(result[0]));
+    res.send(200, result[0]);
     next();
   });
 });
