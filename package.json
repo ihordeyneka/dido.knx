@@ -14,6 +14,7 @@
   "author": "Ihor Deyneka <ihordeyneka@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "css-toggle-switch": "^4.1.0",
     "hashchange": "^1.0.0",
     "jsrender": "^0.9.90",
     "knx": "^2.2.8",
