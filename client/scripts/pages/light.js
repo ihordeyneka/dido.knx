@@ -10,7 +10,12 @@ self.render = function () {
     url: "/api/light",
     json: true
   }, function (err, res, data) {
-    populate(data);
+    if (err) {
+      alert("Unexpected error...");
+      window.location = "/";
+    } else {
+      populate(data);
+    }
   });
 };
 

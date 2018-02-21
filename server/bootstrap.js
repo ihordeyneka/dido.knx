@@ -1,6 +1,7 @@
 var groupAddresses = require('./groupAddresses');
 var didoKnx = require('./didoKnx');
 var restify = require('restify');
+var socketio = require('socket.io');
 var cleanup = require('node-cleanup');
 
 var server = restify.createServer();
@@ -131,6 +132,12 @@ cleanup(function (exitCode, signal) {
   console.log("restify server closing...");
   if (didoKnx.connection.connected)
     didoKnx.connection.Disconnect();
+});
+
+var io = socketio.listen(server.server);
+
+didoKnx.connection.on('GroupValue_Write', function (src, dest, value) {
+  io.emit('knx_write', { Address: dest, State: value[0] });
 });
 
 server.listen(8787, function () {

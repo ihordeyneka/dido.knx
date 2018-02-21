@@ -7,6 +7,15 @@ import MainScss from "../scss/main.scss"
 import Home from "./pages/home"
 import Light from "./pages/light"
 import Blinds from "./pages/blinds"
+import io from "socket.io-client"
+
+var socket = io();
+
+socket.on('knx_write', function (data) {
+  var input = document.getElementById(data.Address);
+  if (input)
+    input.checked = data.State ? true : false
+});
 
 var router = new LightRouter({
   type: 'hash',

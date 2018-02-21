@@ -11,7 +11,13 @@ self.render = function () {
     url: "/api/blinds",
     json: true
   }, function (err, res, data) {
-    populate(data);
+    if (err) {
+      alert("Unexpected error...");
+      window.location = "/";
+    } else {
+      populate(data);
+    }
+
   });
 };
 

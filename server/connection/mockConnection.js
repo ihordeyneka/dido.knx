@@ -6,7 +6,8 @@ var connection = {
   },
   Disconnect: function () {
     console.log("KNX connection is closed, so you can create a new one later");
-  }
+  },
+  on: function () { }
 };
 
 module.exports = connection;

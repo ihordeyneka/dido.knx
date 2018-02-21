@@ -24,6 +24,8 @@
     "node-cleanup": "^2.1.2",
     "restify": "^6.3.4",
     "simplegrid": "^1.0.2",
+    "socket.io": "^2.0.4",
+    "socket.io-client": "^2.0.4",
     "webpack": "^3.10.0",
     "xml2js": "^0.4.19"
   },
