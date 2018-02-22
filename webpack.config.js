@@ -6,13 +6,16 @@ module.exports = {
   devtool: "source-map",
   watch: true,
   context: path.resolve(__dirname, "client/scripts"),
-  entry: "./startup",
+  entry: {
+    main: "./startup",
+    login: "./login"
+  },
   node: {
     fs: "empty",
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: "bundle.js",
+    filename: "bundle-[name].js",
     publicPath: "/"
   },
   module: {
@@ -23,6 +26,14 @@ module.exports = {
     ]
   },
   plugins: [new HtmlWebpackPlugin({
-    title: "dido.knx"
+    chunks: ['login'],
+    filename: 'login.html',
+    template: '../html/login.html',
+    title: 'dido.knx'
+  }),
+  new HtmlWebpackPlugin({
+    chunks: ['main'],
+    filename: 'index.html',
+    title: 'dido.knx'
   })]
 };

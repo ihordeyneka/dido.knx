@@ -6,6 +6,33 @@ var cleanup = require('node-cleanup');
 
 var server = restify.createServer();
 
+server.use(restify.plugins.queryParser({ mapParams: true }));
+server.use(restify.plugins.bodyParser({ mapParams: true }));
+server.use(restify.plugins.authorizationParser());
+
+server.use(function (req, res, next) {
+  var users;
+
+  users = {
+    admin: {
+      id: 1,
+      password: 'bruteforce'
+    }
+  };
+
+  var isUrlSecured = function (url) {
+    if (url == "/login.html" || url.endsWith(".js") || url.endsWith(".js.map"))
+      return false;
+    return true;
+  }
+
+  if (isUrlSecured(req.url) && (req.username == 'anonymous' || !users[req.username] || req.authorization.basic.password !== users[req.username].password)) {
+    res.redirect('/login.html', next)
+  } else {
+    next();
+  }
+});
+
 server.pre(function (req, res, next) {
   if (!didoKnx.connection.connected)
     res.send(500, "Connection to KNX is not established.");
@@ -119,6 +146,15 @@ server.post('/api/blinds/:operation/:name', function (req, res, next) {
     return;
   }
 
+  res.send(200);
+  next();
+});
+
+server.get('/login.html', restify.plugins.serveStatic({
+  directory: '../dist'
+}));
+
+server.post('/login.html', function (req, res, next) {
   res.send(200);
   next();
 });

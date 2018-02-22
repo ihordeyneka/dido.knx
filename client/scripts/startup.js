@@ -24,7 +24,6 @@ var router = new LightRouter({
     light: function () { Light.render(); },
     blinds: function (params) { Blinds.render(); }
   },
-  pathRoot: 'my-app/path',
   routes: {
     '': 'home',
     'light': 'light',

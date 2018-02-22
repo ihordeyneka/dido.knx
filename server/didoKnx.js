@@ -1,5 +1,5 @@
 var knx = require("knx");
-var connection = require('./connection/knxConnection');
+var connection = require('./connection/mockConnection');
 
 var writeTrue = function (arg) {
   iterate(arg, function (address) {
