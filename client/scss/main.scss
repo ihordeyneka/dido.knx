@@ -18,21 +18,27 @@
 }
 
 /* -- form -------------------------------------------- */
-form.dido-form label {
-    width: 100px;
-    display: inline-block;
-}
-form.dido-form input {
-    width: 200px;
-    display: inline-block;
-}
-form.dido-form button {
-    width: 120px;
-    border: none;
-    color: #000;
-    background-color: #ffa726;
-    padding: 5px;
-    cursor: pointer;
+form.dido-form {
+    label {
+        width: 100px;
+        display: inline-block;
+    }
+    input {
+        width: 200px;
+        display: inline-block;
+    }
+    button {
+        width: 120px;
+        border: none;
+        color: #000;
+        background-color: #ffa726;
+        padding: 5px;
+        cursor: pointer;
+
+        &:hover, &:active, &.active {
+            background-color: #fb8c00;
+        }
+    }
 }
 
 /* -- loader -------------------------------------------*/

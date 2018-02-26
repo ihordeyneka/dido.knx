@@ -1,6 +1,7 @@
 var groupAddresses = require('./groupAddresses');
 var didoKnx = require('./didoKnx');
 var restify = require('restify');
+var restifyCookies = require('restify-cookies');
 var socketio = require('socket.io');
 var cleanup = require('node-cleanup');
 
@@ -9,25 +10,22 @@ var server = restify.createServer();
 server.use(restify.plugins.queryParser({ mapParams: true }));
 server.use(restify.plugins.bodyParser({ mapParams: true }));
 server.use(restify.plugins.authorizationParser());
+server.use(restifyCookies.parse);
 
 server.use(function (req, res, next) {
-  var users;
-
-  users = {
-    admin: {
-      id: 1,
-      password: 'bruteforce'
-    }
-  };
+  if (req.cookies["username"] == "admin") {
+    next();
+    return;
+  }
 
   var isUrlSecured = function (url) {
-    if (url == "/login.html" || url.endsWith(".js") || url.endsWith(".js.map"))
+    if (url == "/login.html" || url.endsWith(".js") || url.endsWith(".js.map") || url.endsWith(".ico"))
       return false;
     return true;
   }
 
   if (isUrlSecured(req.url) && (req.username == 'anonymous' || !users[req.username] || req.authorization.basic.password !== users[req.username].password)) {
-    res.redirect('/login.html', next)
+    res.redirect('/login.html', next);
   } else {
     next();
   }
@@ -155,8 +153,12 @@ server.get('/login.html', restify.plugins.serveStatic({
 }));
 
 server.post('/login.html', function (req, res, next) {
-  res.send(200);
-  next();
+  if (req.params.user == "admin" && req.params.password == "bruteforce") {
+    res.setCookie("username", req.params.user, { httpOnly: true });
+    res.redirect('/', next);
+  } else {
+    res.redirect('/login.html', next);
+  }
 });
 
 server.get(/\/?.*/, restify.plugins.serveStatic({
