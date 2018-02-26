@@ -16,6 +16,7 @@
   "dependencies": {
     "ajax-request": "^1.2.3",
     "css-toggle-switch": "^4.1.0",
+    "dotenv": "^5.0.1",
     "file-system": "^2.2.2",
     "hashchange": "^1.0.0",
     "knx": "^2.2.8",

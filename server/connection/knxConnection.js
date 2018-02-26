@@ -4,7 +4,7 @@ var connection = new knx.Connection({
   ipAddr: '192.168.0.106',
   ipPort: 3671,
   physAddr: '15.15.255',
-  debug: true,
+  debug: process.env.ENV === "debug",
   manualConnect: false,
   //forceTunneling: true,
   minimumDelay: 10,

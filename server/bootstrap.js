@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var groupAddresses = require('./groupAddresses');
 var didoKnx = require('./didoKnx');
 var restify = require('restify');
@@ -13,7 +15,7 @@ server.use(restify.plugins.authorizationParser());
 server.use(restifyCookies.parse);
 
 server.use(function (req, res, next) {
-  if (req.cookies["username"] == "admin") {
+  if (req.cookies["username"] == process.env.ADMIN) {
     next();
     return;
   }
@@ -153,7 +155,7 @@ server.get('/login.html', restify.plugins.serveStatic({
 }));
 
 server.post('/login.html', function (req, res, next) {
-  if (req.params.user == "admin" && req.params.password == "bruteforce") {
+  if (req.params.user == process.env.ADMIN && req.params.password == process.env.PWD) {
     res.setCookie("username", req.params.user, { httpOnly: true });
     res.redirect('/', next);
   } else {
