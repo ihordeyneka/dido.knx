@@ -180,6 +180,6 @@ didoKnx.connection.on('GroupValue_Write', function (src, dest, value) {
   io.emit('knx_write', { Address: dest, State: value[0] });
 });
 
-server.listen(8787, function () {
+server.listen(process.env.PORT, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
