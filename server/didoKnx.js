@@ -1,5 +1,5 @@
 var knx = require("knx");
-var connection = require('./connection/' + process.env.CONN);
+var connection = require('./connection/' + process.env.KNX_CONN);
 
 var writeTrue = function (arg) {
   iterate(arg, function (address) {

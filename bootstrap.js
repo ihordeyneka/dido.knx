@@ -15,7 +15,7 @@ server.use(restify.plugins.authorizationParser());
 server.use(restifyCookies.parse);
 
 server.use(function (req, res, next) {
-  if (req.cookies["username"] == process.env.ADMIN) {
+  if (req.cookies["username"] == process.env.KNX_ADMIN) {
     next();
     return;
   }
@@ -155,7 +155,7 @@ server.get('/login.html', restify.plugins.serveStatic({
 }));
 
 server.post('/login.html', function (req, res, next) {
-  if (req.params.user == process.env.ADMIN && req.params.password == process.env.PWD) {
+  if (req.params.user == process.env.KNX_ADMIN && req.params.password == process.env.KNX_PWD) {
     res.setCookie("username", req.params.user, { httpOnly: true });
     res.redirect('/', next);
   } else {
@@ -180,6 +180,6 @@ didoKnx.connection.on('GroupValue_Write', function (src, dest, value) {
   io.emit('knx_write', { Address: dest, State: value[0] });
 });
 
-server.listen(process.env.PORT, function () {
+server.listen(process.env.KNX_HTTP_PORT || 8787, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
