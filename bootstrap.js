@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-var groupAddresses = require('./groupAddresses');
-var didoKnx = require('./didoKnx');
+var groupAddresses = require('./server/groupAddresses');
+var didoKnx = require('./server/didoKnx');
 var restify = require('restify');
 var restifyCookies = require('restify-cookies');
 var socketio = require('socket.io');
@@ -151,7 +151,7 @@ server.post('/api/blinds/:operation/:name', function (req, res, next) {
 });
 
 server.get('/login.html', restify.plugins.serveStatic({
-  directory: '../dist'
+  directory: './dist'
 }));
 
 server.post('/login.html', function (req, res, next) {
@@ -164,7 +164,7 @@ server.post('/login.html', function (req, res, next) {
 });
 
 server.get(/\/?.*/, restify.plugins.serveStatic({
-  directory: '../dist',
+  directory: './dist',
   default: 'index.html'
 }));
 

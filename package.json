@@ -4,7 +4,7 @@
   "description": "KNX home automation project",
   "main": "server/bootstrap.js",
   "scripts": {
-    "server": "node ./server/bootstrap.js",
+    "server": "node ./bootstrap.js",
     "client": "webpack"
   },
   "repository": {
