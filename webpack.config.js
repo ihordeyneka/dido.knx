@@ -34,7 +34,7 @@ module.exports = {
   new HtmlWebpackPlugin({
     chunks: ['main'],
     filename: 'index.html',
-    template: '../html/login.html',
+    template: '../html/index.html',
     title: 'dido.knx'
   })]
 };
