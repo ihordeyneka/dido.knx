@@ -19,12 +19,19 @@
 
 /* -- form -------------------------------------------- */
 form.dido-form {
+    .row {
+        margin-bottom: 10px;
+    }
+    .nomargin {
+        margin: 0px !important;
+    }
     label {
         width: 100px;
         display: inline-block;
+        font-size: 20px;
     }
     input {
-        width: 200px;
+        width: calc(100% - 105px);
         display: inline-block;
     }
     button {
@@ -34,6 +41,7 @@ form.dido-form {
         background-color: #ffa726;
         padding: 5px;
         cursor: pointer;
+        font-size: 20px;
 
         &:hover, &:active, &.active {
             background-color: #fb8c00;
