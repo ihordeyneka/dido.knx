@@ -21,7 +21,7 @@ server.use(function (req, res, next) {
   }
 
   var isUrlSecured = function (url) {
-    if (url == "/login.html" || url.endsWith(".js") || url.endsWith(".js.map") || url.endsWith(".ico"))
+    if (url == "/login.html" || url.endsWith(".js") || url.endsWith(".js.map") || url.endsWith(".ico") || url.endsWith(".json"))
       return false;
     return true;
   }

@@ -9,6 +9,10 @@ import Light from "./pages/light"
 import Blinds from "./pages/blinds"
 import io from "socket.io-client"
 
+navigator.serviceWorker && navigator.serviceWorker.register('./sw.js').then(function (registration) {
+  console.log('Excellent, registered with scope: ', registration.scope);
+});
+
 var socket = io();
 
 socket.on('knx_write', function (data) {
