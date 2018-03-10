@@ -21,6 +21,8 @@ server.use(function (req, res, next) {
   }
 
   var isUrlSecured = function (url) {
+    if (url.startsWith("/.well-known/acme-challenge"))
+      return false;
     if (url == "/login.html" || url.endsWith(".js") || url.endsWith(".js.map") || url.endsWith(".ico") || url.endsWith(".json"))
       return false;
     return true;
