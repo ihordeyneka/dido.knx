@@ -150,6 +150,58 @@ server.post('/api/blinds/:operation/:name', function (req, res, next) {
   next();
 });
 
+server.get('/api/vents/:name', function (req, res, next) {
+  var address = groupAddresses.findAddress("Vents", req.params.name);
+  didoKnx.light.state(address).then(function (result) {
+    res.send(200, result[0]);
+    next();
+  });
+});
+
+server.get('/api/vents', function (req, res, next) {
+  var addresses = groupAddresses.filter("Vents");
+  var result = [];
+
+  var chain = Promise.resolve(null);
+
+  for (var i = 0; i < addresses.length; i++) {
+    let address = addresses[i];
+    chain = chain
+      .then(function () {
+        return didoKnx.light.state(address.Address)
+      })
+      .then(function (state) {
+        result.push({
+          Name: address.Name,
+          Address: address.Address,
+          State: state[0]
+        });
+      });
+  }
+
+  chain.then(function () {
+    res.send(200, result);
+    next();
+  });
+});
+
+server.post('/api/vents/:operation/:name', function (req, res, next) {
+  var address = groupAddresses.findAddress("Vents", req.params.name);
+
+  if (req.params.operation == "on")
+    didoKnx.light.on(address);
+  else if (req.params.operation == "off")
+    didoKnx.light.off(address);
+  else {
+    res.send(400, "Unsupported operation.");
+    next();
+    return;
+  }
+
+  res.send(200);
+  next();
+});
+
 server.get('/login.html', restify.plugins.serveStatic({
   directory: './dist'
 }));

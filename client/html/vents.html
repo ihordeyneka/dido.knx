@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="flex">
+        <span>Vents</span>
+        <a href="#"><img src="../images/general/back.png" class="title-back" /></a>
+      </h1>
+    </div>
+  </div>
+  <div id="vents" class="row">
+    <div class="lds-hourglass"></div>
+  </div>
+</div>
+<script type="text/html" id="tmplVent">
+  <div class="col-6">
+    <label class="switch-light switch-dido" data-name="<%= Name %>">
+      <input type="checkbox" id="<%=Address%>" <%= (State) ? 'checked' : ''%> />
+      <span>
+        <span>Off</span><span>On</span><a></a>
+      </span>
+      <strong><%= Name %></strong>
+    </label>
+  </div>
+</script>
