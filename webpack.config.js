@@ -1,6 +1,7 @@
 var path = require("path");
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: "source-map",
@@ -36,5 +37,10 @@ module.exports = {
     filename: 'index.html',
     template: '../html/index.html',
     title: 'dido.knx'
-  })]
+  }),
+  new CopyWebpackPlugin([
+      { from: '../manifest.json', to: './' },
+      { from: './sw.js', to: './' },
+      { from: '../images/icon/', to: './icon/' }
+    ])]
 };
