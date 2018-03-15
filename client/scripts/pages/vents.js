@@ -40,12 +40,12 @@ var populate = function (data) {
 }
 
 var switchChange = function () {
-  var operation = this.checked ? "on" : "off";
+  var command = this.checked ? "on" : "off";
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
   ajax({
     method: "POST",
-    url: "/api/vents/" + operation + "/" + name
+    url: "/api/vents/" + command + "/" + name
   }, function (err) {
     if (err) {
       alert("Unexpected error...");

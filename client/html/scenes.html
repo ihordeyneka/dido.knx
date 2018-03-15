@@ -13,11 +13,8 @@
 </div>
 <script type="text/html" id="tmplScene">
   <div class="col-6">
-    <label class="switch-light switch-dido" data-name="<%= Name %>">
-      <input type="checkbox" id="<%=Address%>" <%= (State) ? 'checked' : ''%> />
-      <span>
-        <span>Off</span><span>On</span><a></a>
-      </span>
+    <label class="button-dido" data-name="<%= Name %>" data-command="<%= Command %>">
+      <button>Apply</button>
       <strong><%= Name %></strong>
     </label>
   </div>

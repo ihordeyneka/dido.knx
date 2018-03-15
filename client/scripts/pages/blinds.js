@@ -42,12 +42,12 @@ var populate = function (data) {
 }
 
 var switchChange = function () {
-  var operation = this.checked ? "down" : "up";
+  var command = this.checked ? "down" : "up";
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
   ajax({
     method: "POST",
-    url: "/api/blinds/" + operation + "/" + name
+    url: "/api/blinds/" + command + "/" + name
   }, function (err) {
     if (err) {
       alert("Unexpected error...");

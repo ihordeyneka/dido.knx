@@ -17,6 +17,40 @@
     height: 50px;
 }
 
+/* -- button -------------------------------------------*/
+.button-dido {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    display: block;
+
+    > button {
+        position: relative;
+        overflow: hidden;
+        min-height: 2em;
+        padding: 0 15px;
+        background-color: #9ccc65;
+        text-align: center;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        &:hover {
+            background-color: #7cb342;
+        }
+    }
+
+    > strong {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 10px;
+        font-weight: inherit;
+        box-sizing: border-box;
+    }
+}
+
 /* -- form -------------------------------------------- */
 form.dido-form {
     .row {

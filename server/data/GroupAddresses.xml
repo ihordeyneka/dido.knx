@@ -65,9 +65,10 @@
       <GroupAddress Name="Bathroom Vent" Address="0/2/0" DPTs="DPST-1-1" />
       <GroupAddress Name="Shower Vent" Address="0/2/1" DPTs="DPST-1-1" />
     </GroupRange>
-    <GroupRange Name="On/Off" RangeStart="768" RangeEnd="1023">
-      <GroupAddress Name="On" Address="0/3/0" DPTs="DPST-1-1" />
-      <GroupAddress Name="Off" Address="0/3/1" DPTs="DPST-1-1" />
+    <GroupRange Name="Scenes" RangeStart="768" RangeEnd="1023">
+      <GroupAddress Name="Power on" Address="0/3/0" DPTs="DPST-1-1" />
+      <GroupAddress Name="Power off" Address="0/3/1" DPTs="DPST-1-1" />
+      <GroupAddress Name="Blinds 1 down" Address="0/3/2" DPTs="DPST-1-8" />
     </GroupRange>
     <GroupRange Name="Heating" RangeStart="1024" RangeEnd="1279" />
     <GroupRange Name="Set Temperature" RangeStart="1280" RangeEnd="1535" />
