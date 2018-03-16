@@ -3,7 +3,7 @@ var connection = require('./connection/' + process.env.KNX_CONN);
 
 var writeValue = function (address, value) {
   connection.write(address, value, null, function () {
-    connection.emit("GroupValue_Write", connection.physAddr, address, value); //manually triggering groupvaluewrite event
+    connection.emit("GroupValue_Write_Manual", connection.physAddr, address, value); //manually triggering groupvaluewrite event
   });
 }
 
