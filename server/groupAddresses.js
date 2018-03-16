@@ -11,6 +11,9 @@ var naming = {
 
 var self = {
   data: null,
+  getByAddress: function (address) {
+    return _.find(self.data, { Address: address });
+  },
   findAddress: function (category, name) {
     return _.find(self.data, { Category: category, Name: name }).Address;
   },

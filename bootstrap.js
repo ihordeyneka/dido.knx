@@ -2,9 +2,9 @@ require('dotenv').config();
 
 var groupAddresses = require('./server/groupAddresses');
 var didoKnx = require('./server/didoKnx');
+var interaction = require('./server/interaction');
 var restify = require('restify');
 var restifyCookies = require('restify-cookies');
-var socketio = require('socket.io');
 var cleanup = require('node-cleanup');
 
 var server = restify.createServer();
@@ -122,11 +122,7 @@ cleanup(function (exitCode, signal) {
     didoKnx.connection.Disconnect();
 });
 
-var io = socketio.listen(server.server);
-
-didoKnx.connection.on('GroupValue_Write', function (src, dest, value) {
-  io.emit('knx_write', { Address: dest, State: value[0] });
-});
+interaction.listen(server.server);
 
 server.listen(process.env.KNX_HTTP_PORT || 8787, function () {
   console.log('%s listening at %s', server.name, server.url);

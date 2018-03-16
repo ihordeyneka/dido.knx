@@ -1,12 +1,18 @@
 var knx = require("knx");
 var connection = require('./connection/' + process.env.KNX_CONN);
 
+var writeValue = function (address, value) {
+  connection.write(address, value, null, function () {
+    connection.emit("GroupValue_Write", connection.physAddr, address, value); //manually triggering groupvaluewrite event
+  });
+}
+
 var writeTrue = function (address) {
-  connection.write(address, 1);
+  writeValue(address, 1);
 }
 
 var writeFalse = function (address) {
-  connection.write(address, 0);
+  writeValue(address, 0);
 }
 
 var readAsPromise = function (address) {
