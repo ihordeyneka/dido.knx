@@ -3,8 +3,8 @@
   "short_name": "KNX",
   "display": "standalone",
   "start_url": ".",
-  "theme_color": "#673ab6",
-  "background_color": "#111111",
+  "theme_color": "#ffa726",
+  "background_color": "#ffa726",
   "icons": [{
     "src": "icon/homescreen96.png",
     "sizes": "96x96",
