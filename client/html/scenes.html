@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="flex">
+        <span>Scenes</span>
+        <a href="#"><img src="../images/general/back.png" class="title-back" /></a>
+      </h1>
+    </div>
+  </div>
+  <div id="scenes" class="row">
+    <div class="lds-hourglass"></div>
+  </div>
+</div>
+<script type="text/html" id="tmplScene">
+  <div class="col-6">
+    <label class="button-dido" data-name="<%= Name %>" data-command="<%= Command %>">
+      <button>Apply</button>
+      <strong><%= Name %></strong>
+    </label>
+  </div>
+</script>

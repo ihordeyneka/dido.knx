@@ -1,4 +1,4 @@
-import HtmlContent from '../../html/light.html';
+import HtmlContent from '../../html/scenes.html';
 import _ from 'lodash'
 import ajax from 'ajax-request'
 
@@ -7,7 +7,7 @@ var self = {};
 self.render = function () {
   document.body.innerHTML = HtmlContent;
   ajax({
-    url: "/api/light",
+    url: "/api/scenes",
     json: true
   }, function (err, res, data) {
     if (err) {
@@ -22,7 +22,7 @@ self.render = function () {
 var populate = function (data) {
   var content = "";
 
-  var templateElement = document.getElementById("tmplLight");
+  var templateElement = document.getElementById("tmplScene");
   var template = _.template(templateElement.innerHTML);
 
   for (var i = 0; i < data.length; i++) {
@@ -30,22 +30,22 @@ var populate = function (data) {
     content += template(item);
   }
 
-  var switchesElement = document.getElementById("switches");
-  switchesElement.innerHTML = content;
+  var scenesElement = document.getElementById("scenes");
+  scenesElement.innerHTML = content;
 
-  var inputs = document.getElementsByTagName("input");
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].onclick = switchChange;
+  var buttons = document.getElementsByTagName("button");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = buttonClick;
   }
 }
 
-var switchChange = function () {
-  var command = this.checked ? "on" : "off";
+var buttonClick = function () {
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
+  var command = labelElement.getAttribute("data-command");
   ajax({
     method: "POST",
-    url: "/api/light/" + command + "/" + name
+    url: "/api/scenes/" + command + "/" + name
   }, function (err) {
     if (err) {
       alert("Unexpected error...");

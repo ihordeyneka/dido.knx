@@ -7,6 +7,8 @@ import MainScss from "../scss/main.scss"
 import Home from "./pages/home"
 import Light from "./pages/light"
 import Blinds from "./pages/blinds"
+import Vents from "./pages/vents"
+import Scenes from "./pages/scenes"
 import io from "socket.io-client"
 
 navigator.serviceWorker && navigator.serviceWorker.register('./sw.js').then(function (registration) {
@@ -26,12 +28,16 @@ var router = new LightRouter({
   handler: {
     home: function () { Home.render(); },
     light: function () { Light.render(); },
-    blinds: function (params) { Blinds.render(); }
+    blinds: function (params) { Blinds.render(); },
+    vents: function (params) { Vents.render(); },
+    scenes: function (params) { Scenes.render(); }
   },
   routes: {
     '': 'home',
     'light': 'light',
-    'blinds': 'blinds'
+    'blinds': 'blinds',
+    'vents': 'vents',
+    'scenes': 'scenes'
   }
 });
 

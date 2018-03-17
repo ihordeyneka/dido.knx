@@ -1,4 +1,4 @@
-import HtmlContent from '../../html/light.html';
+import HtmlContent from '../../html/vents.html';
 import _ from 'lodash'
 import ajax from 'ajax-request'
 
@@ -7,7 +7,7 @@ var self = {};
 self.render = function () {
   document.body.innerHTML = HtmlContent;
   ajax({
-    url: "/api/light",
+    url: "/api/vents",
     json: true
   }, function (err, res, data) {
     if (err) {
@@ -22,7 +22,7 @@ self.render = function () {
 var populate = function (data) {
   var content = "";
 
-  var templateElement = document.getElementById("tmplLight");
+  var templateElement = document.getElementById("tmplVent");
   var template = _.template(templateElement.innerHTML);
 
   for (var i = 0; i < data.length; i++) {
@@ -30,8 +30,8 @@ var populate = function (data) {
     content += template(item);
   }
 
-  var switchesElement = document.getElementById("switches");
-  switchesElement.innerHTML = content;
+  var ventsElement = document.getElementById("vents");
+  ventsElement.innerHTML = content;
 
   var inputs = document.getElementsByTagName("input");
   for (var i = 0; i < inputs.length; i++) {
@@ -45,7 +45,7 @@ var switchChange = function () {
   var name = labelElement.getAttribute("data-name");
   ajax({
     method: "POST",
-    url: "/api/light/" + command + "/" + name
+    url: "/api/vents/" + command + "/" + name
   }, function (err) {
     if (err) {
       alert("Unexpected error...");
