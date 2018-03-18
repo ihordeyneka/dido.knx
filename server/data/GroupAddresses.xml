@@ -13,8 +13,8 @@
       <GroupAddress Name="Kitchen Island" Address="0/0/9" DPTs="DPST-1-1" />
       <GroupAddress Name="Office" Address="0/0/10" DPTs="DPST-1-1" />
       <GroupAddress Name="Office Alt" Address="0/0/11" DPTs="DPST-1-1" />
-      <GroupAddress Name="Living Sofa" Address="0/0/12" DPTs="DPST-1-1" />
-      <GroupAddress Name="Living Table" Address="0/0/13" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living Table" Address="0/0/12" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living Sofa" Address="0/0/13" DPTs="DPST-1-1" />
       <GroupAddress Name="Living Fireplace" Address="0/0/14" DPTs="DPST-1-1" />
       <GroupAddress Name="Stairs 1-2" Address="0/0/15" DPTs="DPST-1-1" />
       <GroupAddress Name="Bedroom" Address="0/0/16" DPTs="DPST-1-1" />
