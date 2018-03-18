@@ -32149,7 +32149,7 @@ var self = {};
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_scenes_html___default.a;
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
-    url: "/api/scenes",
+    url: "/api/scenes?stateRequired=0",
     json: true
   }, function (err, res, data) {
     if (err) {

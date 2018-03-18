@@ -58,6 +58,12 @@ server.get('/api/:category/:name', function (req, res, next) {
 
 server.get('/api/:category', function (req, res, next) {
   var addresses = groupAddresses.filter(req.params.category);
+  if (req.params.stateRequired === "0") {
+    res.send(200, addresses);
+    next();
+    return;
+  }
+
   var result = [];
 
   var chain = Promise.resolve(null);

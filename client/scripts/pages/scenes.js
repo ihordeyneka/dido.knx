@@ -7,7 +7,7 @@ var self = {};
 self.render = function () {
   document.body.innerHTML = HtmlContent;
   ajax({
-    url: "/api/scenes",
+    url: "/api/scenes?stateRequired=0",
     json: true
   }, function (err, res, data) {
     if (err) {
