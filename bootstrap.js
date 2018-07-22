@@ -36,8 +36,10 @@ server.use(function (req, res, next) {
 });
 
 server.pre(function (req, res, next) {
-  if (!didoKnx.connection.connected)
+  if (!didoKnx.connection.connected) {
     res.send(500, "Connection to KNX is not established.");
+    didoKnx.connection.Connect();
+  }
   else if (!groupAddresses.data)
     res.send(500, "Group Addresses XML could not be parsed.");
   else next();
