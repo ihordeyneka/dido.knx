@@ -15,7 +15,7 @@ server.use(restify.plugins.authorizationParser());
 server.use(restifyCookies.parse);
 
 server.use(function (req, res, next) {
-  if (req.cookies["username"] == process.env.KNX_ADMIN) {
+  if (req.cookies["username"] == process.env.KNX_ADMIN || (req.params.user == process.env.KNX_ADMIN && req.params.password == process.env.KNX_PWD)) {
     next();
     return;
   }
