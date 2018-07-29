@@ -1,3 +1,5 @@
+var aliases = require("./data/aliases.json");
+
 var naming = {
   suffixes: {
     move: " move", //blinds move
@@ -15,7 +17,15 @@ var self = {
     return _.find(self.data, { Address: address });
   },
   findAddress: function (category, name) {
-    return _.find(self.data, { Category: category, Name: name }).Address;
+    category = category.toLowerCase();
+    name = name.toLowerCase();
+    var result = _.find(self.data, function (groupAddress) {
+      if (groupAddress.Category != category)
+        return false;
+      var originalName = groupAddress.Name.toLowerCase();
+      return originalName == name || (aliases[originalName] != null && _.includes(aliases[originalName], name));
+    })
+    return result.Address;
   },
   filter: function (category) {
     return _.filter(self.data, { Category: category });
@@ -72,6 +82,7 @@ var parseGroupAddress = function (groupAddress, category) {
     groupAddress.Command = "off";
 
   groupAddress.Category = category;
+  //groupAddress.Name = groupAddress.Name.toLowerCase();
 
   return groupAddress;
 }
