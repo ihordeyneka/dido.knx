@@ -1,4 +1,25 @@
 {
   "basement stairs": ["basement"],
-  "kitchen island": ["kitchen", "island"]
+  "storage": ["storage room"],
+  "corridor 1": ["corridor one", "corridor first floor"],
+  "kitchen island": ["kitchen", "island", "kitchen main"],
+  "kitchen sink": ["sink", "over sink", "over the sink", "kitchen two"],
+  "kitchen aisle": ["aisle", "kitchen one"],
+  "living table": ["table", "over table", "over the table"],
+  "living sofa": ["sofa", "over sofa", "over the sofa"],
+  "stairs 1-2": ["stairs"],
+  "billiard table": ["billiard", "billiard room"],
+  "billiard aisle": ["map", "near map", "near the map", "over map", "over the map"],
+  "children 1": ["children", "nursery", "children one", "nursery one"],
+  "children 2": ["children two", "nursery two"],
+  "shower": ["shower room"],
+  "entrance outside": ["entrance outdoor", "front door"],
+  "living outside rear": ["backyard"],
+  "living outside front": ["terrace", "sunset terrace"],
+  "kitchen outside": ["sunrise terrace", "garage roof"],
+  "billiard outside": ["balcony"],
+  "living rear": ["backyard"],
+  "living front": ["terrace", "sunset terrace"],
+  "billiard window": ["billiard", "billiard room"],
+  "billiard door": ["balcony"]
 }
