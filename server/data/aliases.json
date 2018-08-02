@@ -18,7 +18,7 @@
   "living outside front": ["terrace", "sunset terrace"],
   "kitchen outside": ["sunrise terrace", "garage roof"],
   "billiard outside": ["balcony"],
-  "living rear": ["backyard"],
+  "living rear": ["backyard", "back yard"],
   "living front": ["terrace", "sunset terrace"],
   "billiard window": ["billiard", "billiard room"],
   "billiard door": ["balcony"]
