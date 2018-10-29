@@ -28825,6 +28825,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_home_html___default.a;
+  gtag('config', 'UA-128283819-2', {'page_path': '/'});
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (self);
@@ -28878,6 +28879,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_light_html___default.a;
+  gtag('config', 'UA-128283819-2', {'page_path': '/#light'});
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     url: "/api/light",
     json: true
@@ -28915,6 +28917,7 @@ var switchChange = function () {
   var command = this.checked ? "on" : "off";
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
+  gtag('event', 'light/' + command, { 'event_category' : 'light', 'event_label' : name });
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     method: "POST",
     url: "/api/light/" + command + "/" + name
@@ -31997,6 +32000,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_blinds_html___default.a;
+  gtag('config', 'UA-128283819-2', {'page_path': '/#blinds'});
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     url: "/api/blinds",
     json: true
@@ -32035,6 +32039,7 @@ var switchChange = function () {
   var command = this.checked ? "down" : "up";
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
+  gtag('event', 'blinds/' + command, { 'event_category' : 'blinds', 'event_label' : name });
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     method: "POST",
     url: "/api/blinds/" + command + "/" + name
@@ -32073,6 +32078,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_vents_html___default.a;
+  gtag('config', 'UA-128283819-2', {'page_path': '/#vents'});
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     url: "/api/vents",
     json: true
@@ -32110,6 +32116,7 @@ var switchChange = function () {
   var command = this.checked ? "on" : "off";
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
+  gtag('event', 'vents/' + command, { 'event_category' : 'vents', 'event_label' : name });
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     method: "POST",
     url: "/api/vents/" + command + "/" + name
@@ -32148,6 +32155,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_scenes_html___default.a;
+  gtag('config', 'UA-128283819-2', {'page_path': '/#scenes'});
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     url: "/api/scenes?stateRequired=0",
     json: true
@@ -32185,6 +32193,7 @@ var buttonClick = function () {
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
   var command = labelElement.getAttribute("data-command");
+  gtag('event', 'scenes/' + command, { 'event_category' : 'scenes', 'event_label' : name });
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     method: "POST",
     url: "/api/scenes/" + command + "/" + name
