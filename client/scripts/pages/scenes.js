@@ -6,6 +6,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = HtmlContent;
+  gtag('config', 'UA-128283819-2', {'page_path': '/#scenes'});
   ajax({
     url: "/api/scenes?stateRequired=0",
     json: true
@@ -43,6 +44,7 @@ var buttonClick = function () {
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
   var command = labelElement.getAttribute("data-command");
+  gtag('event', 'scenes/' + command, { 'event_category' : 'scenes', 'event_label' : name });
   ajax({
     method: "POST",
     url: "/api/scenes/" + command + "/" + name

@@ -6,6 +6,7 @@ var self = {};
 
 self.render = function () {
   document.body.innerHTML = HtmlContent;
+  gtag('config', 'UA-128283819-2', {'page_path': '/#light'});
   ajax({
     url: "/api/light",
     json: true
@@ -43,6 +44,7 @@ var switchChange = function () {
   var command = this.checked ? "on" : "off";
   var labelElement = this.parentElement;
   var name = labelElement.getAttribute("data-name");
+  gtag('event', 'light/' + command, { 'event_category' : 'light', 'event_label' : name });
   ajax({
     method: "POST",
     url: "/api/light/" + command + "/" + name
