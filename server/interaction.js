@@ -2,6 +2,7 @@ var groupAddresses = require('./groupAddresses');
 var didoKnx = require('./didoKnx');
 var socketio = require('socket.io');
 var _ = require("lodash");
+var schedule = require('node-schedule');
 
 var io = null;
 
@@ -31,6 +32,19 @@ var self = {
     });
     didoKnx.connection.on('GroupValue_Write_Manual', function (src, dest, value) {
       handleChange(dest, value);
+    });
+
+    schedule.scheduleJob({hour: 00, minute: 55}, function() { //blinds 1 down and light off at 00:55AM
+      var addressBlinds = groupAddresses.findAddress("scenes", "Blinds 1 down");
+      didoKnx.commands.down(addressBlinds);
+
+      var addressLight = groupAddresses.findAddress("scenes", "Light off");
+      didoKnx.commands.off(addressLight);
+    });
+
+    schedule.scheduleJob({hour: 07, minute: 00}, function() { //blinds 1 up at 07:00AM
+      var addressBlinds = groupAddresses.findAddress("scenes", "Blinds 1 up");
+      didoKnx.commands.up(addressBlinds);
     });
   }
 };
