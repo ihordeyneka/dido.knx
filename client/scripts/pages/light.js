@@ -34,11 +34,32 @@ var populate = function (data) {
   var switchesElement = document.getElementById("switches");
   switchesElement.innerHTML = content;
 
+  getCurrentState(data);
+
   var inputs = document.getElementsByTagName("input");
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchChange;
   }
 }
+
+var getCurrentState = function (data) {
+  var callback = function(address) {
+    return function (err, res, state) {
+      if (!err) {
+        var input = document.getElementById(address);
+        var labelElement = input.parentElement;
+        input.checked = state != null;
+        labelElement.classList.remove("switch-loading");
+      }
+    };
+  };
+  for (var i = 0; i < data.length; i++) {
+    ajax({
+      url: "/api/light/" + data[i].Name,
+      json: true
+    }, callback(data[i].Address));
+  }
+};
 
 var switchChange = function () {
   var command = this.checked ? "on" : "off";

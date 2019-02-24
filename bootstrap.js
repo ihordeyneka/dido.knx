@@ -60,36 +60,31 @@ server.get('/api/:category/:name', function (req, res, next) {
 
 server.get('/api/:category', function (req, res, next) {
   var addresses = groupAddresses.filter(req.params.category);
-  if (req.params.stateRequired === "0") {
-    res.send(200, addresses);
-    next();
-    return;
-  }
-
-  var result = [];
-
-  var chain = Promise.resolve(null);
-
   for (var i = 0; i < addresses.length; i++) {
-    let address = addresses[i];
-    chain = chain
-      .then(function () {
-        return didoKnx.state(address.Address)
-      })
-      .then(function (state) {
-        result.push({
-          Name: address.Name,
-          Address: address.Address,
-          Command: address.Command,
-          State: state[0]
-        });
-      });
+    addresses[i].State = 0;
   }
+  res.send(200, addresses);
+  next();
+});
 
-  chain.then(function () {
+server.get('/api/:category/:name', function (req, res, next) {
+  var address = groupAddresses.findAddress(req.params.category, req.params.name);
+
+  if (address != null) {
+    var state = didoKnx.state(address.Address);
+    var result = {
+      Name: address.Name,
+      Address: address.Address,
+      Command: address.Command,
+      State: state[0]
+    };
     res.send(200, result);
-    next();
-  });
+  }
+  else {
+    res.send(400, "Unsupported operation.");
+  }
+  
+  next();
 });
 
 server.post('/api/:category/:command/:name', function (req, res, next) {

@@ -8,7 +8,7 @@ self.render = function () {
   document.body.innerHTML = HtmlContent;
   gtag('config', 'UA-128283819-2', {'page_path': '/#scenes'});
   ajax({
-    url: "/api/scenes?stateRequired=0",
+    url: "/api/scenes",
     json: true
   }, function (err, res, data) {
     if (err) {

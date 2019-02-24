@@ -13,11 +13,16 @@
 </div>
 <script type="text/html" id="tmplVent">
   <div class="col-6">
-    <label class="switch-light switch-dido" data-name="<%= Name %>">
+    <label class="switch-light switch-dido switch-loading" data-name="<%= Name %>">
       <input type="checkbox" id="<%=Address%>" <%= (State) ? 'checked' : ''%> />
       <span>
         <span>Off</span><span>On</span><a></a>
       </span>
+      <div class="load-bar">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
       <strong><%= Name %></strong>
     </label>
   </div>

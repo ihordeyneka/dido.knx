@@ -30,7 +30,6 @@
     "simplegrid": "^1.0.2",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
-    "webpack": "^3.12.0",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
@@ -42,6 +41,7 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
-    "url-loader": "^0.6.2"
+    "url-loader": "^0.6.2",
+    "webpack": "^3.12.0"
   }
 }
