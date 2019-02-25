@@ -67,26 +67,6 @@ server.get('/api/:category', function (req, res, next) {
   next();
 });
 
-server.get('/api/:category/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress(req.params.category, req.params.name);
-
-  if (address != null) {
-    var state = didoKnx.state(address.Address);
-    var result = {
-      Name: address.Name,
-      Address: address.Address,
-      Command: address.Command,
-      State: state[0]
-    };
-    res.send(200, result);
-  }
-  else {
-    res.send(400, "Unsupported operation.");
-  }
-  
-  next();
-});
-
 server.post('/api/:category/:command/:name', function (req, res, next) {
   var address = groupAddresses.findAddress(req.params.category, req.params.name);
 
