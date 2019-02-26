@@ -53,7 +53,7 @@ server.get('/api/hello/:name', function (req, res, next) {
 server.get('/api/:category/:name', function (req, res, next) {
   var address = groupAddresses.findAddress(req.params.category, req.params.name);
   didoKnx.state(address).then(function (result) {
-    res.send(200, result[0]);
+    res.send(200, { state: result[0] });
     next();
   });
 });

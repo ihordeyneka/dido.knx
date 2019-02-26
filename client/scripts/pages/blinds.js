@@ -46,11 +46,11 @@ var populate = function (data) {
 
 var getCurrentState = function (data) {
   var callback = function(address) {
-    return function (err, res, state) {
+    return function (err, res, body) {
       if (!err) {
         var input = document.getElementById(address);
         var labelElement = input.parentElement;
-        input.checked = state != null;
+        input.checked = body.state != 0;
         labelElement.classList.remove("switch-loading");
       }
     };
