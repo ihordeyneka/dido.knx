@@ -3614,7 +3614,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * @license
  * Lodash <https://lodash.com/>
- * Copyright JS Foundation and other contributors <https://js.foundation/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -3625,7 +3625,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.11';
+  var VERSION = '4.17.20';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -6284,16 +6284,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
         value.forEach(function(subValue) {
           result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
         });
-
-        return result;
-      }
-
-      if (isMap(value)) {
+      } else if (isMap(value)) {
         value.forEach(function(subValue, key) {
           result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
         });
-
-        return result;
       }
 
       var keysFunc = isFull
@@ -7217,8 +7211,8 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
         return;
       }
       baseFor(source, function(srcValue, key) {
+        stack || (stack = new Stack);
         if (isObject(srcValue)) {
-          stack || (stack = new Stack);
           baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
         }
         else {
@@ -7338,8 +7332,21 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * @returns {Array} Returns the new sorted array.
      */
     function baseOrderBy(collection, iteratees, orders) {
+      if (iteratees.length) {
+        iteratees = arrayMap(iteratees, function(iteratee) {
+          if (isArray(iteratee)) {
+            return function(value) {
+              return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
+            }
+          }
+          return iteratee;
+        });
+      } else {
+        iteratees = [identity];
+      }
+
       var index = -1;
-      iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(getIteratee()));
+      iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
 
       var result = baseMap(collection, function(value, key, collection) {
         var criteria = arrayMap(iteratees, function(iteratee) {
@@ -7596,6 +7603,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
         var key = toKey(path[index]),
             newValue = value;
 
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+          return object;
+        }
+
         if (index != lastIndex) {
           var objValue = nested[key];
           newValue = customizer ? customizer(objValue, key, nested) : undefined;
@@ -7748,11 +7759,14 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      *  into `array`.
      */
     function baseSortedIndexBy(array, value, iteratee, retHighest) {
-      value = iteratee(value);
-
       var low = 0,
-          high = array == null ? 0 : array.length,
-          valIsNaN = value !== value,
+          high = array == null ? 0 : array.length;
+      if (high === 0) {
+        return 0;
+      }
+
+      value = iteratee(value);
+      var valIsNaN = value !== value,
           valIsNull = value === null,
           valIsSymbol = isSymbol(value),
           valIsUndefined = value === undefined;
@@ -9035,7 +9049,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
       return function(number, precision) {
         number = toNumber(number);
         precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
-        if (precision) {
+        if (precision && nativeIsFinite(number)) {
           // Shift with exponential notation to avoid floating-point issues.
           // See [MDN](https://mdn.io/round#Examples) for more details.
           var pair = (toString(number) + 'e').split('e'),
@@ -9237,10 +9251,11 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
       if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
         return false;
       }
-      // Assume cyclic values are equal.
-      var stacked = stack.get(array);
-      if (stacked && stack.get(other)) {
-        return stacked == other;
+      // Check that cyclic values are equal.
+      var arrStacked = stack.get(array);
+      var othStacked = stack.get(other);
+      if (arrStacked && othStacked) {
+        return arrStacked == other && othStacked == array;
       }
       var index = -1,
           result = true,
@@ -9402,10 +9417,11 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
           return false;
         }
       }
-      // Assume cyclic values are equal.
-      var stacked = stack.get(object);
-      if (stacked && stack.get(other)) {
-        return stacked == other;
+      // Check that cyclic values are equal.
+      var objStacked = stack.get(object);
+      var othStacked = stack.get(other);
+      if (objStacked && othStacked) {
+        return objStacked == other && othStacked == object;
       }
       var result = true;
       stack.set(object, other);
@@ -10218,7 +10234,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
     }
 
     /**
-     * Gets the value at `key`, unless `key` is "__proto__".
+     * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
      *
      * @private
      * @param {Object} object The object to query.
@@ -10226,6 +10242,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * @returns {*} Returns the property value.
      */
     function safeGet(object, key) {
+      if (key === 'constructor' && typeof object[key] === 'function') {
+        return;
+      }
+
       if (key == '__proto__') {
         return;
       }
@@ -12782,6 +12802,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * // The `_.property` iteratee shorthand.
      * _.filter(users, 'active');
      * // => objects for ['barney']
+     *
+     * // Combining several predicates using `_.overEvery` or `_.overSome`.
+     * _.filter(users, _.overSome([{ 'age': 36 }, ['age', 40]]));
+     * // => objects for ['fred', 'barney']
      */
     function filter(collection, predicate) {
       var func = isArray(collection) ? arrayFilter : baseFilter;
@@ -13531,15 +13555,15 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * var users = [
      *   { 'user': 'fred',   'age': 48 },
      *   { 'user': 'barney', 'age': 36 },
-     *   { 'user': 'fred',   'age': 40 },
+     *   { 'user': 'fred',   'age': 30 },
      *   { 'user': 'barney', 'age': 34 }
      * ];
      *
      * _.sortBy(users, [function(o) { return o.user; }]);
-     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 30]]
      *
      * _.sortBy(users, ['user', 'age']);
-     * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+     * // => objects for [['barney', 34], ['barney', 36], ['fred', 30], ['fred', 48]]
      */
     var sortBy = baseRest(function(collection, iteratees) {
       if (collection == null) {
@@ -14026,6 +14050,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
           }
           if (maxing) {
             // Handle invocations in a tight loop.
+            clearTimeout(timerId);
             timerId = setTimeout(timerExpired, wait);
             return invokeFunc(lastCallTime);
           }
@@ -18412,9 +18437,12 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
       , 'g');
 
       // Use a sourceURL for easier debugging.
+      // The sourceURL gets injected into the source that's eval-ed, so be careful
+      // to normalize all kinds of whitespace, so e.g. newlines (and unicode versions of it) can't sneak in
+      // and escape the comment, thus injecting code that gets evaled.
       var sourceURL = '//# sourceURL=' +
-        ('sourceURL' in options
-          ? options.sourceURL
+        (hasOwnProperty.call(options, 'sourceURL')
+          ? (options.sourceURL + '').replace(/\s/g, ' ')
           : ('lodash.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
@@ -18447,7 +18475,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
 
       // If `variable` is not specified wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain.
-      var variable = options.variable;
+      var variable = hasOwnProperty.call(options, 'variable') && options.variable;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
@@ -19153,6 +19181,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * values against any array or object value, respectively. See `_.isEqual`
      * for a list of supported value comparisons.
      *
+     * **Note:** Multiple values can be checked by combining several matchers
+     * using `_.overSome`
+     *
      * @static
      * @memberOf _
      * @since 3.0.0
@@ -19168,6 +19199,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      *
      * _.filter(objects, _.matches({ 'a': 4, 'c': 6 }));
      * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
+     *
+     * // Checking for several possible values
+     * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
       return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
@@ -19181,6 +19216,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * **Note:** Partial comparisons will match empty array and empty object
      * `srcValue` values against any array or object value, respectively. See
      * `_.isEqual` for a list of supported value comparisons.
+     *
+     * **Note:** Multiple values can be checked by combining several matchers
+     * using `_.overSome`
      *
      * @static
      * @memberOf _
@@ -19198,6 +19236,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      *
      * _.find(objects, _.matchesProperty('a', 4));
      * // => { 'a': 4, 'b': 5, 'c': 6 }
+     *
+     * // Checking for several possible values
+     * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
       return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
@@ -19421,6 +19463,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * Creates a function that checks if **all** of the `predicates` return
      * truthy when invoked with the arguments it receives.
      *
+     * Following shorthands are possible for providing predicates.
+     * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+     * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+     *
      * @static
      * @memberOf _
      * @since 4.0.0
@@ -19447,6 +19493,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      * Creates a function that checks if **any** of the `predicates` return
      * truthy when invoked with the arguments it receives.
      *
+     * Following shorthands are possible for providing predicates.
+     * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+     * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+     *
      * @static
      * @memberOf _
      * @since 4.0.0
@@ -19466,6 +19516,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
      *
      * func(NaN);
      * // => false
+     *
+     * var matchesFunc = _.overSome([{ 'a': 1 }, { 'a': 2 }])
+     * var matchesPropertyFunc = _.overSome([['a', 1], ['a', 2]])
      */
     var overSome = createOver(arraySome);
 
@@ -20652,10 +20705,11 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkIAAAPUCAMAAAB2
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       var lodashFunc = lodash[methodName];
       if (lodashFunc) {
-        var key = (lodashFunc.name + ''),
-            names = realNames[key] || (realNames[key] = []);
-
-        names.push({ 'name': methodName, 'func': lodashFunc });
+        var key = lodashFunc.name + '';
+        if (!hasOwnProperty.call(realNames, key)) {
+          realNames[key] = [];
+        }
+        realNames[key].push({ 'name': methodName, 'func': lodashFunc });
       }
     });
 
@@ -29080,7 +29134,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "/* Dido Theme\r\n */\n.switch-dido {\n  display: flex;\n  align-items: center;\n  width: 100%; }\n  .switch-dido > span {\n    display: inline-block;\n    min-height: 26px;\n    background-color: #464747;\n    border-radius: 1px;\n    box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0;\n    color: #fff;\n    text-transform: uppercase;\n    width: 120px; }\n    .switch-dido > span span {\n      opacity: 0;\n      transition: all 0.1s; }\n      .switch-dido > span span:first-of-type {\n        opacity: 1; }\n  .switch-dido label {\n    color: #fff; }\n  .switch-dido > span span, .switch-dido label {\n    cursor: pointer;\n    padding: 3px;\n    font-weight: bold;\n    font-size: 85%;\n    line-height: size(30)size(4.5); }\n  .switch-dido a {\n    outline: none !important;\n    background-color: #26a69a;\n    border-radius: 1px;\n    box-shadow: inset rgba(255, 255, 255, 0.2) 0 1px 0, inset rgba(0, 0, 0, 0.3) 0 -1px 0; }\n  .switch-dido > strong {\n    display: inline-block;\n    vertical-align: top;\n    margin-left: 10px; }\n\n/* Selected ON switch-light\r\n*/\n.switch-dido.switch-light input:checked ~ span a {\n  background-color: #ffa726; }\n\n.switch-dido.switch-light input:checked ~ span span:first-of-type {\n  opacity: 0; }\n\n.switch-dido.switch-light input:checked ~ span span:last-of-type {\n  opacity: 1; }\n\n@media only screen and (max-width: 1000px) {\n  .switch-dido {\n    margin-bottom: 5px; }\n    .switch-dido > span {\n      min-height: 32px;\n      width: 120px; }\n    .switch-dido > span span, .switch-dido label {\n      cursor: pointer;\n      padding: 3px;\n      font-weight: bold;\n      font-size: 100%;\n      line-height: size(30)size(4.5); }\n    .switch-dido > strong {\n      font-size: 18px; } }\n", ""]);
+exports.push([module.i, "/* Dido Theme\r\n */\n.switch-dido {\n  display: flex;\n  align-items: center;\n  width: 100%; }\n  .switch-dido > span {\n    display: inline-block;\n    min-height: 26px;\n    background-color: #464747;\n    border-radius: 1px;\n    box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0;\n    color: #fff;\n    text-transform: uppercase;\n    width: 120px; }\n    .switch-dido > span span {\n      opacity: 0;\n      transition: all 0.1s; }\n      .switch-dido > span span:first-of-type {\n        opacity: 1; }\n  .switch-dido label {\n    color: #fff; }\n  .switch-dido > span span, .switch-dido label {\n    cursor: pointer;\n    padding: 3px;\n    font-weight: bold;\n    font-size: 85%;\n    line-height: size(30)size(4.5); }\n  .switch-dido a {\n    outline: none !important;\n    background-color: #26a69a;\n    border-radius: 1px;\n    box-shadow: inset rgba(255, 255, 255, 0.2) 0 1px 0, inset rgba(0, 0, 0, 0.3) 0 -1px 0; }\n  .switch-dido > strong {\n    display: inline-block;\n    vertical-align: top;\n    margin-left: 10px; }\n\n/* Selected ON switch-light\r\n*/\n.switch-dido.switch-light input:checked ~ span a {\n  background-color: #ffa726; }\n\n.switch-dido.switch-light input:checked ~ span span:first-of-type {\n  opacity: 0; }\n\n.switch-dido.switch-light input:checked ~ span span:last-of-type {\n  opacity: 1; }\n\n@media only screen and (max-width: 1000px) {\n  .switch-dido {\n    margin-bottom: 5px; }\n    .switch-dido > span {\n      min-height: 32px;\n      width: 120px; }\n    .switch-dido > span span, .switch-dido label {\n      cursor: pointer;\n      padding: 3px;\n      font-weight: bold;\n      font-size: 100%;\n      line-height: size(30)size(4.5); }\n    .switch-dido > strong {\n      font-size: 18px; } }\n\n/*TOOGLE DIDO*/\n.switch-toggle-container {\n  display: flex;\n  align-items: center;\n  width: 100%; }\n  .switch-toggle-container .switch-toggle.toggle-dido > label.toggle-label {\n    display: inline-block;\n    min-height: 26px;\n    background-color: #464747;\n    box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0;\n    color: #fff;\n    text-transform: uppercase;\n    width: 60px;\n    outline: none;\n    cursor: pointer;\n    padding: 3px;\n    font-weight: bold;\n    font-size: 85%;\n    line-height: 1.5;\n    transition: all 0.3s; }\n    .switch-toggle-container .switch-toggle.toggle-dido > label.toggle-label.toggle-narrow {\n      width: 30px; }\n  .switch-toggle-container .switch-toggle.toggle-dido input:checked + label.toggle-label {\n    color: #333447; }\n    .switch-toggle-container .switch-toggle.toggle-dido input:checked + label.toggle-label.toggle-teal {\n      background-color: #26a69a; }\n    .switch-toggle-container .switch-toggle.toggle-dido input:checked + label.toggle-label.toggle-light-blue {\n      background-color: #29b6f6; }\n    .switch-toggle-container .switch-toggle.toggle-dido input:checked + label.toggle-label.toggle-orange {\n      background-color: #ffa726; }\n  .switch-toggle-container strong {\n    font-weight: inherit; }\n", ""]);
 
 // exports
 
@@ -32470,7 +32524,7 @@ var populate = function (data) {
 
   getCurrentState(data);
 
-  var inputs = document.getElementsByTagName("input");
+  var inputs = document.getElementsByClassName("switch-input");
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchChange;
   }
@@ -32480,10 +32534,13 @@ var getCurrentState = function (data) {
   var callback = function(address) {
     return function (err, res, body) {
       if (!err) {
-        var input = document.getElementById(address);
-        var labelElement = input.parentElement;
-        input.checked = body.state != 0;
-        labelElement.classList.remove("switch-loading");
+        var addrDiv = document.getElementById(address);
+        var switchContainer = addrDiv.parentElement;
+        var upInput = document.getElementById(`up-${address}`)
+        upInput.checked = body.state == 0;
+        var downInput = document.getElementById(`down-${address}`)
+        downInput.checked = body.state != 0;
+        switchContainer.classList.remove("switch-loading");
       }
     };
   };
@@ -32496,9 +32553,9 @@ var getCurrentState = function (data) {
 };
 
 var switchChange = function () {
-  var command = this.checked ? "down" : "up";
-  var labelElement = this.parentElement;
-  var name = labelElement.getAttribute("data-name");
+  var command = this.getAttribute("data-command");
+  var addrDiv = this.parentElement;
+  var name = addrDiv.getAttribute("data-name");
   gtag('event', 'blinds/' + command, { 'event_category' : 'blinds', 'event_label' : name });
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     method: "POST",
@@ -32517,7 +32574,7 @@ var switchChange = function () {
 /* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <h1 class=\"flex\">\r\n        <span>Blinds</span>\r\n        <a href=\"#\"><img src=\"" + __webpack_require__(10) + "\" class=\"title-back\" /></a>\r\n      </h1>\r\n    </div>\r\n  </div>\r\n  <div id=\"blinds\" class=\"row\">\r\n    <div class=\"lds-hourglass\"></div>\r\n  </div>\r\n</div>\r\n<script type=\"text/html\" id=\"tmplBlind\">\r\n  <div class=\"col-6\">\r\n    <label class=\"switch-light switch-dido switch-loading\" data-name=\"<%= Name %>\">\r\n      <input type=\"checkbox\" id=\"<%=Address%>\" <%= (State) ? 'checked' : ''%> />\r\n      <span>\r\n        <span>Up</span><span>Down</span><a></a>\r\n      </span>\r\n      <div class=\"load-bar\">\r\n        <div class=\"bar\"></div>\r\n        <div class=\"bar\"></div>\r\n        <div class=\"bar\"></div>\r\n      </div>\r\n      <strong><%= Name %></strong>\r\n    </label>\r\n  </div>\r\n</script>";
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <h1 class=\"flex\">\r\n        <span>Blinds</span>\r\n        <a href=\"#\"><img src=\"" + __webpack_require__(10) + "\" class=\"title-back\" /></a>\r\n      </h1>\r\n    </div>\r\n  </div>\r\n  <div id=\"blinds\" class=\"row\">\r\n    <div class=\"lds-hourglass\"></div>\r\n  </div>\r\n</div>\r\n<script type=\"text/html\" id=\"tmplBlind\">\r\n  <div class=\"col-6\">\r\n    <div class=\"switch-toggle-container switch-loading\">\r\n      <div class=\"switch-toggle toggle-dido\" id=\"<%=Address%>\" data-name=\"<%= Name %>\">\r\n        <input id=\"up-<%=Address%>\" class=\"switch-input\" data-command=\"up\" name=\"<%= Address %>\" type=\"radio\" <%= (State) ? '' : 'checked'%>>\r\n        <label for=\"up-<%=Address%>\" class=\"toggle-label toggle-teal\">Up</label>\r\n    \r\n        <input id=\"stop-<%=Address%>\" class=\"switch-input\" data-command=\"stop\" name=\"<%= Address %>\" type=\"radio\">\r\n        <label for=\"stop-<%=Address%>\" class=\"toggle-label toggle-light-blue toggle-narrow\">|</label>\r\n    \r\n        <input id=\"down-<%=Address%>\" class=\"switch-input\" data-command=\"down\" name=\"<%= Address %>\" type=\"radio\" <%= (State) ? 'checked' : ''%>>\r\n        <label for=\"down-<%=Address%>\" class=\"toggle-label toggle-orange\">Down</label>\r\n    \r\n        <a></a>\r\n      </div>\r\n      <div class=\"load-bar\">\r\n        <div class=\"bar\"></div>\r\n        <div class=\"bar\"></div>\r\n        <div class=\"bar\"></div>\r\n      </div>\r\n      <strong><%= Name %></strong>\r\n    </div>\r\n  </div>\r\n</script>";
 
 /***/ }),
 /* 98 */

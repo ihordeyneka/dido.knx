@@ -79,6 +79,8 @@
       <GroupAddress Name="Outside on" Address="0/3/10" DPTs="DPST-1-1" />
       <GroupAddress Name="Outside off" Address="0/3/11" DPTs="DPST-1-1" />
       <GroupAddress Name="Light off" Address="0/3/12" DPTs="DPST-1-1" />
+      <GroupAddress Name="Floor 1 off" Address="0/3/13" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard off" Address="0/3/14" DPTs="DPST-1-1" />
     </GroupRange>
     <GroupRange Name="Heating" RangeStart="1024" RangeEnd="1279" />
     <GroupRange Name="Set Temperature" RangeStart="1280" RangeEnd="1535" />

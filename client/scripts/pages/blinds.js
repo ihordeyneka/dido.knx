@@ -38,7 +38,7 @@ var populate = function (data) {
 
   getCurrentState(data);
 
-  var inputs = document.getElementsByTagName("input");
+  var inputs = document.getElementsByClassName("switch-input");
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchChange;
   }
@@ -48,10 +48,13 @@ var getCurrentState = function (data) {
   var callback = function(address) {
     return function (err, res, body) {
       if (!err) {
-        var input = document.getElementById(address);
-        var labelElement = input.parentElement;
-        input.checked = body.state != 0;
-        labelElement.classList.remove("switch-loading");
+        var addrDiv = document.getElementById(address);
+        var switchContainer = addrDiv.parentElement;
+        var upInput = document.getElementById(`up-${address}`)
+        upInput.checked = body.state == 0;
+        var downInput = document.getElementById(`down-${address}`)
+        downInput.checked = body.state != 0;
+        switchContainer.classList.remove("switch-loading");
       }
     };
   };
@@ -64,9 +67,9 @@ var getCurrentState = function (data) {
 };
 
 var switchChange = function () {
-  var command = this.checked ? "down" : "up";
-  var labelElement = this.parentElement;
-  var name = labelElement.getAttribute("data-name");
+  var command = this.getAttribute("data-command");
+  var addrDiv = this.parentElement;
+  var name = addrDiv.getAttribute("data-name");
   gtag('event', 'blinds/' + command, { 'event_category' : 'blinds', 'event_label' : name });
   ajax({
     method: "POST",

@@ -37,7 +37,8 @@ var self = {
     on: writeTrue,
     off: writeFalse,
     up: writeFalse,
-    down: writeTrue
+    down: writeTrue,
+    stop: writeTrue
   }
 };
 

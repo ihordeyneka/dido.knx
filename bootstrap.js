@@ -68,7 +68,7 @@ server.get('/api/:category', function (req, res, next) {
 });
 
 server.post('/api/:category/:command/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress(req.params.category, req.params.name);
+  var address = groupAddresses.findAddress(req.params.category, req.params.name, req.params.command);
 
   if (didoKnx.commands[req.params.command] && address != null) {
     didoKnx.commands[req.params.command](address);

@@ -13,17 +13,25 @@
 </div>
 <script type="text/html" id="tmplBlind">
   <div class="col-6">
-    <label class="switch-light switch-dido switch-loading" data-name="<%= Name %>">
-      <input type="checkbox" id="<%=Address%>" <%= (State) ? 'checked' : ''%> />
-      <span>
-        <span>Up</span><span>Down</span><a></a>
-      </span>
+    <div class="switch-toggle-container switch-loading">
+      <div class="switch-toggle toggle-dido" id="<%=Address%>" data-name="<%= Name %>">
+        <input id="up-<%=Address%>" class="switch-input" data-command="up" name="<%= Address %>" type="radio" <%= (State) ? '' : 'checked'%>>
+        <label for="up-<%=Address%>" class="toggle-label toggle-teal">Up</label>
+    
+        <input id="stop-<%=Address%>" class="switch-input" data-command="stop" name="<%= Address %>" type="radio">
+        <label for="stop-<%=Address%>" class="toggle-label toggle-light-blue toggle-narrow">|</label>
+    
+        <input id="down-<%=Address%>" class="switch-input" data-command="down" name="<%= Address %>" type="radio" <%= (State) ? 'checked' : ''%>>
+        <label for="down-<%=Address%>" class="toggle-label toggle-orange">Down</label>
+    
+        <a></a>
+      </div>
       <div class="load-bar">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
       </div>
       <strong><%= Name %></strong>
-    </label>
+    </div>
   </div>
 </script>
