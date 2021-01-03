@@ -36,16 +36,40 @@ var populate = function (data) {
   var switchesElement = document.getElementById("blinds");
   switchesElement.innerHTML = content;
 
-  var inputs = document.getElementsByTagName("input");
+  getCurrentState(data);
+
+  var inputs = document.getElementsByClassName("switch-input");
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchChange;
   }
 }
 
+var getCurrentState = function (data) {
+  var callback = function(address) {
+    return function (err, res, body) {
+      if (!err) {
+        var addrDiv = document.getElementById(address);
+        var switchContainer = addrDiv.parentElement;
+        var upInput = document.getElementById(`up-${address}`)
+        upInput.checked = body.state == 0;
+        var downInput = document.getElementById(`down-${address}`)
+        downInput.checked = body.state != 0;
+        switchContainer.classList.remove("switch-loading");
+      }
+    };
+  };
+  for (var i = 0; i < data.length; i++) {
+    ajax({
+      url: "/api/blinds/" + data[i].Name,
+      json: true
+    }, callback(data[i].Address));
+  }
+};
+
 var switchChange = function () {
-  var command = this.checked ? "down" : "up";
-  var labelElement = this.parentElement;
-  var name = labelElement.getAttribute("data-name");
+  var command = this.getAttribute("data-command");
+  var addrDiv = this.parentElement;
+  var name = addrDiv.getAttribute("data-name");
   gtag('event', 'blinds/' + command, { 'event_category' : 'blinds', 'event_label' : name });
   ajax({
     method: "POST",

@@ -87,3 +87,52 @@
         }
     }
 }
+
+/*TOOGLE DIDO*/
+.switch-toggle-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .switch-toggle.toggle-dido {
+    > label.toggle-label {
+      display: inline-block;
+      min-height: 26px;
+      background-color: #464747;
+      box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 0;
+      color: #fff;
+      text-transform: uppercase;
+      width: 60px;
+      outline: none;
+      cursor: pointer;
+      padding: 3px;
+      font-weight: bold;
+      font-size: 85%;
+      line-height: 1.5;
+      transition: all 0.3s;
+  
+      &.toggle-narrow {
+        width: 30px;
+      }
+    }
+  
+    input:checked + label.toggle-label {
+      color: #333447;
+      &.toggle-teal {
+        background-color: #26a69a;
+      }
+      &.toggle-light-blue {
+        background-color: #29b6f6;
+      }
+      &.toggle-orange {
+        background-color: #ffa726;
+      }
+    }
+  }
+
+  strong {
+    font-weight: inherit;
+  }
+}
+
+

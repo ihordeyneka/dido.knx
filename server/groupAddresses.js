@@ -1,6 +1,9 @@
 var aliases = require("./data/aliases.json");
 
 var naming = {
+  prefixes: {
+    power: "Power"
+  },
   suffixes: {
     move: " move", //blinds move
     stop: " stop", //blinds stop
@@ -16,11 +19,13 @@ var self = {
   getByAddress: function (address) {
     return _.find(self.data, { Address: address });
   },
-  findAddress: function (category, name) {
+  findAddress: function (category, name, command) {
     category = category.toLowerCase();
     name = name.toLowerCase();
     var result = _.find(self.data, function (groupAddress) {
       if (groupAddress.Category != category)
+        return false;
+      if (command == "stop" && groupAddress.Command != command)
         return false;
       var originalName = groupAddress.Name.toLowerCase();
       return originalName == name || (aliases[originalName] != null && _.includes(aliases[originalName], name));
@@ -28,7 +33,7 @@ var self = {
     return result.Address;
   },
   filter: function (category) {
-    return _.filter(self.data, { Category: category });
+    return _.filter(self.data, (x) => { return x.Category == category && x.Command != "stop"; });
   }
 };
 
@@ -66,8 +71,13 @@ var parseGroupAddress = function (groupAddress, category) {
 
   groupAddress.Command = null;
 
-  if (groupAddress.Name.endsWith(naming.suffixes.stop))
+  if (groupAddress.Name.startsWith(naming.prefixes.power))
     return null;
+
+  if (groupAddress.Name.endsWith(naming.suffixes.stop)) {
+    groupAddress.Name = groupAddress.Name.replace(naming.suffixes.stop, '');
+    groupAddress.Command = "stop";
+  }
 
   if (groupAddress.Name.endsWith(naming.suffixes.move))
     groupAddress.Name = groupAddress.Name.replace(naming.suffixes.move, '');

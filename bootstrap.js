@@ -53,47 +53,22 @@ server.get('/api/hello/:name', function (req, res, next) {
 server.get('/api/:category/:name', function (req, res, next) {
   var address = groupAddresses.findAddress(req.params.category, req.params.name);
   didoKnx.state(address).then(function (result) {
-    res.send(200, result[0]);
+    res.send(200, { state: result[0] });
     next();
   });
 });
 
 server.get('/api/:category', function (req, res, next) {
   var addresses = groupAddresses.filter(req.params.category);
-  if (req.params.stateRequired === "0") {
-    res.send(200, addresses);
-    next();
-    return;
-  }
-
-  var result = [];
-
-  var chain = Promise.resolve(null);
-
   for (var i = 0; i < addresses.length; i++) {
-    let address = addresses[i];
-    chain = chain
-      .then(function () {
-        return didoKnx.state(address.Address)
-      })
-      .then(function (state) {
-        result.push({
-          Name: address.Name,
-          Address: address.Address,
-          Command: address.Command,
-          State: state[0]
-        });
-      });
+    addresses[i].State = 0;
   }
-
-  chain.then(function () {
-    res.send(200, result);
-    next();
-  });
+  res.send(200, addresses);
+  next();
 });
 
 server.post('/api/:category/:command/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress(req.params.category, req.params.name);
+  var address = groupAddresses.findAddress(req.params.category, req.params.name, req.params.command);
 
   if (didoKnx.commands[req.params.command] && address != null) {
     didoKnx.commands[req.params.command](address);

@@ -70,6 +70,17 @@
       <GroupAddress Name="Power off" Address="0/3/1" DPTs="DPST-1-1" />
       <GroupAddress Name="Blinds 1 down" Address="0/3/2" DPTs="DPST-1-8" />
       <GroupAddress Name="Blinds 1 up" Address="0/3/3" DPTs="DPST-1-8" />
+      <GroupAddress Name="Blinds living down" Address="0/3/4" DPTs="DPST-1-8" />
+      <GroupAddress Name="Blinds living up" Address="0/3/5" DPTs="DPST-1-8" />
+      <GroupAddress Name="Blinds kitchen down" Address="0/3/6" DPTs="DPST-1-8" />
+      <GroupAddress Name="Blinds kitchen up" Address="0/3/7" DPTs="DPST-1-8" />
+      <GroupAddress Name="Kitchen off" Address="0/3/8" DPTs="DPST-1-1" />
+      <GroupAddress Name="Living off" Address="0/3/9" DPTs="DPST-1-1" />
+      <GroupAddress Name="Outside on" Address="0/3/10" DPTs="DPST-1-1" />
+      <GroupAddress Name="Outside off" Address="0/3/11" DPTs="DPST-1-1" />
+      <GroupAddress Name="Light off" Address="0/3/12" DPTs="DPST-1-1" />
+      <GroupAddress Name="Floor 1 off" Address="0/3/13" DPTs="DPST-1-1" />
+      <GroupAddress Name="Billiard off" Address="0/3/14" DPTs="DPST-1-1" />
     </GroupRange>
     <GroupRange Name="Heating" RangeStart="1024" RangeEnd="1279" />
     <GroupRange Name="Set Temperature" RangeStart="1280" RangeEnd="1535" />
