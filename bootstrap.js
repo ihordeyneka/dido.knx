@@ -94,9 +94,9 @@ server.post('/login.html', function (req, res, next) {
   if (req.params.user == process.env.KNX_ADMIN && req.params.password == process.env.KNX_PWD) {
     res.setCookie("username", req.params.user, { httpOnly: true });
 
-    var redirectUri = req.query.redirect_uri;
+    var redirectUri = req.params.redirect_uri;
     if (redirectUri) {
-      var state = req.query.state;
+      var state = req.params.state;
       var code = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36) + magicSuffix;
       redirectUri += `?state=${state}&code=${code}`;
       res.redirect(redirectUri, next);
