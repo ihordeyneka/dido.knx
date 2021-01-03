@@ -110,8 +110,8 @@ server.post('/login.html', function (req, res, next) {
 });
 
 server.post('/api/token', function (req, res, next) {
-  var code = req.query.code;
-  if (code.endsWith(magicSuffix)) {
+  var code = req.params.code;
+  if (code && code.endsWith(magicSuffix)) {
     var response = {
       "access_token": magicAccessToken,
       "token_type": "bearer",
