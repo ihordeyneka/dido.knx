@@ -108,7 +108,7 @@ server.post('/login.html', function (req, res, next) {
   }
 });
 
-server.get('/api/token', function (req, res, next) {
+server.post('/api/token', function (req, res, next) {
   var code = req.query.code;
   if (code.endsWith(magicSuffix)) {
     var response = {
