@@ -106,6 +106,11 @@ server.post('/api/:category/:command/:name', function (req, res, next) {
   next();
 });
 
+/* BEGIN - AUTH and FAKE OAUTH */
+
+var magicSuffix = 'f';
+var magicAccessToken = 'MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3';
+
 server.get('/login.html', restify.plugins.serveStatic({
   directory: './dist'
 }));
@@ -113,11 +118,41 @@ server.get('/login.html', restify.plugins.serveStatic({
 server.post('/login.html', function (req, res, next) {
   if (req.params.user == process.env.KNX_ADMIN && req.params.password == process.env.KNX_PWD) {
     res.setCookie("username", req.params.user, { httpOnly: true });
-    res.redirect('/', next);
+
+    var redirectUri = req.query.redirect_uri;
+    if (redirectUri) {
+      var state = req.query.state;
+      var code = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36) + magicSuffix;
+      redirectUri += `?state=${state}&code=${code}`;
+      res.redirect(redirectUri, next);
+    } else {
+      res.redirect('/', next);
+    }
   } else {
     res.redirect('/login.html', next);
   }
 });
+
+server.get('/api/token', function (req, res, next) {
+  var code = req.query.code;
+  if (code.endsWith(magicSuffix)) {
+    var response = {
+      "access_token": magicAccessToken,
+      "token_type": "bearer",
+      "expires_in": 30 * 365 * 24 * 60 * 60, // approx. 30 years
+      "refresh_token": "IwOGYzYTlmM2YxOTQ5MGE3YmNmMDFkNTVk"
+   }
+    res.json(response, {
+      'Cache-Control': 'no-store',
+      'Pragma': 'no-cache'
+    });
+  } else {
+    res.send(401, req.params.name);
+  }
+  next();
+});
+
+/* END - AUTH and FAKE OAUTH */
 
 server.get(/\/?.*/, restify.plugins.serveStatic({
   directory: './dist',
