@@ -34,17 +34,23 @@ var self = {
       handleChange(dest, value);
     });
 
-    schedule.scheduleJob({hour: 00, minute: 55}, function() { //blinds 1 down and light off at 00:55AM
+    schedule.scheduleJob({hour: 00, minute: 55}, function() { //blinds 1 down, light off and arm at 00:55AM
       var addressBlinds = groupAddresses.findAddress("scenes", "Blinds 1 down");
       didoKnx.commands.down(addressBlinds);
 
       var addressLight = groupAddresses.findAddress("scenes", "Light off");
       didoKnx.commands.off(addressLight);
+
+      var arm = "0/7/1";
+      didoKnx.commands.on(arm);
     });
 
-    schedule.scheduleJob({hour: 07, minute: 00}, function() { //blinds 1 up at 07:00AM
+    schedule.scheduleJob({hour: 07, minute: 00}, function() { //blinds 1 up and disarm at 07:00AM
       var addressBlinds = groupAddresses.findAddress("scenes", "Blinds 1 up");
       didoKnx.commands.up(addressBlinds);
+
+      var disarm = "0/7/2";
+      didoKnx.commands.on(disarm);
     });
   }
 };
