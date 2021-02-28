@@ -57,12 +57,26 @@ server.get('/api/:category/:name', function (req, res, next) {
   });
 });
 
+var guessCommand = function(name) {
+  if (name.endsWith("down"))
+    return "down";
+  if (name.endsWith("up"))
+    return "up";
+  if (name.endsWith("on"))
+    return "on";
+  if (name.endsWith("off"))
+    return "off";
+  
+  return null;
+}
+
 server.get('/api/:category', function (req, res, next) {
   var category = groupAddresses[req.params.category];
   var addresses = Object.keys(category).map(x => ({
     Name: x,
     Address: category[x],
-    State: 0
+    State: 0,
+    Command: guessCommand(x)
   }));
   res.send(200, addresses);
   next();

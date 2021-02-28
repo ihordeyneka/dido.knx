@@ -80,9 +80,10 @@ module.exports = {
     "Floor 1 off": "0/3/13",
     "Billiard off": "0/3/14",
     "Floor 2 off": "0/3/15",
-    "Panic silent": "0/7/3",
-    "Panic audible": "0/7/4",
-    "Vacation mode": "0/7/5",
+    "Panic silent on": "0/7/3",
+    "Panic audible on": "0/7/4",
+    "Vacation mode on": "0/7/5",
+    "Vacation mode off": "0/7/5",
   },
   alarm: {
     "Arm": "0/7/1",
