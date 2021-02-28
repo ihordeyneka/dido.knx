@@ -19,19 +19,25 @@ var handleChange = function (addr, value) {
   }
 
   //3. process sensors
-  if (addr == groupAddresses.alarm["Garage sensor"] && value == 1) {
+  var sensors = [
+    groupAddresses.alarm["Garage sensor"],
+    groupAddresses.alarm["Entrance sensor"],
+    groupAddresses.alarm["Kitchen sensor"],
+  ];
+  if (sensors.includes(addr) && value == 1) {
     delayedTurnOff(120, addr);
-  }
-
-  if (addr == groupAddresses.alarm["Entrance sensor"] && value == 1) {
-    delayedTurnOff(60, addr);
   }
 }
 
+var debounceFuncs = {};
 var delayedTurnOff = function(timeout, addr) {
-  _.debounce(function () {
-    didoKnx.commands.off(addr); //turn off after some time automatically
-  }, timeout * 1000);
+  if (!debounceFuncs[addr]) {
+    debounceFuncs[addr] = _.debounce(function () {
+      console.log(addr);
+      //didoKnx.commands.off(addr); //turn off after some time automatically
+    }, timeout*1000);
+  }  
+  return debounceFuncs[addr]();
 }
 
 var self = {

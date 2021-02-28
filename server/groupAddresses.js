@@ -89,6 +89,7 @@ module.exports = {
     "Arm": "0/7/1",
     "Disarm": "0/7/2",
     "Garage sensor": "0/7/6",
-    "Entrance sensor": "0/7/7"
+    "Entrance sensor": "0/7/7",
+    "Kitchen sensor": "0/7/8"
   }
 };
