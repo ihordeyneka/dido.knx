@@ -33,8 +33,7 @@ var debounceFuncs = {};
 var delayedTurnOff = function(timeout, addr) {
   if (!debounceFuncs[addr]) {
     debounceFuncs[addr] = _.debounce(function () {
-      console.log(addr);
-      //didoKnx.commands.off(addr); //turn off after some time automatically
+      didoKnx.commands.off(addr); //turn off after some time automatically
     }, timeout*1000);
   }  
   return debounceFuncs[addr]();
