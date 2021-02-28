@@ -41,8 +41,6 @@ server.pre(function (req, res, next) {
     res.send(500, "Connection to KNX is not established.");
     didoKnx.connection.Connect();
   }
-  else if (!groupAddresses.data)
-    res.send(500, "Group Addresses XML could not be parsed.");
   else next();
 });
 
@@ -52,7 +50,7 @@ server.get('/api/hello/:name', function (req, res, next) {
 });
 
 server.get('/api/:category/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress(req.params.category, req.params.name);
+  var address = groupAddresses[req.params.category][req.params.name];
   didoKnx.state(address).then(function (result) {
     res.send(200, { state: result[0] });
     next();
@@ -60,19 +58,31 @@ server.get('/api/:category/:name', function (req, res, next) {
 });
 
 server.get('/api/:category', function (req, res, next) {
-  var addresses = groupAddresses.filter(req.params.category);
-  for (var i = 0; i < addresses.length; i++) {
-    addresses[i].State = 0;
-  }
+  var addresses = Object.keys(groupAddresses[req.params.category]).map(x => ({
+    Name: x,
+    Address: category[x],
+    State: 0
+  }));
   res.send(200, addresses);
   next();
 });
 
 server.post('/api/:category/:command/:name', function (req, res, next) {
-  var address = groupAddresses.findAddress(req.params.category, req.params.name, req.params.command);
+  var category = req.params.category;
+  var command = req.params.command;
+  
+  if (category == "Alarm") {
+    res.send(403, "Access denied");
+  }
 
-  if (didoKnx.commands[req.params.command] && address != null) {
-    didoKnx.commands[req.params.command](address);
+  if (category == "blinds" && command == "stop") {
+    category = "blinds_stop";
+  }
+
+  var address = groupAddresses[category][req.params.name];
+
+  if (didoKnx.commands[command] && address != null) {
+    didoKnx.commands[command](address);
     res.send(200);
   }
   else {

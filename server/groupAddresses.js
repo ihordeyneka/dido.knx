@@ -1,117 +1,93 @@
-var aliases = require("./data/aliases.json");
-
-var naming = {
-  prefixes: {
-    power: "Power"
+module.exports = {
+  light: {
+    "Garage": "0/0/1",
+    "Basement stairs": "0/0/2",
+    "Storage": "0/0/3",
+    "Entrance": "0/0/4",
+    "Corridor 1": "0/0/5",
+    "Bathroom": "0/0/6",
+    "Kitchen Aisle": "0/0/7",
+    "Kitchen Sink": "0/0/8",
+    "Kitchen Island": "0/0/9",
+    "Office": "0/0/10",
+    "Office Alt": "0/0/11",
+    "Living Table": "0/0/12",
+    "Living Sofa": "0/0/13",
+    "Living Fireplace": "0/0/14",
+    "Stairs 1-2": "0/0/15",
+    "Bedroom": "0/0/16",
+    "Bedroom Alt": "0/0/17",
+    "Billiard Aisle": "0/0/18",
+    "Billiard Table": "0/0/19",
+    "Children 1 Alt": "0/0/20",
+    "Children 1": "0/0/21",
+    "Shower": "0/0/22",
+    "Children 2 Alt": "0/0/23",
+    "Children 2": "0/0/24",
+    "Corridor 2": "0/0/25",
+    "Entrance outside": "0/0/26",
+    "Living outside rear": "0/0/27",
+    "Living outside front": "0/0/28",
+    "Kitchen outside": "0/0/29",
+    "Biliard outside": "0/0/30"
   },
-  suffixes: {
-    move: " move", //blinds move
-    stop: " stop", //blinds stop
-    down: " down", //blinds down
-    up: " up", //blinds up
-    on: " on", //switch on
-    off: " off" //switch off
-  }
-}
-
-var self = {
-  data: null,
+  blinds: {
+    "Basement": "0/1/0",
+    "Bathroom": "0/1/2",
+    "Kitchen window": "0/1/4",
+    "Kitchen door": "0/1/6",
+    "Living rear": "0/1/8",
+    "Living front": "0/1/10",
+    "Office": "0/1/12",
+    "Stairs 1-2": "0/1/14",
+    "Bedroom": "0/1/16",
+    "Children 1": "0/1/18",
+    "Children 2": "0/1/20",
+    "Billiard window": "0/1/22",
+    "Billiard door": "0/1/24"
+  },
+  blinds_stop: {
+    "Basement": "0/1/1",
+    "Bathroom": "0/1/3",
+    "Kitchen window": "0/1/5",
+    "Kitchen door": "0/1/7",
+    "Living rear": "0/1/9",
+    "Living front": "0/1/11",
+    "Office": "0/1/13",
+    "Stairs 1-2": "0/1/15",
+    "Bedroom": "0/1/17",
+    "Children 1": "0/1/19",
+    "Children 2": "0/1/21",
+    "Billiard window": "0/1/23",
+    "Billiard door": "0/1/25"
+  },
+  vents: { 
+    "Bathroom Vent": "0/2/0",
+    "Shower Vent": "0/2/1"
+  },
+  scenes: {
+    "Blinds 1 down": "0/3/2",
+    "Blinds 1 up": "0/3/3",
+    "Blinds living down": "0/3/4",
+    "Blinds living up": "0/3/5",
+    "Blinds kitchen down": "0/3/6",
+    "Blinds kitchen up": "0/3/7",
+    "Kitchen off": "0/3/8",
+    "Living off": "0/3/9",
+    "Outside on": "0/3/10",
+    "Outside off": "0/3/11",
+    "Light off": "0/3/12",
+    "Floor 1 off": "0/3/13",
+    "Billiard off": "0/3/14",
+    "Floor 2 off": "0/3/15",
+    "Panic silent": "0/7/3",
+    "Panic audible": "0/7/4",
+    "Vacation mode": "0/7/5",
+  },
   alarm: {
-    arm: "0/7/1",
-    disarm: "0/7/2",
-    panicSilent: "0/7/3",
-    panicAudible: "0/7/4",
-    vacationMode: "0/7/5",
-    garageSensor: "0/7/6",
-    entranceSensor: "0/7/7"
-  },
-  getByAddress: function (address) {
-    return _.find(self.data, { Address: address });
-  },
-  findAddress: function (category, name, command) {
-    category = category.toLowerCase();
-    name = name.toLowerCase();
-    var result = _.find(self.data, function (groupAddress) {
-      if (groupAddress.Category != category)
-        return false;
-      if (command == "stop" && groupAddress.Command != command)
-        return false;
-      var originalName = groupAddress.Name.toLowerCase();
-      return originalName == name || (aliases[originalName] != null && _.includes(aliases[originalName], name));
-    })
-    return result.Address;
-  },
-  filter: function (category) {
-    return _.filter(self.data, (x) => { return x.Category == category && x.Command != "stop"; });
+    "Arm": "0/7/1",
+    "Disarm": "0/7/2",
+    "Garage sensor": "0/7/6",
+    "Entrance sensor": "0/7/7"
   }
 };
-
-var fs = require('fs');
-var xml2js = require('xml2js');
-var _ = require("lodash");
-
-var parser = new xml2js.Parser();
-
-var flattenData = function (data) {
-  var result = [];
-
-  var categories = data["GroupAddress-Export"]["GroupRange"][0]["GroupRange"];
-
-  for (var i = 0; i < categories.length; i++) {
-    var category = categories[i].$.Name.toLowerCase();
-    var addresses = categories[i]["GroupAddress"];
-
-    if (!addresses)
-      continue;
-
-    for (var j = 0; j < addresses.length; j++) {
-      var groupAddress = addresses[j].$;
-      var parsed = parseGroupAddress(groupAddress, category);
-
-      if (parsed)
-        result.push(parsed);
-    }
-  }
-
-  return result;
-}
-
-var parseGroupAddress = function (groupAddress, category) {
-
-  groupAddress.Command = null;
-
-  if (groupAddress.Name.startsWith(naming.prefixes.power))
-    return null;
-
-  if (groupAddress.Name.endsWith(naming.suffixes.stop)) {
-    groupAddress.Name = groupAddress.Name.replace(naming.suffixes.stop, '');
-    groupAddress.Command = "stop";
-  }
-
-  if (groupAddress.Name.endsWith(naming.suffixes.move))
-    groupAddress.Name = groupAddress.Name.replace(naming.suffixes.move, '');
-
-  if (groupAddress.Name.endsWith(naming.suffixes.down))
-    groupAddress.Command = "down";
-  else if (groupAddress.Name.endsWith(naming.suffixes.up))
-    groupAddress.Command = "up";
-  else if (groupAddress.Name.endsWith(naming.suffixes.on))
-    groupAddress.Command = "on";
-  else if (groupAddress.Name.endsWith(naming.suffixes.off))
-    groupAddress.Command = "off";
-
-  groupAddress.Category = category;
-  //groupAddress.Name = groupAddress.Name.toLowerCase();
-
-  return groupAddress;
-}
-
-fs.readFile(__dirname + '/data/GroupAddresses.xml', function (err, xml) {
-  parser.parseString(xml, function (err, result) {
-    var flat = flattenData(result);
-    self.data = flat;
-    console.log("received group addresses from the file system")
-  });
-});
-
-module.exports = self;
