@@ -58,7 +58,8 @@ server.get('/api/:category/:name', function (req, res, next) {
 });
 
 server.get('/api/:category', function (req, res, next) {
-  var addresses = Object.keys(groupAddresses[req.params.category]).map(x => ({
+  var category = groupAddresses[req.params.category];
+  var addresses = Object.keys(category).map(x => ({
     Name: x,
     Address: category[x],
     State: 0
