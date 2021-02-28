@@ -16,6 +16,15 @@ var naming = {
 
 var self = {
   data: null,
+  alarm: {
+    arm: "0/7/1",
+    disarm: "0/7/2",
+    panicSilent: "0/7/3",
+    panicAudible: "0/7/4",
+    vacationMode: "0/7/5",
+    garageSensor: "0/7/6",
+    entranceSensor: "0/7/7"
+  },
   getByAddress: function (address) {
     return _.find(self.data, { Address: address });
   },

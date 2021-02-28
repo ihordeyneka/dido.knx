@@ -16,11 +16,23 @@ var handleChange = function (addr, value) {
   //2. process vents
   var group = groupAddresses.getByAddress(addr);
   if (group != null && group.Category == "vents" && value == 1) {
-    var timeout = process.env.KNX_VENT_TIMEOUT || 300;
-    _.delay(function () {
-      didoKnx.commands.off(addr); //turn off vent after some time automatically
-    }, timeout * 1000);
+    delayedTurnOff(process.env.KNX_VENT_TIMEOUT || 300, addr);
   }
+
+  //3. process sensors
+  if (addr == groupAddresses.alarm.garageSensor && value == 1) {
+    delayedTurnOff(120, addr);
+  }
+
+  if (addr == groupAddresses.alarm.entranceSensor && value == 1) {
+    delayedTurnOff(60, addr);
+  }
+}
+
+var delayedTurnOff = function(timeout, addr) {
+  _.debounce(function () {
+    didoKnx.commands.off(addr); //turn off after some time automatically
+  }, timeout * 1000);
 }
 
 var self = {
@@ -41,16 +53,14 @@ var self = {
       var addressLight = groupAddresses.findAddress("scenes", "Light off");
       didoKnx.commands.off(addressLight);
 
-      var arm = "0/7/1";
-      didoKnx.commands.on(arm);
+      didoKnx.commands.on(groupAddresses.alarm.arm);
     });
 
     schedule.scheduleJob({hour: 07, minute: 00}, function() { //blinds 1 up and disarm at 07:00AM
       var addressBlinds = groupAddresses.findAddress("scenes", "Blinds 1 up");
       didoKnx.commands.up(addressBlinds);
 
-      var disarm = "0/7/2";
-      didoKnx.commands.on(disarm);
+      didoKnx.commands.on(groupAddresses.alarm.disarm); //ignored during vacation
     });
   }
 };
