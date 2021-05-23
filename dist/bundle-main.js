@@ -2884,15 +2884,15 @@ Emitter.prototype.hasListeners = function(event){
  * Module dependencies.
  */
 
-var keys = __webpack_require__(112);
+var keys = __webpack_require__(113);
 var hasBinary = __webpack_require__(50);
-var sliceBuffer = __webpack_require__(114);
-var after = __webpack_require__(115);
-var utf8 = __webpack_require__(116);
+var sliceBuffer = __webpack_require__(115);
+var after = __webpack_require__(116);
+var utf8 = __webpack_require__(117);
 
 var base64encoder;
 if (typeof ArrayBuffer !== 'undefined') {
-  base64encoder = __webpack_require__(117);
+  base64encoder = __webpack_require__(118);
 }
 
 /**
@@ -2950,7 +2950,7 @@ var err = { type: 'error', data: 'parser error' };
  * Create a blob api even for blob builder when vendor prefixes exist
  */
 
-var Blob = __webpack_require__(118);
+var Blob = __webpack_require__(119);
 
 /**
  * Encodes a packet.
@@ -21077,7 +21077,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(104);
+exports = module.exports = __webpack_require__(105);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -21334,7 +21334,7 @@ module.exports = function(a, b){
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(119);
+exports = module.exports = __webpack_require__(120);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -21744,7 +21744,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "/* -- box model --------------------------------------- */\n*,\n*:after,\n*:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* -- general ----------------------------------------- */\n.flex {\n  display: flex;\n  justify-content: space-between; }\n\n.title-back {\n  vertical-align: sub;\n  height: 50px; }\n\n/* -- button -------------------------------------------*/\n.button-dido {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  position: relative;\n  display: block; }\n  .button-dido > button {\n    position: relative;\n    overflow: hidden;\n    min-height: 2em;\n    padding: 0 15px;\n    background-color: #9ccc65;\n    text-align: center;\n    font-weight: bold;\n    border: none;\n    cursor: pointer;\n    text-transform: uppercase; }\n    .button-dido > button:hover {\n      background-color: #7cb342; }\n  .button-dido > strong {\n    display: inline-block;\n    vertical-align: top;\n    margin-left: 10px;\n    font-weight: inherit;\n    box-sizing: border-box; }\n\n/* -- form -------------------------------------------- */\nform.dido-form .row {\n  margin-bottom: 10px; }\n\nform.dido-form .nomargin {\n  margin: 0px !important; }\n\nform.dido-form label {\n  width: 100px;\n  display: inline-block;\n  font-size: 20px; }\n\nform.dido-form input {\n  width: calc(100% - 105px);\n  display: inline-block; }\n\nform.dido-form button {\n  width: 120px;\n  border: none;\n  color: #000;\n  background-color: #ffa726;\n  padding: 5px;\n  cursor: pointer;\n  font-size: 20px; }\n  form.dido-form button:hover, form.dido-form button:active, form.dido-form button.active {\n    background-color: #fb8c00; }\n\n/* -- loader thin --------------------------------------*/\n.switch-loading .load-bar {\n  visibility: visible; }\n\n.load-bar {\n  visibility: collapse;\n  position: relative;\n  margin-left: 7px;\n  width: 6px;\n  height: 26px;\n  background-color: #464747; }\n  .load-bar .bar {\n    content: \"\";\n    display: inline;\n    position: absolute;\n    width: 100%;\n    height: 0;\n    top: 50%;\n    text-align: center; }\n  .load-bar .bar:nth-child(1) {\n    background-color: #ffa726;\n    animation: loading 3s linear infinite; }\n  .load-bar .bar:nth-child(2) {\n    background-color: #26a69a;\n    animation: loading 3s linear 1s infinite; }\n  .load-bar .bar:nth-child(3) {\n    background-color: #464747;\n    animation: loading 3s linear 2s infinite; }\n\n@keyframes loading {\n  from {\n    top: 50%;\n    height: 0;\n    z-index: 100; }\n  33.3333% {\n    top: 0;\n    height: 100%;\n    z-index: 10; }\n  to {\n    top: 0;\n    height: 100%; } }\n\n/* -- loader -------------------------------------------*/\n.lds-hourglass {\n  display: inline-block;\n  position: relative;\n  width: 64px;\n  height: 64px; }\n\n.lds-hourglass:after {\n  content: \" \";\n  display: block;\n  border-radius: 50%;\n  width: 0;\n  height: 0;\n  margin: 8px;\n  box-sizing: border-box;\n  border: 32px solid #000;\n  border-color: #000 transparent #000 transparent;\n  animation: lds-hourglass 1.2s infinite; }\n\n@keyframes lds-hourglass {\n  0% {\n    transform: rotate(0);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }\n  50% {\n    transform: rotate(900deg);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }\n  100% {\n    transform: rotate(1800deg); } }\n\n/* -- Tiles content ----------------------------------- */\n.tile .content-wrapper {\n  position: relative;\n  display: block;\n  top: 0;\n  width: 100%;\n  -webkit-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);\n  -o-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);\n  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1); }\n  .tile .content-wrapper .tile-content {\n    position: relative;\n    display: block;\n    overflow: hidden; }\n    .tile .content-wrapper .tile-content .tile-img {\n      position: relative;\n      display: block;\n      width: 100%;\n      margin: 0 auto;\n      background-repeat: no-repeat;\n      background-position: center center;\n      -webkit-background-size: contain;\n      -moz-background-size: contain;\n      -o-background-size: contain;\n      background-size: contain;\n      text-align: center; }\n      .tile .content-wrapper .tile-content .tile-img.tile-img-sm {\n        position: absolute;\n        margin: 0;\n        padding: 0;\n        display: block;\n        opacity: 0.3; }\n      .tile .content-wrapper .tile-content .tile-img.tile-img-bg {\n        position: absolute;\n        background-position: left top;\n        -webkit-background-size: cover;\n        -moz-background-size: cover;\n        -o-background-size: cover;\n        background-size: cover; }\n      .tile .content-wrapper .tile-content .tile-img img {\n        height: 100%; }\n    .tile .content-wrapper .tile-content .tile-holder {\n      position: relative;\n      display: block;\n      padding: 0; }\n      .tile .content-wrapper .tile-content .tile-holder.tile-holder-sm {\n        position: absolute;\n        margin: 0;\n        padding: 0; }\n      .tile .content-wrapper .tile-content .tile-holder span {\n        color: #000 !important;\n        font-weight: bold;\n        font-size: 24px; }\n\n/* -- Tiles color ------------------------------------- */\n.tile-red {\n  background-color: #e84e40; }\n  .tile-red .tile-content, .tile-red .title {\n    color: #eceff1; }\n  .tile-red:hover, .tile-red:active, .tile-red.active {\n    background-color: #dd191d; }\n  .tile-red:focus {\n    background-color: #d01716; }\n  .tile-red:disabled, .tile-red.disabled, .tile-red[disabled] {\n    background-color: #b3b3b3; }\n  .tile-red .ink {\n    background-color: #c41411; }\n\n.tile-red-reverse {\n  background-color: #e84e40; }\n  .tile-red-reverse:hover {\n    background-color: #eceff1; }\n    .tile-red-reverse:hover .tile-content, .tile-red-reverse:hover .title {\n      color: #e84e40; }\n\n.tile-red-inverse {\n  background-color: #eceff1; }\n  .tile-red-inverse .tile-content, .tile-red-inverse .title {\n    color: #e84e40; }\n\n.tile-red-inverse-reverse .tile-content, .tile-red-inverse-reverse .title {\n  color: #e84e40; }\n\n.tile-red-inverse-reverse:hover {\n  background-color: #e84e40; }\n  .tile-red-inverse-reverse:hover .tile-content, .tile-red-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-red-inverse-reverse .ink {\n  background-color: #c41411; }\n\n.tile-pink {\n  background-color: #ec407a; }\n  .tile-pink .tile-content, .tile-pink .title {\n    color: #eceff1; }\n  .tile-pink:hover, .tile-pink:active, .tile-pink.active {\n    background-color: #d81b60; }\n  .tile-pink:focus {\n    background-color: #c2185b; }\n  .tile-pink:disabled, .tile-pink.disabled, .tile-pink[disabled] {\n    background-color: #b3b3b3; }\n  .tile-pink .ink {\n    background-color: #ad1457; }\n\n.tile-pink-reverse {\n  background-color: #ec407a; }\n  .tile-pink-reverse:hover {\n    background-color: #eceff1; }\n    .tile-pink-reverse:hover .tile-content, .tile-pink-reverse:hover .title {\n      color: #ec407a; }\n\n.tile-pink-inverse {\n  background-color: #eceff1; }\n  .tile-pink-inverse .tile-content, .tile-pink-inverse .title {\n    color: #ec407a; }\n\n.tile-pink-inverse-reverse .tile-content, .tile-pink-inverse-reverse .title {\n  color: #ec407a; }\n\n.tile-pink-inverse-reverse:hover {\n  background-color: #ec407a; }\n  .tile-pink-inverse-reverse:hover .tile-content, .tile-pink-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-pink-inverse-reverse .ink {\n  background-color: #ad1457; }\n\n.tile-purple {\n  background-color: #ab47bc; }\n  .tile-purple .tile-content, .tile-purple .title {\n    color: #eceff1; }\n  .tile-purple:hover, .tile-purple:active, .tile-purple.active {\n    background-color: #8e24aa; }\n  .tile-purple:focus {\n    background-color: #7b1fa2; }\n  .tile-purple:disabled, .tile-purple.disabled, .tile-purple[disabled] {\n    background-color: #b3b3b3; }\n  .tile-purple .ink {\n    background-color: #6a1b9a; }\n\n.tile-purple-reverse {\n  background-color: #ab47bc; }\n  .tile-purple-reverse:hover {\n    background-color: #eceff1; }\n    .tile-purple-reverse:hover .tile-content, .tile-purple-reverse:hover .title {\n      color: #ab47bc; }\n\n.tile-purple-inverse {\n  background-color: #eceff1; }\n  .tile-purple-inverse .tile-content, .tile-purple-inverse .title {\n    color: #ab47bc; }\n\n.tile-purple-inverse-reverse .tile-content, .tile-purple-inverse-reverse .title {\n  color: #ab47bc; }\n\n.tile-purple-inverse-reverse:hover {\n  background-color: #ab47bc; }\n  .tile-purple-inverse-reverse:hover .tile-content, .tile-purple-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-purple-inverse-reverse .ink {\n  background-color: #6a1b9a; }\n\n.tile-deep-purple {\n  background-color: #7e57c2; }\n  .tile-deep-purple .tile-content, .tile-deep-purple .title {\n    color: #eceff1; }\n  .tile-deep-purple:hover, .tile-deep-purple:active, .tile-deep-purple.active {\n    background-color: #5e35b1; }\n  .tile-deep-purple:focus {\n    background-color: #512da8; }\n  .tile-deep-purple:disabled, .tile-deep-purple.disabled, .tile-deep-purple[disabled] {\n    background-color: #b3b3b3; }\n  .tile-deep-purple .ink {\n    background-color: #4527a0; }\n\n.tile-deep-purple-reverse {\n  background-color: #7e57c2; }\n  .tile-deep-purple-reverse:hover {\n    background-color: #eceff1; }\n    .tile-deep-purple-reverse:hover .tile-content, .tile-deep-purple-reverse:hover .title {\n      color: #7e57c2; }\n\n.tile-deep-purple-inverse {\n  background-color: #eceff1; }\n  .tile-deep-purple-inverse .tile-content, .tile-deep-purple-inverse .title {\n    color: #7e57c2; }\n\n.tile-deep-purple-inverse-reverse .tile-content, .tile-deep-purple-inverse-reverse .title {\n  color: #7e57c2; }\n\n.tile-deep-purple-inverse-reverse:hover {\n  background-color: #7e57c2; }\n  .tile-deep-purple-inverse-reverse:hover .tile-content, .tile-deep-purple-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-deep-purple-inverse-reverse .ink {\n  background-color: #4527a0; }\n\n.tile-indigo {\n  background-color: #5c6bc0; }\n  .tile-indigo .tile-content, .tile-indigo .title {\n    color: #eceff1; }\n  .tile-indigo:hover, .tile-indigo:active, .tile-indigo.active {\n    background-color: #3949ab; }\n  .tile-indigo:focus {\n    background-color: #303f9f; }\n  .tile-indigo:disabled, .tile-indigo.disabled, .tile-indigo[disabled] {\n    background-color: #b3b3b3; }\n  .tile-indigo .ink {\n    background-color: #283593; }\n\n.tile-indigo-reverse {\n  background-color: #5c6bc0; }\n  .tile-indigo-reverse:hover {\n    background-color: #eceff1; }\n    .tile-indigo-reverse:hover .tile-content, .tile-indigo-reverse:hover .title {\n      color: #5c6bc0; }\n\n.tile-indigo-inverse {\n  background-color: #eceff1; }\n  .tile-indigo-inverse .tile-content, .tile-indigo-inverse .title {\n    color: #5c6bc0; }\n\n.tile-indigo-inverse-reverse .tile-content, .tile-indigo-inverse-reverse .title {\n  color: #5c6bc0; }\n\n.tile-indigo-inverse-reverse:hover {\n  background-color: #5c6bc0; }\n  .tile-indigo-inverse-reverse:hover .tile-content, .tile-indigo-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-indigo-inverse-reverse .ink {\n  background-color: #283593; }\n\n.tile-blue {\n  background-color: #738ffe; }\n  .tile-blue .tile-content, .tile-blue .title {\n    color: #eceff1; }\n  .tile-blue:hover, .tile-blue:active, .tile-blue.active {\n    background-color: #4e6cef; }\n  .tile-blue:focus {\n    background-color: #455ede; }\n  .tile-blue:disabled, .tile-blue.disabled, .tile-blue[disabled] {\n    background-color: #b3b3b3; }\n  .tile-blue .ink {\n    background-color: #3b50ce; }\n\n.tile-blue-reverse {\n  background-color: #738ffe; }\n  .tile-blue-reverse:hover {\n    background-color: #eceff1; }\n    .tile-blue-reverse:hover .tile-content, .tile-blue-reverse:hover .title {\n      color: #738ffe; }\n\n.tile-blue-inverse {\n  background-color: #eceff1; }\n  .tile-blue-inverse .tile-content, .tile-blue-inverse .title {\n    color: #738ffe; }\n\n.tile-blue-inverse-reverse .tile-content, .tile-blue-inverse-reverse .title {\n  color: #738ffe; }\n\n.tile-blue-inverse-reverse:hover {\n  background-color: #738ffe; }\n  .tile-blue-inverse-reverse:hover .tile-content, .tile-blue-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-blue-inverse-reverse .ink {\n  background-color: #3b50ce; }\n\n.tile-light-blue {\n  background-color: #29b6f6; }\n  .tile-light-blue .tile-content, .tile-light-blue .title {\n    color: #eceff1; }\n  .tile-light-blue:hover, .tile-light-blue:active, .tile-light-blue.active {\n    background-color: #039be5; }\n  .tile-light-blue:focus {\n    background-color: #0288d1; }\n  .tile-light-blue:disabled, .tile-light-blue.disabled, .tile-light-blue[disabled] {\n    background-color: #b3b3b3; }\n  .tile-light-blue .ink {\n    background-color: #0277bd; }\n\n.tile-light-blue-reverse {\n  background-color: #29b6f6; }\n  .tile-light-blue-reverse:hover {\n    background-color: #eceff1; }\n    .tile-light-blue-reverse:hover .tile-content, .tile-light-blue-reverse:hover .title {\n      color: #29b6f6; }\n\n.tile-light-blue-inverse {\n  background-color: #eceff1; }\n  .tile-light-blue-inverse .tile-content, .tile-light-blue-inverse .title {\n    color: #29b6f6; }\n\n.tile-light-blue-inverse-reverse .tile-content, .tile-light-blue-inverse-reverse .title {\n  color: #29b6f6; }\n\n.tile-light-blue-inverse-reverse:hover {\n  background-color: #29b6f6; }\n  .tile-light-blue-inverse-reverse:hover .tile-content, .tile-light-blue-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-light-blue-inverse-reverse .ink {\n  background-color: #0277bd; }\n\n.tile-cyan {\n  background-color: #26c6da; }\n  .tile-cyan .tile-content, .tile-cyan .title {\n    color: #eceff1; }\n  .tile-cyan:hover, .tile-cyan:active, .tile-cyan.active {\n    background-color: #00acc1; }\n  .tile-cyan:focus {\n    background-color: #0097a7; }\n  .tile-cyan:disabled, .tile-cyan.disabled, .tile-cyan[disabled] {\n    background-color: #b3b3b3; }\n  .tile-cyan .ink {\n    background-color: #00838f; }\n\n.tile-cyan-reverse {\n  background-color: #26c6da; }\n  .tile-cyan-reverse:hover {\n    background-color: #eceff1; }\n    .tile-cyan-reverse:hover .tile-content, .tile-cyan-reverse:hover .title {\n      color: #26c6da; }\n\n.tile-cyan-inverse {\n  background-color: #eceff1; }\n  .tile-cyan-inverse .tile-content, .tile-cyan-inverse .title {\n    color: #26c6da; }\n\n.tile-cyan-inverse-reverse .tile-content, .tile-cyan-inverse-reverse .title {\n  color: #26c6da; }\n\n.tile-cyan-inverse-reverse:hover {\n  background-color: #26c6da; }\n  .tile-cyan-inverse-reverse:hover .tile-content, .tile-cyan-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-cyan-inverse-reverse .ink {\n  background-color: #00838f; }\n\n.tile-teal {\n  background-color: #26a69a; }\n  .tile-teal .tile-content, .tile-teal .title {\n    color: #eceff1; }\n  .tile-teal:hover, .tile-teal:active, .tile-teal.active {\n    background-color: #00897b; }\n  .tile-teal:focus {\n    background-color: #00796b; }\n  .tile-teal:disabled, .tile-teal.disabled, .tile-teal[disabled] {\n    background-color: #b3b3b3; }\n  .tile-teal .ink {\n    background-color: #00695c; }\n\n.tile-teal-reverse {\n  background-color: #26a69a; }\n  .tile-teal-reverse:hover {\n    background-color: #eceff1; }\n    .tile-teal-reverse:hover .tile-content, .tile-teal-reverse:hover .title {\n      color: #26a69a; }\n\n.tile-teal-inverse {\n  background-color: #eceff1; }\n  .tile-teal-inverse .tile-content, .tile-teal-inverse .title {\n    color: #26a69a; }\n\n.tile-teal-inverse-reverse .tile-content, .tile-teal-inverse-reverse .title {\n  color: #26a69a; }\n\n.tile-teal-inverse-reverse:hover {\n  background-color: #26a69a; }\n  .tile-teal-inverse-reverse:hover .tile-content, .tile-teal-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-teal-inverse-reverse .ink {\n  background-color: #00695c; }\n\n.tile-green {\n  background-color: #2baf2b; }\n  .tile-green .tile-content, .tile-green .title {\n    color: #eceff1; }\n  .tile-green:hover, .tile-green:active, .tile-green.active {\n    background-color: #0a8f08; }\n  .tile-green:focus {\n    background-color: #0a7e07; }\n  .tile-green:disabled, .tile-green.disabled, .tile-green[disabled] {\n    background-color: #b3b3b3; }\n  .tile-green .ink {\n    background-color: #0a7e07; }\n\n.tile-green-reverse {\n  background-color: #2baf2b; }\n  .tile-green-reverse:hover {\n    background-color: #eceff1; }\n    .tile-green-reverse:hover .tile-content, .tile-green-reverse:hover .title {\n      color: #2baf2b; }\n\n.tile-green-inverse {\n  background-color: #eceff1; }\n  .tile-green-inverse .tile-content, .tile-green-inverse .title {\n    color: #2baf2b; }\n\n.tile-green-inverse-reverse .tile-content, .tile-green-inverse-reverse .title {\n  color: #2baf2b; }\n\n.tile-green-inverse-reverse:hover {\n  background-color: #2baf2b; }\n  .tile-green-inverse-reverse:hover .tile-content, .tile-green-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-green-inverse-reverse .ink {\n  background-color: #0a7e07; }\n\n.tile-light-green {\n  background-color: #9ccc65; }\n  .tile-light-green .tile-content, .tile-light-green .title {\n    color: #eceff1; }\n  .tile-light-green:hover, .tile-light-green:active, .tile-light-green.active {\n    background-color: #7cb342; }\n  .tile-light-green:focus {\n    background-color: #689f38; }\n  .tile-light-green:disabled, .tile-light-green.disabled, .tile-light-green[disabled] {\n    background-color: #b3b3b3; }\n  .tile-light-green .ink {\n    background-color: #558b2f; }\n\n.tile-light-green-reverse {\n  background-color: #9ccc65; }\n  .tile-light-green-reverse:hover {\n    background-color: #eceff1; }\n    .tile-light-green-reverse:hover .tile-content, .tile-light-green-reverse:hover .title {\n      color: #9ccc65; }\n\n.tile-light-green-inverse {\n  background-color: #eceff1; }\n  .tile-light-green-inverse .tile-content, .tile-light-green-inverse .title {\n    color: #9ccc65; }\n\n.tile-light-green-inverse-reverse .tile-content, .tile-light-green-inverse-reverse .title {\n  color: #9ccc65; }\n\n.tile-light-green-inverse-reverse:hover {\n  background-color: #9ccc65; }\n  .tile-light-green-inverse-reverse:hover .tile-content, .tile-light-green-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-light-green-inverse-reverse .ink {\n  background-color: #558b2f; }\n\n.tile-lime {\n  background-color: #d4e157; }\n  .tile-lime .tile-content, .tile-lime .title {\n    color: #eceff1; }\n  .tile-lime:hover, .tile-lime:active, .tile-lime.active {\n    background-color: #c0ca33; }\n  .tile-lime:focus {\n    background-color: #afb42b; }\n  .tile-lime:disabled, .tile-lime.disabled, .tile-lime[disabled] {\n    background-color: #b3b3b3; }\n  .tile-lime .ink {\n    background-color: #9e9d24; }\n\n.tile-lime-reverse {\n  background-color: #d4e157; }\n  .tile-lime-reverse:hover {\n    background-color: #eceff1; }\n    .tile-lime-reverse:hover .tile-content, .tile-lime-reverse:hover .title {\n      color: #d4e157; }\n\n.tile-lime-inverse {\n  background-color: #eceff1; }\n  .tile-lime-inverse .tile-content, .tile-lime-inverse .title {\n    color: #d4e157; }\n\n.tile-lime-inverse-reverse .tile-content, .tile-lime-inverse-reverse .title {\n  color: #d4e157; }\n\n.tile-lime-inverse-reverse:hover {\n  background-color: #d4e157; }\n  .tile-lime-inverse-reverse:hover .tile-content, .tile-lime-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-lime-inverse-reverse .ink {\n  background-color: #9e9d24; }\n\n.tile-yellow {\n  background-color: #ffee58; }\n  .tile-yellow .tile-content, .tile-yellow .title {\n    color: #eceff1; }\n  .tile-yellow:hover, .tile-yellow:active, .tile-yellow.active {\n    background-color: #fdd835; }\n  .tile-yellow:focus {\n    background-color: #fbc02d; }\n  .tile-yellow:disabled, .tile-yellow.disabled, .tile-yellow[disabled] {\n    background-color: #b3b3b3; }\n  .tile-yellow .ink {\n    background-color: #f9a825; }\n\n.tile-yellow-reverse {\n  background-color: #ffee58; }\n  .tile-yellow-reverse:hover {\n    background-color: #eceff1; }\n    .tile-yellow-reverse:hover .tile-content, .tile-yellow-reverse:hover .title {\n      color: #ffee58; }\n\n.tile-yellow-inverse {\n  background-color: #eceff1; }\n  .tile-yellow-inverse .tile-content, .tile-yellow-inverse .title {\n    color: #ffee58; }\n\n.tile-yellow-inverse-reverse .tile-content, .tile-yellow-inverse-reverse .title {\n  color: #ffee58; }\n\n.tile-yellow-inverse-reverse:hover {\n  background-color: #ffee58; }\n  .tile-yellow-inverse-reverse:hover .tile-content, .tile-yellow-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-yellow-inverse-reverse .ink {\n  background-color: #f9a825; }\n\n.tile-amber {\n  background-color: #ffca28; }\n  .tile-amber .tile-content, .tile-amber .title {\n    color: #eceff1; }\n  .tile-amber:hover, .tile-amber:active, .tile-amber.active {\n    background-color: #ffb300; }\n  .tile-amber:focus {\n    background-color: #ffa000; }\n  .tile-amber:disabled, .tile-amber.disabled, .tile-amber[disabled] {\n    background-color: #b3b3b3; }\n  .tile-amber .ink {\n    background-color: #ff8f00; }\n\n.tile-amber-reverse {\n  background-color: #ffca28; }\n  .tile-amber-reverse:hover {\n    background-color: #eceff1; }\n    .tile-amber-reverse:hover .tile-content, .tile-amber-reverse:hover .title {\n      color: #ffca28; }\n\n.tile-amber-inverse {\n  background-color: #eceff1; }\n  .tile-amber-inverse .tile-content, .tile-amber-inverse .title {\n    color: #ffca28; }\n\n.tile-amber-inverse-reverse .tile-content, .tile-amber-inverse-reverse .title {\n  color: #ffca28; }\n\n.tile-amber-inverse-reverse:hover {\n  background-color: #ffca28; }\n  .tile-amber-inverse-reverse:hover .tile-content, .tile-amber-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-amber-inverse-reverse .ink {\n  background-color: #ff8f00; }\n\n.tile-orange {\n  background-color: #ffa726; }\n  .tile-orange .tile-content, .tile-orange .title {\n    color: #eceff1; }\n  .tile-orange:hover, .tile-orange:active, .tile-orange.active {\n    background-color: #fb8c00; }\n  .tile-orange:focus {\n    background-color: #f57c00; }\n  .tile-orange:disabled, .tile-orange.disabled, .tile-orange[disabled] {\n    background-color: #b3b3b3; }\n  .tile-orange .ink {\n    background-color: #ef6c00; }\n\n.tile-orange-reverse {\n  background-color: #ffa726; }\n  .tile-orange-reverse:hover {\n    background-color: #eceff1; }\n    .tile-orange-reverse:hover .tile-content, .tile-orange-reverse:hover .title {\n      color: #ffa726; }\n\n.tile-orange-inverse {\n  background-color: #eceff1; }\n  .tile-orange-inverse .tile-content, .tile-orange-inverse .title {\n    color: #ffa726; }\n\n.tile-orange-inverse-reverse .tile-content, .tile-orange-inverse-reverse .title {\n  color: #ffa726; }\n\n.tile-orange-inverse-reverse:hover {\n  background-color: #ffa726; }\n  .tile-orange-inverse-reverse:hover .tile-content, .tile-orange-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-orange-inverse-reverse .ink {\n  background-color: #ef6c00; }\n\n.tile-deep-orange {\n  background-color: #ff7043; }\n  .tile-deep-orange .tile-content, .tile-deep-orange .title {\n    color: #eceff1; }\n  .tile-deep-orange:hover, .tile-deep-orange:active, .tile-deep-orange.active {\n    background-color: #f4511e; }\n  .tile-deep-orange:focus {\n    background-color: #e64a19; }\n  .tile-deep-orange:disabled, .tile-deep-orange.disabled, .tile-deep-orange[disabled] {\n    background-color: #b3b3b3; }\n  .tile-deep-orange .ink {\n    background-color: #d84315; }\n\n.tile-deep-orange-reverse {\n  background-color: #ff7043; }\n  .tile-deep-orange-reverse:hover {\n    background-color: #eceff1; }\n    .tile-deep-orange-reverse:hover .tile-content, .tile-deep-orange-reverse:hover .title {\n      color: #ff7043; }\n\n.tile-deep-orange-inverse {\n  background-color: #eceff1; }\n  .tile-deep-orange-inverse .tile-content, .tile-deep-orange-inverse .title {\n    color: #ff7043; }\n\n.tile-deep-orange-inverse-reverse .tile-content, .tile-deep-orange-inverse-reverse .title {\n  color: #ff7043; }\n\n.tile-deep-orange-inverse-reverse:hover {\n  background-color: #ff7043; }\n  .tile-deep-orange-inverse-reverse:hover .tile-content, .tile-deep-orange-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-deep-orange-inverse-reverse .ink {\n  background-color: #d84315; }\n\n.tile-brown {\n  background-color: #8d6e63; }\n  .tile-brown .tile-content, .tile-brown .title {\n    color: #eceff1; }\n  .tile-brown:hover, .tile-brown:active, .tile-brown.active {\n    background-color: #6d4c41; }\n  .tile-brown:focus {\n    background-color: #5d4037; }\n  .tile-brown:disabled, .tile-brown.disabled, .tile-brown[disabled] {\n    background-color: #b3b3b3; }\n  .tile-brown .ink {\n    background-color: #4e342e; }\n\n.tile-brown-reverse {\n  background-color: #8d6e63; }\n  .tile-brown-reverse:hover {\n    background-color: #eceff1; }\n    .tile-brown-reverse:hover .tile-content, .tile-brown-reverse:hover .title {\n      color: #8d6e63; }\n\n.tile-brown-inverse {\n  background-color: #eceff1; }\n  .tile-brown-inverse .tile-content, .tile-brown-inverse .title {\n    color: #8d6e63; }\n\n.tile-brown-inverse-reverse .tile-content, .tile-brown-inverse-reverse .title {\n  color: #8d6e63; }\n\n.tile-brown-inverse-reverse:hover {\n  background-color: #8d6e63; }\n  .tile-brown-inverse-reverse:hover .tile-content, .tile-brown-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-brown-inverse-reverse .ink {\n  background-color: #4e342e; }\n\n/*-- Tiles size --------------------------------------- */\n.tile {\n  width: 100%;\n  height: 270px;\n  display: block; }\n  .tile .content-wrapper .tile-content {\n    height: 270px;\n    padding: 20px; }\n    .tile .content-wrapper .tile-content .tile-img {\n      height: 180px; }\n    .tile .content-wrapper .tile-content .tile-img-bg {\n      width: 550px;\n      height: 270px;\n      margin-left: -20px;\n      margin-top: -20px; }\n    .tile .content-wrapper .tile-content .tile-holder-sm {\n      bottom: 20px;\n      left: 20px; }\n", ""]);
+exports.push([module.i, "/* -- box model --------------------------------------- */\n*,\n*:after,\n*:before {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n/* -- general ----------------------------------------- */\n.flex {\n  display: flex;\n  justify-content: space-between; }\n\n.title-back {\n  vertical-align: sub;\n  height: 50px; }\n\n#button-auth {\n  margin-top: 15px;\n  background-color: #29b6f6; }\n  #button-auth:hover {\n    background-color: #039be5; }\n\nbutton.simple-button, .button-dido > .simple-button {\n  background-color: #29b6f6; }\n  button.simple-button:hover, .button-dido > .simple-button:hover {\n    background-color: #039be5; }\n\n.code-input {\n  font-size: 24px;\n  width: 120px; }\n\n/* -- button -------------------------------------------*/\n.button-dido {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  position: relative;\n  display: block; }\n  .button-dido > button {\n    position: relative;\n    overflow: hidden;\n    min-height: 2em;\n    padding: 0 15px;\n    background-color: #9ccc65;\n    text-align: center;\n    font-weight: bold;\n    border: none;\n    cursor: pointer;\n    text-transform: uppercase; }\n    .button-dido > button:hover {\n      background-color: #7cb342; }\n  .button-dido > strong {\n    display: inline-block;\n    vertical-align: top;\n    margin-left: 10px;\n    font-weight: inherit;\n    box-sizing: border-box; }\n\n/* -- form -------------------------------------------- */\nform.dido-form .row {\n  margin-bottom: 10px; }\n\nform.dido-form .nomargin {\n  margin: 0px !important; }\n\nform.dido-form label {\n  width: 100px;\n  display: inline-block;\n  font-size: 20px; }\n\nform.dido-form input {\n  width: calc(100% - 105px);\n  display: inline-block; }\n\nform.dido-form button {\n  width: 120px;\n  border: none;\n  color: #000;\n  background-color: #ffa726;\n  padding: 5px;\n  cursor: pointer;\n  font-size: 20px; }\n  form.dido-form button:hover, form.dido-form button:active, form.dido-form button.active {\n    background-color: #fb8c00; }\n\n/* -- loader thin --------------------------------------*/\n.switch-loading .load-bar {\n  visibility: visible; }\n\n.load-bar {\n  visibility: collapse;\n  position: relative;\n  margin-left: 7px;\n  width: 6px;\n  height: 26px;\n  background-color: #464747; }\n  .load-bar .bar {\n    content: \"\";\n    display: inline;\n    position: absolute;\n    width: 100%;\n    height: 0;\n    top: 50%;\n    text-align: center; }\n  .load-bar .bar:nth-child(1) {\n    background-color: #ffa726;\n    animation: loading 3s linear infinite; }\n  .load-bar .bar:nth-child(2) {\n    background-color: #26a69a;\n    animation: loading 3s linear 1s infinite; }\n  .load-bar .bar:nth-child(3) {\n    background-color: #464747;\n    animation: loading 3s linear 2s infinite; }\n\n@keyframes loading {\n  from {\n    top: 50%;\n    height: 0;\n    z-index: 100; }\n  33.3333% {\n    top: 0;\n    height: 100%;\n    z-index: 10; }\n  to {\n    top: 0;\n    height: 100%; } }\n\n/* -- loader -------------------------------------------*/\n.lds-hourglass {\n  display: inline-block;\n  position: relative;\n  width: 64px;\n  height: 64px; }\n\n.lds-hourglass:after {\n  content: \" \";\n  display: block;\n  border-radius: 50%;\n  width: 0;\n  height: 0;\n  margin: 8px;\n  box-sizing: border-box;\n  border: 32px solid #000;\n  border-color: #000 transparent #000 transparent;\n  animation: lds-hourglass 1.2s infinite; }\n\n@keyframes lds-hourglass {\n  0% {\n    transform: rotate(0);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); }\n  50% {\n    transform: rotate(900deg);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }\n  100% {\n    transform: rotate(1800deg); } }\n\n/* -- Modals ----------------------------------- */\n.modal {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 1050;\n  overflow: hidden;\n  outline: 0; }\n\n.modal-dialog {\n  max-width: 300px;\n  margin: 64px auto;\n  position: relative;\n  width: auto;\n  pointer-events: none; }\n\n.modal-content {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  pointer-events: auto;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n  outline: 0; }\n\n.modal-header {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  padding: 16px;\n  border-top-left-radius: 4px;\n  border-top-right-radius: 4px; }\n\n.modal-body {\n  position: relative;\n  flex: 1 1 auto;\n  padding: 16px; }\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px; }\n\n.modal-title {\n  margin: 0;\n  line-height: 1.5; }\n\n.modal-close {\n  margin: 0;\n  padding: 0;\n  border: none;\n  width: 16px;\n  height: 16px;\n  cursor: pointer;\n  background: none;\n  font-size: 0; }\n\n.modal-backdrop {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 1040;\n  background-color: #000; }\n\n.modal-backdrop.in {\n  opacity: 0;\n  transition: opacity 350ms ease-in-out; }\n\n.modal-backdrop.out {\n  opacity: 0;\n  transition: opacity 350ms ease-in-out; }\n\n.modal-backdrop.is-open {\n  opacity: .5; }\n\n.modal.in .modal-dialog {\n  animation: scaleUp 350ms ease-in-out; }\n\n.modal.out .modal-dialog {\n  animation: scaleDown 350ms ease-in-out; }\n\n@keyframes scaleUp {\n  0% {\n    transform: scale(1.2);\n    opacity: 0; }\n  100% {\n    transform: scale(1);\n    opacity: 1; } }\n\n@keyframes scaleDown {\n  0% {\n    transform: scale(1);\n    opacity: 1; }\n  100% {\n    transform: scale(1.2);\n    opacity: 0; } }\n\n.flex {\n  display: flex; }\n\n.justify-center {\n  justify-content: center; }\n\n.items-center {\n  align-items: center; }\n\n.m-0 {\n  margin: 0; }\n\n.mt-0 {\n  margin-top: 0; }\n\n.mb-s {\n  margin-bottom: 16px; }\n\n.mb-l {\n  margin-bottom: 32px; }\n\n.mr-s {\n  margin-right: 16px; }\n\n.mr-xs {\n  margin-right: 8px; }\n\n/* -- Tiles content ----------------------------------- */\n.tile .content-wrapper {\n  position: relative;\n  display: block;\n  top: 0;\n  width: 100%;\n  -webkit-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);\n  -o-transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);\n  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1); }\n  .tile .content-wrapper .tile-content {\n    position: relative;\n    display: block;\n    overflow: hidden; }\n    .tile .content-wrapper .tile-content .tile-img {\n      position: relative;\n      display: block;\n      width: 100%;\n      margin: 0 auto;\n      background-repeat: no-repeat;\n      background-position: center center;\n      -webkit-background-size: contain;\n      -moz-background-size: contain;\n      -o-background-size: contain;\n      background-size: contain;\n      text-align: center; }\n      .tile .content-wrapper .tile-content .tile-img.tile-img-sm {\n        position: absolute;\n        margin: 0;\n        padding: 0;\n        display: block;\n        opacity: 0.3; }\n      .tile .content-wrapper .tile-content .tile-img.tile-img-bg {\n        position: absolute;\n        background-position: left top;\n        -webkit-background-size: cover;\n        -moz-background-size: cover;\n        -o-background-size: cover;\n        background-size: cover; }\n      .tile .content-wrapper .tile-content .tile-img img {\n        height: 100%; }\n    .tile .content-wrapper .tile-content .tile-holder {\n      position: relative;\n      display: block;\n      padding: 0; }\n      .tile .content-wrapper .tile-content .tile-holder.tile-holder-sm {\n        position: absolute;\n        margin: 0;\n        padding: 0; }\n      .tile .content-wrapper .tile-content .tile-holder span {\n        color: #000 !important;\n        font-weight: bold;\n        font-size: 24px; }\n\n/* -- Tiles color ------------------------------------- */\n.tile-red {\n  background-color: #e84e40; }\n  .tile-red .tile-content, .tile-red .title {\n    color: #eceff1; }\n  .tile-red:hover, .tile-red:active, .tile-red.active {\n    background-color: #dd191d; }\n  .tile-red:focus {\n    background-color: #d01716; }\n  .tile-red:disabled, .tile-red.disabled, .tile-red[disabled] {\n    background-color: #b3b3b3; }\n  .tile-red .ink {\n    background-color: #c41411; }\n\n.tile-red-reverse {\n  background-color: #e84e40; }\n  .tile-red-reverse:hover {\n    background-color: #eceff1; }\n    .tile-red-reverse:hover .tile-content, .tile-red-reverse:hover .title {\n      color: #e84e40; }\n\n.tile-red-inverse {\n  background-color: #eceff1; }\n  .tile-red-inverse .tile-content, .tile-red-inverse .title {\n    color: #e84e40; }\n\n.tile-red-inverse-reverse .tile-content, .tile-red-inverse-reverse .title {\n  color: #e84e40; }\n\n.tile-red-inverse-reverse:hover {\n  background-color: #e84e40; }\n  .tile-red-inverse-reverse:hover .tile-content, .tile-red-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-red-inverse-reverse .ink {\n  background-color: #c41411; }\n\n.tile-pink {\n  background-color: #ec407a; }\n  .tile-pink .tile-content, .tile-pink .title {\n    color: #eceff1; }\n  .tile-pink:hover, .tile-pink:active, .tile-pink.active {\n    background-color: #d81b60; }\n  .tile-pink:focus {\n    background-color: #c2185b; }\n  .tile-pink:disabled, .tile-pink.disabled, .tile-pink[disabled] {\n    background-color: #b3b3b3; }\n  .tile-pink .ink {\n    background-color: #ad1457; }\n\n.tile-pink-reverse {\n  background-color: #ec407a; }\n  .tile-pink-reverse:hover {\n    background-color: #eceff1; }\n    .tile-pink-reverse:hover .tile-content, .tile-pink-reverse:hover .title {\n      color: #ec407a; }\n\n.tile-pink-inverse {\n  background-color: #eceff1; }\n  .tile-pink-inverse .tile-content, .tile-pink-inverse .title {\n    color: #ec407a; }\n\n.tile-pink-inverse-reverse .tile-content, .tile-pink-inverse-reverse .title {\n  color: #ec407a; }\n\n.tile-pink-inverse-reverse:hover {\n  background-color: #ec407a; }\n  .tile-pink-inverse-reverse:hover .tile-content, .tile-pink-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-pink-inverse-reverse .ink {\n  background-color: #ad1457; }\n\n.tile-purple {\n  background-color: #ab47bc; }\n  .tile-purple .tile-content, .tile-purple .title {\n    color: #eceff1; }\n  .tile-purple:hover, .tile-purple:active, .tile-purple.active {\n    background-color: #8e24aa; }\n  .tile-purple:focus {\n    background-color: #7b1fa2; }\n  .tile-purple:disabled, .tile-purple.disabled, .tile-purple[disabled] {\n    background-color: #b3b3b3; }\n  .tile-purple .ink {\n    background-color: #6a1b9a; }\n\n.tile-purple-reverse {\n  background-color: #ab47bc; }\n  .tile-purple-reverse:hover {\n    background-color: #eceff1; }\n    .tile-purple-reverse:hover .tile-content, .tile-purple-reverse:hover .title {\n      color: #ab47bc; }\n\n.tile-purple-inverse {\n  background-color: #eceff1; }\n  .tile-purple-inverse .tile-content, .tile-purple-inverse .title {\n    color: #ab47bc; }\n\n.tile-purple-inverse-reverse .tile-content, .tile-purple-inverse-reverse .title {\n  color: #ab47bc; }\n\n.tile-purple-inverse-reverse:hover {\n  background-color: #ab47bc; }\n  .tile-purple-inverse-reverse:hover .tile-content, .tile-purple-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-purple-inverse-reverse .ink {\n  background-color: #6a1b9a; }\n\n.tile-deep-purple {\n  background-color: #7e57c2; }\n  .tile-deep-purple .tile-content, .tile-deep-purple .title {\n    color: #eceff1; }\n  .tile-deep-purple:hover, .tile-deep-purple:active, .tile-deep-purple.active {\n    background-color: #5e35b1; }\n  .tile-deep-purple:focus {\n    background-color: #512da8; }\n  .tile-deep-purple:disabled, .tile-deep-purple.disabled, .tile-deep-purple[disabled] {\n    background-color: #b3b3b3; }\n  .tile-deep-purple .ink {\n    background-color: #4527a0; }\n\n.tile-deep-purple-reverse {\n  background-color: #7e57c2; }\n  .tile-deep-purple-reverse:hover {\n    background-color: #eceff1; }\n    .tile-deep-purple-reverse:hover .tile-content, .tile-deep-purple-reverse:hover .title {\n      color: #7e57c2; }\n\n.tile-deep-purple-inverse {\n  background-color: #eceff1; }\n  .tile-deep-purple-inverse .tile-content, .tile-deep-purple-inverse .title {\n    color: #7e57c2; }\n\n.tile-deep-purple-inverse-reverse .tile-content, .tile-deep-purple-inverse-reverse .title {\n  color: #7e57c2; }\n\n.tile-deep-purple-inverse-reverse:hover {\n  background-color: #7e57c2; }\n  .tile-deep-purple-inverse-reverse:hover .tile-content, .tile-deep-purple-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-deep-purple-inverse-reverse .ink {\n  background-color: #4527a0; }\n\n.tile-indigo {\n  background-color: #5c6bc0; }\n  .tile-indigo .tile-content, .tile-indigo .title {\n    color: #eceff1; }\n  .tile-indigo:hover, .tile-indigo:active, .tile-indigo.active {\n    background-color: #3949ab; }\n  .tile-indigo:focus {\n    background-color: #303f9f; }\n  .tile-indigo:disabled, .tile-indigo.disabled, .tile-indigo[disabled] {\n    background-color: #b3b3b3; }\n  .tile-indigo .ink {\n    background-color: #283593; }\n\n.tile-indigo-reverse {\n  background-color: #5c6bc0; }\n  .tile-indigo-reverse:hover {\n    background-color: #eceff1; }\n    .tile-indigo-reverse:hover .tile-content, .tile-indigo-reverse:hover .title {\n      color: #5c6bc0; }\n\n.tile-indigo-inverse {\n  background-color: #eceff1; }\n  .tile-indigo-inverse .tile-content, .tile-indigo-inverse .title {\n    color: #5c6bc0; }\n\n.tile-indigo-inverse-reverse .tile-content, .tile-indigo-inverse-reverse .title {\n  color: #5c6bc0; }\n\n.tile-indigo-inverse-reverse:hover {\n  background-color: #5c6bc0; }\n  .tile-indigo-inverse-reverse:hover .tile-content, .tile-indigo-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-indigo-inverse-reverse .ink {\n  background-color: #283593; }\n\n.tile-blue {\n  background-color: #738ffe; }\n  .tile-blue .tile-content, .tile-blue .title {\n    color: #eceff1; }\n  .tile-blue:hover, .tile-blue:active, .tile-blue.active {\n    background-color: #4e6cef; }\n  .tile-blue:focus {\n    background-color: #455ede; }\n  .tile-blue:disabled, .tile-blue.disabled, .tile-blue[disabled] {\n    background-color: #b3b3b3; }\n  .tile-blue .ink {\n    background-color: #3b50ce; }\n\n.tile-blue-reverse {\n  background-color: #738ffe; }\n  .tile-blue-reverse:hover {\n    background-color: #eceff1; }\n    .tile-blue-reverse:hover .tile-content, .tile-blue-reverse:hover .title {\n      color: #738ffe; }\n\n.tile-blue-inverse {\n  background-color: #eceff1; }\n  .tile-blue-inverse .tile-content, .tile-blue-inverse .title {\n    color: #738ffe; }\n\n.tile-blue-inverse-reverse .tile-content, .tile-blue-inverse-reverse .title {\n  color: #738ffe; }\n\n.tile-blue-inverse-reverse:hover {\n  background-color: #738ffe; }\n  .tile-blue-inverse-reverse:hover .tile-content, .tile-blue-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-blue-inverse-reverse .ink {\n  background-color: #3b50ce; }\n\n.tile-light-blue {\n  background-color: #29b6f6; }\n  .tile-light-blue .tile-content, .tile-light-blue .title {\n    color: #eceff1; }\n  .tile-light-blue:hover, .tile-light-blue:active, .tile-light-blue.active {\n    background-color: #039be5; }\n  .tile-light-blue:focus {\n    background-color: #0288d1; }\n  .tile-light-blue:disabled, .tile-light-blue.disabled, .tile-light-blue[disabled] {\n    background-color: #b3b3b3; }\n  .tile-light-blue .ink {\n    background-color: #0277bd; }\n\n.tile-light-blue-reverse {\n  background-color: #29b6f6; }\n  .tile-light-blue-reverse:hover {\n    background-color: #eceff1; }\n    .tile-light-blue-reverse:hover .tile-content, .tile-light-blue-reverse:hover .title {\n      color: #29b6f6; }\n\n.tile-light-blue-inverse {\n  background-color: #eceff1; }\n  .tile-light-blue-inverse .tile-content, .tile-light-blue-inverse .title {\n    color: #29b6f6; }\n\n.tile-light-blue-inverse-reverse .tile-content, .tile-light-blue-inverse-reverse .title {\n  color: #29b6f6; }\n\n.tile-light-blue-inverse-reverse:hover {\n  background-color: #29b6f6; }\n  .tile-light-blue-inverse-reverse:hover .tile-content, .tile-light-blue-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-light-blue-inverse-reverse .ink {\n  background-color: #0277bd; }\n\n.tile-cyan {\n  background-color: #26c6da; }\n  .tile-cyan .tile-content, .tile-cyan .title {\n    color: #eceff1; }\n  .tile-cyan:hover, .tile-cyan:active, .tile-cyan.active {\n    background-color: #00acc1; }\n  .tile-cyan:focus {\n    background-color: #0097a7; }\n  .tile-cyan:disabled, .tile-cyan.disabled, .tile-cyan[disabled] {\n    background-color: #b3b3b3; }\n  .tile-cyan .ink {\n    background-color: #00838f; }\n\n.tile-cyan-reverse {\n  background-color: #26c6da; }\n  .tile-cyan-reverse:hover {\n    background-color: #eceff1; }\n    .tile-cyan-reverse:hover .tile-content, .tile-cyan-reverse:hover .title {\n      color: #26c6da; }\n\n.tile-cyan-inverse {\n  background-color: #eceff1; }\n  .tile-cyan-inverse .tile-content, .tile-cyan-inverse .title {\n    color: #26c6da; }\n\n.tile-cyan-inverse-reverse .tile-content, .tile-cyan-inverse-reverse .title {\n  color: #26c6da; }\n\n.tile-cyan-inverse-reverse:hover {\n  background-color: #26c6da; }\n  .tile-cyan-inverse-reverse:hover .tile-content, .tile-cyan-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-cyan-inverse-reverse .ink {\n  background-color: #00838f; }\n\n.tile-teal {\n  background-color: #26a69a; }\n  .tile-teal .tile-content, .tile-teal .title {\n    color: #eceff1; }\n  .tile-teal:hover, .tile-teal:active, .tile-teal.active {\n    background-color: #00897b; }\n  .tile-teal:focus {\n    background-color: #00796b; }\n  .tile-teal:disabled, .tile-teal.disabled, .tile-teal[disabled] {\n    background-color: #b3b3b3; }\n  .tile-teal .ink {\n    background-color: #00695c; }\n\n.tile-teal-reverse {\n  background-color: #26a69a; }\n  .tile-teal-reverse:hover {\n    background-color: #eceff1; }\n    .tile-teal-reverse:hover .tile-content, .tile-teal-reverse:hover .title {\n      color: #26a69a; }\n\n.tile-teal-inverse {\n  background-color: #eceff1; }\n  .tile-teal-inverse .tile-content, .tile-teal-inverse .title {\n    color: #26a69a; }\n\n.tile-teal-inverse-reverse .tile-content, .tile-teal-inverse-reverse .title {\n  color: #26a69a; }\n\n.tile-teal-inverse-reverse:hover {\n  background-color: #26a69a; }\n  .tile-teal-inverse-reverse:hover .tile-content, .tile-teal-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-teal-inverse-reverse .ink {\n  background-color: #00695c; }\n\n.tile-green {\n  background-color: #2baf2b; }\n  .tile-green .tile-content, .tile-green .title {\n    color: #eceff1; }\n  .tile-green:hover, .tile-green:active, .tile-green.active {\n    background-color: #0a8f08; }\n  .tile-green:focus {\n    background-color: #0a7e07; }\n  .tile-green:disabled, .tile-green.disabled, .tile-green[disabled] {\n    background-color: #b3b3b3; }\n  .tile-green .ink {\n    background-color: #0a7e07; }\n\n.tile-green-reverse {\n  background-color: #2baf2b; }\n  .tile-green-reverse:hover {\n    background-color: #eceff1; }\n    .tile-green-reverse:hover .tile-content, .tile-green-reverse:hover .title {\n      color: #2baf2b; }\n\n.tile-green-inverse {\n  background-color: #eceff1; }\n  .tile-green-inverse .tile-content, .tile-green-inverse .title {\n    color: #2baf2b; }\n\n.tile-green-inverse-reverse .tile-content, .tile-green-inverse-reverse .title {\n  color: #2baf2b; }\n\n.tile-green-inverse-reverse:hover {\n  background-color: #2baf2b; }\n  .tile-green-inverse-reverse:hover .tile-content, .tile-green-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-green-inverse-reverse .ink {\n  background-color: #0a7e07; }\n\n.tile-light-green {\n  background-color: #9ccc65; }\n  .tile-light-green .tile-content, .tile-light-green .title {\n    color: #eceff1; }\n  .tile-light-green:hover, .tile-light-green:active, .tile-light-green.active {\n    background-color: #7cb342; }\n  .tile-light-green:focus {\n    background-color: #689f38; }\n  .tile-light-green:disabled, .tile-light-green.disabled, .tile-light-green[disabled] {\n    background-color: #b3b3b3; }\n  .tile-light-green .ink {\n    background-color: #558b2f; }\n\n.tile-light-green-reverse {\n  background-color: #9ccc65; }\n  .tile-light-green-reverse:hover {\n    background-color: #eceff1; }\n    .tile-light-green-reverse:hover .tile-content, .tile-light-green-reverse:hover .title {\n      color: #9ccc65; }\n\n.tile-light-green-inverse {\n  background-color: #eceff1; }\n  .tile-light-green-inverse .tile-content, .tile-light-green-inverse .title {\n    color: #9ccc65; }\n\n.tile-light-green-inverse-reverse .tile-content, .tile-light-green-inverse-reverse .title {\n  color: #9ccc65; }\n\n.tile-light-green-inverse-reverse:hover {\n  background-color: #9ccc65; }\n  .tile-light-green-inverse-reverse:hover .tile-content, .tile-light-green-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-light-green-inverse-reverse .ink {\n  background-color: #558b2f; }\n\n.tile-lime {\n  background-color: #d4e157; }\n  .tile-lime .tile-content, .tile-lime .title {\n    color: #eceff1; }\n  .tile-lime:hover, .tile-lime:active, .tile-lime.active {\n    background-color: #c0ca33; }\n  .tile-lime:focus {\n    background-color: #afb42b; }\n  .tile-lime:disabled, .tile-lime.disabled, .tile-lime[disabled] {\n    background-color: #b3b3b3; }\n  .tile-lime .ink {\n    background-color: #9e9d24; }\n\n.tile-lime-reverse {\n  background-color: #d4e157; }\n  .tile-lime-reverse:hover {\n    background-color: #eceff1; }\n    .tile-lime-reverse:hover .tile-content, .tile-lime-reverse:hover .title {\n      color: #d4e157; }\n\n.tile-lime-inverse {\n  background-color: #eceff1; }\n  .tile-lime-inverse .tile-content, .tile-lime-inverse .title {\n    color: #d4e157; }\n\n.tile-lime-inverse-reverse .tile-content, .tile-lime-inverse-reverse .title {\n  color: #d4e157; }\n\n.tile-lime-inverse-reverse:hover {\n  background-color: #d4e157; }\n  .tile-lime-inverse-reverse:hover .tile-content, .tile-lime-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-lime-inverse-reverse .ink {\n  background-color: #9e9d24; }\n\n.tile-yellow {\n  background-color: #ffee58; }\n  .tile-yellow .tile-content, .tile-yellow .title {\n    color: #eceff1; }\n  .tile-yellow:hover, .tile-yellow:active, .tile-yellow.active {\n    background-color: #fdd835; }\n  .tile-yellow:focus {\n    background-color: #fbc02d; }\n  .tile-yellow:disabled, .tile-yellow.disabled, .tile-yellow[disabled] {\n    background-color: #b3b3b3; }\n  .tile-yellow .ink {\n    background-color: #f9a825; }\n\n.tile-yellow-reverse {\n  background-color: #ffee58; }\n  .tile-yellow-reverse:hover {\n    background-color: #eceff1; }\n    .tile-yellow-reverse:hover .tile-content, .tile-yellow-reverse:hover .title {\n      color: #ffee58; }\n\n.tile-yellow-inverse {\n  background-color: #eceff1; }\n  .tile-yellow-inverse .tile-content, .tile-yellow-inverse .title {\n    color: #ffee58; }\n\n.tile-yellow-inverse-reverse .tile-content, .tile-yellow-inverse-reverse .title {\n  color: #ffee58; }\n\n.tile-yellow-inverse-reverse:hover {\n  background-color: #ffee58; }\n  .tile-yellow-inverse-reverse:hover .tile-content, .tile-yellow-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-yellow-inverse-reverse .ink {\n  background-color: #f9a825; }\n\n.tile-amber {\n  background-color: #ffca28; }\n  .tile-amber .tile-content, .tile-amber .title {\n    color: #eceff1; }\n  .tile-amber:hover, .tile-amber:active, .tile-amber.active {\n    background-color: #ffb300; }\n  .tile-amber:focus {\n    background-color: #ffa000; }\n  .tile-amber:disabled, .tile-amber.disabled, .tile-amber[disabled] {\n    background-color: #b3b3b3; }\n  .tile-amber .ink {\n    background-color: #ff8f00; }\n\n.tile-amber-reverse {\n  background-color: #ffca28; }\n  .tile-amber-reverse:hover {\n    background-color: #eceff1; }\n    .tile-amber-reverse:hover .tile-content, .tile-amber-reverse:hover .title {\n      color: #ffca28; }\n\n.tile-amber-inverse {\n  background-color: #eceff1; }\n  .tile-amber-inverse .tile-content, .tile-amber-inverse .title {\n    color: #ffca28; }\n\n.tile-amber-inverse-reverse .tile-content, .tile-amber-inverse-reverse .title {\n  color: #ffca28; }\n\n.tile-amber-inverse-reverse:hover {\n  background-color: #ffca28; }\n  .tile-amber-inverse-reverse:hover .tile-content, .tile-amber-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-amber-inverse-reverse .ink {\n  background-color: #ff8f00; }\n\n.tile-orange {\n  background-color: #ffa726; }\n  .tile-orange .tile-content, .tile-orange .title {\n    color: #eceff1; }\n  .tile-orange:hover, .tile-orange:active, .tile-orange.active {\n    background-color: #fb8c00; }\n  .tile-orange:focus {\n    background-color: #f57c00; }\n  .tile-orange:disabled, .tile-orange.disabled, .tile-orange[disabled] {\n    background-color: #b3b3b3; }\n  .tile-orange .ink {\n    background-color: #ef6c00; }\n\n.tile-orange-reverse {\n  background-color: #ffa726; }\n  .tile-orange-reverse:hover {\n    background-color: #eceff1; }\n    .tile-orange-reverse:hover .tile-content, .tile-orange-reverse:hover .title {\n      color: #ffa726; }\n\n.tile-orange-inverse {\n  background-color: #eceff1; }\n  .tile-orange-inverse .tile-content, .tile-orange-inverse .title {\n    color: #ffa726; }\n\n.tile-orange-inverse-reverse .tile-content, .tile-orange-inverse-reverse .title {\n  color: #ffa726; }\n\n.tile-orange-inverse-reverse:hover {\n  background-color: #ffa726; }\n  .tile-orange-inverse-reverse:hover .tile-content, .tile-orange-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-orange-inverse-reverse .ink {\n  background-color: #ef6c00; }\n\n.tile-deep-orange {\n  background-color: #ff7043; }\n  .tile-deep-orange .tile-content, .tile-deep-orange .title {\n    color: #eceff1; }\n  .tile-deep-orange:hover, .tile-deep-orange:active, .tile-deep-orange.active {\n    background-color: #f4511e; }\n  .tile-deep-orange:focus {\n    background-color: #e64a19; }\n  .tile-deep-orange:disabled, .tile-deep-orange.disabled, .tile-deep-orange[disabled] {\n    background-color: #b3b3b3; }\n  .tile-deep-orange .ink {\n    background-color: #d84315; }\n\n.tile-deep-orange-reverse {\n  background-color: #ff7043; }\n  .tile-deep-orange-reverse:hover {\n    background-color: #eceff1; }\n    .tile-deep-orange-reverse:hover .tile-content, .tile-deep-orange-reverse:hover .title {\n      color: #ff7043; }\n\n.tile-deep-orange-inverse {\n  background-color: #eceff1; }\n  .tile-deep-orange-inverse .tile-content, .tile-deep-orange-inverse .title {\n    color: #ff7043; }\n\n.tile-deep-orange-inverse-reverse .tile-content, .tile-deep-orange-inverse-reverse .title {\n  color: #ff7043; }\n\n.tile-deep-orange-inverse-reverse:hover {\n  background-color: #ff7043; }\n  .tile-deep-orange-inverse-reverse:hover .tile-content, .tile-deep-orange-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-deep-orange-inverse-reverse .ink {\n  background-color: #d84315; }\n\n.tile-brown {\n  background-color: #8d6e63; }\n  .tile-brown .tile-content, .tile-brown .title {\n    color: #eceff1; }\n  .tile-brown:hover, .tile-brown:active, .tile-brown.active {\n    background-color: #6d4c41; }\n  .tile-brown:focus {\n    background-color: #5d4037; }\n  .tile-brown:disabled, .tile-brown.disabled, .tile-brown[disabled] {\n    background-color: #b3b3b3; }\n  .tile-brown .ink {\n    background-color: #4e342e; }\n\n.tile-brown-reverse {\n  background-color: #8d6e63; }\n  .tile-brown-reverse:hover {\n    background-color: #eceff1; }\n    .tile-brown-reverse:hover .tile-content, .tile-brown-reverse:hover .title {\n      color: #8d6e63; }\n\n.tile-brown-inverse {\n  background-color: #eceff1; }\n  .tile-brown-inverse .tile-content, .tile-brown-inverse .title {\n    color: #8d6e63; }\n\n.tile-brown-inverse-reverse .tile-content, .tile-brown-inverse-reverse .title {\n  color: #8d6e63; }\n\n.tile-brown-inverse-reverse:hover {\n  background-color: #8d6e63; }\n  .tile-brown-inverse-reverse:hover .tile-content, .tile-brown-inverse-reverse:hover .title {\n    color: #eceff1; }\n\n.tile-brown-inverse-reverse .ink {\n  background-color: #4e342e; }\n\n/*-- Tiles size --------------------------------------- */\n.tile {\n  width: 100%;\n  height: 270px;\n  display: block; }\n  .tile .content-wrapper .tile-content {\n    height: 270px;\n    padding: 20px; }\n    .tile .content-wrapper .tile-content .tile-img {\n      height: 180px; }\n    .tile .content-wrapper .tile-content .tile-img-bg {\n      width: 550px;\n      height: 270px;\n      margin-left: -20px;\n      margin-top: -20px; }\n    .tile .content-wrapper .tile-content .tile-holder-sm {\n      bottom: 20px;\n      left: 20px; }\n", ""]);
 
 // exports
 
@@ -22100,9 +22100,9 @@ function plural(ms, n, name) {
  * Module dependencies.
  */
 
-var debug = __webpack_require__(105)('socket.io-parser');
+var debug = __webpack_require__(106)('socket.io-parser');
 var Emitter = __webpack_require__(7);
-var binary = __webpack_require__(107);
+var binary = __webpack_require__(108);
 var isArray = __webpack_require__(45);
 var isBuf = __webpack_require__(46);
 
@@ -22518,7 +22518,7 @@ function error(msg) {
 
 // browser shim for xmlhttprequest module
 
-var hasCORS = __webpack_require__(110);
+var hasCORS = __webpack_require__(111);
 
 module.exports = function (opts) {
   var xdomain = opts.xdomain;
@@ -26917,7 +26917,7 @@ function isBuf(obj) {
  * Module dependencies.
  */
 
-var eio = __webpack_require__(108);
+var eio = __webpack_require__(109);
 var Socket = __webpack_require__(53);
 var Emitter = __webpack_require__(7);
 var parser = __webpack_require__(26);
@@ -26925,7 +26925,7 @@ var on = __webpack_require__(54);
 var bind = __webpack_require__(55);
 var debug = __webpack_require__(15)('socket.io-client:manager');
 var indexOf = __webpack_require__(52);
-var Backoff = __webpack_require__(124);
+var Backoff = __webpack_require__(125);
 
 /**
  * IE6+ hasOwnProperty
@@ -27496,9 +27496,9 @@ Manager.prototype.onreconnect = function () {
  */
 
 var XMLHttpRequest = __webpack_require__(27);
-var XHR = __webpack_require__(111);
-var JSONP = __webpack_require__(120);
-var websocket = __webpack_require__(121);
+var XHR = __webpack_require__(112);
+var JSONP = __webpack_require__(121);
+var websocket = __webpack_require__(122);
 
 /**
  * Export transports.
@@ -27807,7 +27807,7 @@ Polling.prototype.uri = function () {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(113);
+var isArray = __webpack_require__(114);
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof Blob === 'function' ||
@@ -27969,7 +27969,7 @@ module.exports = function(arr, obj){
 
 var parser = __webpack_require__(26);
 var Emitter = __webpack_require__(7);
-var toArray = __webpack_require__(123);
+var toArray = __webpack_require__(124);
 var on = __webpack_require__(54);
 var bind = __webpack_require__(55);
 var debug = __webpack_require__(15)('socket.io-client:socket');
@@ -28484,7 +28484,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_blinds__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_vents__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_scenes__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_socket_io_client__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_socket_io_client__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_socket_io_client__);
 
 
@@ -32685,29 +32685,44 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ajax_request__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ajax_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ajax_request__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_pure_modal__ = __webpack_require__(102);
 
 
 
 
-var self = {};
+
+var self = {
+  code: null
+};
 
 self.render = function () {
   document.body.innerHTML = __WEBPACK_IMPORTED_MODULE_0__html_scenes_html___default.a;
   gtag('config', 'UA-128283819-2', {'page_path': '/#scenes'});
+  fetchData("/api/scenes", "scenes", "scenes");
+  fetchData("/api/alarm", "alarm", "alarm");
+
+  self.authorizeModal = new __WEBPACK_IMPORTED_MODULE_3_pure_modal__["a" /* default */]('authorizeModal');
+  self.authorizeModal.init();
+
+  var buttonAuth = document.getElementById("button-auth");
+  buttonAuth.onclick = authorizeClick;
+};
+
+var fetchData = function(url, category, containerId) {
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
-    url: "/api/scenes",
+    url: url,
     json: true
   }, function (err, res, data) {
     if (err) {
       alert("Unexpected error...");
       window.location = "/";
     } else {
-      populate(data);
+      populate(data, category, containerId);
     }
   });
-};
+}
 
-var populate = function (data) {
+var populate = function (data, category, containerId) {
   var content = "";
 
   var templateElement = document.getElementById("tmplScene");
@@ -32715,13 +32730,14 @@ var populate = function (data) {
 
   for (var i = 0; i < data.length; i++) {
     var item = data[i];
+    item.Category = category;
     content += template(item);
   }
 
-  var scenesElement = document.getElementById("scenes");
+  var scenesElement = document.getElementById(containerId);
   scenesElement.innerHTML = content;
 
-  var buttons = document.getElementsByTagName("button");
+  var buttons = document.getElementsByClassName("apply-button");
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].onclick = buttonClick;
   }
@@ -32729,18 +32745,43 @@ var populate = function (data) {
 
 var buttonClick = function () {
   var labelElement = this.parentElement;
+  var category = labelElement.getAttribute("data-category");
   var name = labelElement.getAttribute("data-name");
   var command = labelElement.getAttribute("data-command");
   gtag('event', 'scenes/' + command, { 'event_category' : 'scenes', 'event_label' : name });
   __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
     method: "POST",
-    url: "/api/scenes/" + command + "/" + name
-  }, function (err) {
+    url: "/api/" + category + "/" + command + "/" + name,
+    data: {
+      code: self.code
+    }
+  }, function (err, res) {
     if (err) {
       alert("Unexpected error...");
       window.location = "/";
+    } else if (res.statusCode == 403) {
+      alert("Alarm control is not authorized");
     }
   });
+};
+
+var authorizeClick = function(e) {
+  __WEBPACK_IMPORTED_MODULE_2_ajax_request___default()({
+    url: "/api/sms",
+    json: true
+  }, function (err, res, data) {
+    if (err) {
+      alert("Unexpected error...");
+      window.location = "/";
+    } else {
+      self.authorizeModal.open(e);
+    }
+  });
+};
+
+window.codeClick = function(e) {
+  self.code = document.getElementById('inputCode').value;
+  self.authorizeModal.close();
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (self);
@@ -32749,10 +32790,23 @@ var buttonClick = function () {
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <h1 class=\"flex\">\r\n        <span>Scenes</span>\r\n        <a href=\"#\"><img src=\"" + __webpack_require__(10) + "\" class=\"title-back\" /></a>\r\n      </h1>\r\n    </div>\r\n  </div>\r\n  <div id=\"scenes\" class=\"row\">\r\n    <div class=\"lds-hourglass\"></div>\r\n  </div>\r\n</div>\r\n<script type=\"text/html\" id=\"tmplScene\">\r\n  <div class=\"col-6\">\r\n    <label class=\"button-dido\" data-name=\"<%= Name %>\" data-command=\"<%= Command %>\">\r\n      <button>Apply</button>\r\n      <strong><%= Name %></strong>\r\n    </label>\r\n  </div>\r\n</script>";
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-12\">\r\n      <h1 class=\"flex\">\r\n        <span>Scenes</span>\r\n        <a href=\"#\"><img src=\"" + __webpack_require__(10) + "\" class=\"title-back\" /></a>\r\n      </h1>\r\n    </div>\r\n  </div>\r\n  <div id=\"scenes\" class=\"row\">\r\n    <div class=\"lds-hourglass\"></div>\r\n  </div>\r\n  <div id=\"separator\" class=\"row\">\r\n    <div class=\"col-12\">\r\n      <label class=\"button-dido\">\r\n        <button id=\"button-auth\">AUTHORIZE ALARM</button>\r\n      </label>\r\n    </div>\r\n  </div>\r\n  <div id=\"alarm\" class=\"row\">\r\n    <div class=\"lds-hourglass\"></div>\r\n  </div>\r\n</div>\r\n<script type=\"text/html\" id=\"tmplScene\">\r\n  <div class=\"col-6\">\r\n    <label class=\"button-dido\" data-category=\"<%= Category %>\" data-name=\"<%= Name %>\" data-command=\"<%= Command %>\">\r\n      <button class=\"apply-button\">Apply</button>\r\n      <strong><%= Name %></strong>\r\n    </label>\r\n  </div>\r\n</script>\r\n<!-- Authorize Modal -->\r\n<div class=\"modal\" id=\"authorizeModal\" role=\"dialog\" aria-labelledby=\"authorize-modal\" aria-describedby=\"basic-modal\" tabindex=\"-1\" style=\"display: none;\">\r\n  <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n              <h5 class=\"modal-title\">Enter Security Code</h5>\r\n              <button type=\"button\" class=\"modal-close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                  <svg width=\"16\" height=\"16\" viewBox=\"0 0 40 40\">\r\n                      <path stroke-linecap=\"round\" class=\"close-x\" d=\"M 10,10 L 30,30 M 30,10 L 10,30\" stroke=\"#000\" fill=\"transparent\" stroke-width=\"5\"></path>\r\n                  </svg>\r\n              </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <input type=\"tel\" value=\"\" id=\"inputCode\" class=\"code-input\" maxlength=\"6\">\r\n          </div>\r\n          <div class=\"modal-footer button-dido\">\r\n            <!-- <button class=\"simple-button mr-xs\" data-dismiss=\"modal\" aria-label=\"Close\">Close</button> -->\r\n            <button class=\"simple-button\" onclick=\"codeClick()\">Authorize</button>\r\n          </div>\r\n      </div>\r\n  </div>\r\n</div>";
 
 /***/ }),
 /* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/** 
+ * Pure Modal v1.0.3 
+ * (c) 2019 Roman Slonov 
+ * Released under the MIT License.
+ */
+var t="modal-backdrop",i="is-open",s="in",e="out",o="modal-dialog",n=27,a=9,r={transition:!0},l=function(t){return window.console.error("PureModal: "+t)},c=function t(i,s){this.id=i,this.config=Object.assign({},r,s),this.modal=t.findModal(this.id),this.dialog=this.modal.querySelector("."+o),this.backdrop=null,this.isOpen=!1,this.isInit=!1,this.isTransitioning=!1,this.triggers=t.findTriggers(this.id),this.closeEls=null,this.focusableEls=null,this.focusedElBeforeOpen=null,this.firstFocusableEl=null,this.lastFocusableEl=null,this.open=this.open.bind(this),this.close=this.close.bind(this),this.onDismiss=this.onDismiss.bind(this),this.handleKeyDown=this.handleKeyDown.bind(this)};c.prototype.init=function(){var t=this;this.isInit?l("Event listeners already added."):(this.triggers.forEach(function(i){return i.addEventListener("click",t.open)}),this.isInit=!0)},c.prototype.destroy=function(){var t=this;this.isInit?(this.triggers.forEach(function(i){return i.removeEventListener("click",t.open)}),this.isInit=!1):l("Event listeners already removed.")},c.prototype.open=function(t){var e=this;this.isTransitioning||(t.preventDefault(),"function"==typeof this.config.beforeOpen&&this.config.beforeOpen(),this.focusedElBeforeOpen=document.activeElement,this.focusableEls=Array.from(this.dialog.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]')),this.firstFocusableEl=this.focusableEls[0],this.lastFocusableEl=this.focusableEls[this.focusableEls.length-1],this.showBackdrop(),this.modal.style.display="block",this.config.transition?(this.isTransitioning=!0,this.modal.classList.add(i),this.modal.classList.add(s),this.openWithTransition()):this.firstFocusableEl.focus(),document.addEventListener("mousedown",this.onDismiss),document.addEventListener("keydown",this.handleKeyDown),this.closeEls=Array.from(this.modal.querySelectorAll('[data-dismiss="modal"]')),this.closeEls.forEach(function(t){return t.addEventListener("click",e.close)}),this.isOpen=!0,"function"==typeof this.config.onOpen&&this.config.onOpen())},c.prototype.openWithTransition=function(){var t=this,i=function(){t.dialog.removeEventListener("animationend",i),t.firstFocusableEl.focus(),"function"==typeof t.config.onOpen&&t.config.onOpen(),t.isTransitioning=!1};this.dialog.addEventListener("animationend",i)},c.prototype.close=function(){var t=this;this.isTransitioning||("function"==typeof this.config.beforeClose&&this.config.beforeClose(),this.config.transition?(this.isTransitioning=!0,this.modal.classList.remove(s),this.modal.classList.remove(i),this.modal.classList.add(e),this.closeWithTransition(),this.closeBackdrop()):(this.modal.style.display="none",this.modal.classList.remove(i),this.closeBackdrop(),"function"==typeof this.config.onClose&&this.config.onClose()),document.removeEventListener("mousedown",this.onDismiss),document.removeEventListener("keydown",this.handleKeyDown),this.closeEls.forEach(function(i){return i.removeEventListener("click",t.close)}),this.isOpen=!1,this.focusedElBeforeOpen.focus())},c.prototype.closeWithTransition=function(){var t=this,i=function(){t.dialog.removeEventListener("animationend",i),t.modal.style.display="none",t.modal.classList.remove(e),"function"==typeof t.config.onClose&&t.config.onClose(),t.isTransitioning=!1};this.dialog.addEventListener("animationend",i)},c.prototype.onDismiss=function(t){!this.dialog.contains(t.target)&&this.isOpen&&this.close()},c.prototype.showBackdrop=function(){this.backdrop=document.createElement("div"),this.backdrop.tabIndex=-1,this.backdrop.classList.add(t),this.config.transition&&this.backdrop.classList.add(s),document.body.appendChild(this.backdrop),this.backdrop.offsetHeight,this.backdrop.classList.add(i)},c.prototype.closeBackdrop=function(){this.config.transition?(this.backdrop.classList.remove(s),this.backdrop.classList.remove(i),this.backdrop.classList.add(e),this.closeBackdropWithTransition()):this.backdrop.remove()},c.prototype.closeBackdropWithTransition=function(){var t=this,i=function(){t.backdrop.removeEventListener("transitionend",i),t.backdrop.remove()};this.backdrop.addEventListener("transitionend",i)},c.prototype.handleKeyDown=function(t){var i=this;switch(t.keyCode){case a:if(1===this.focusableEls.length){t.preventDefault();break}t.shiftKey?document.activeElement===i.firstFocusableEl&&(t.preventDefault(),i.lastFocusableEl.focus()):document.activeElement===i.lastFocusableEl&&(t.preventDefault(),i.firstFocusableEl.focus());break;case n:this.close()}},c.findTriggers=function(t){return Array.from(document.querySelectorAll('[data-toggle="modal"][data-target="'+t+'"]'))},c.findModal=function(t){return document.getElementById(t)};/* harmony default export */ __webpack_exports__["a"] = (c);
+
+
+/***/ }),
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -32760,7 +32814,7 @@ module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div
  * Module dependencies.
  */
 
-var url = __webpack_require__(103);
+var url = __webpack_require__(104);
 var parser = __webpack_require__(26);
 var Manager = __webpack_require__(47);
 var debug = __webpack_require__(15)('socket.io-client');
@@ -32852,7 +32906,7 @@ exports.Socket = __webpack_require__(53);
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -32933,7 +32987,7 @@ function url (uri, loc) {
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -33164,7 +33218,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/**
@@ -33173,7 +33227,7 @@ function coerce(val) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(106);
+exports = module.exports = __webpack_require__(107);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -33366,7 +33420,7 @@ function localstorage() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -33597,7 +33651,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*global Blob,File*/
@@ -33744,11 +33798,11 @@ exports.removeBlobs = function(data, callback) {
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-module.exports = __webpack_require__(109);
+module.exports = __webpack_require__(110);
 
 /**
  * Exports parser
@@ -33760,7 +33814,7 @@ module.exports.parser = __webpack_require__(8);
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -34512,7 +34566,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports) {
 
 
@@ -34535,7 +34589,7 @@ try {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* global attachEvent */
@@ -34956,7 +35010,7 @@ function unloadHandler () {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports) {
 
 
@@ -34981,7 +35035,7 @@ module.exports = Object.keys || function keys (obj){
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -34992,7 +35046,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports) {
 
 /**
@@ -35027,7 +35081,7 @@ module.exports = function(arraybuffer, start, end) {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = after
@@ -35061,7 +35115,7 @@ function noop() {}
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports) {
 
 /*! https://mths.be/utf8js v2.1.2 by @mathias */
@@ -35277,7 +35331,7 @@ module.exports = {
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 /*
@@ -35350,7 +35404,7 @@ module.exports = {
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 /**
@@ -35456,7 +35510,7 @@ module.exports = (function() {
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -35687,7 +35741,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -35933,7 +35987,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {/**
@@ -35949,7 +36003,7 @@ var debug = __webpack_require__(18)('engine.io-client:websocket');
 var BrowserWebSocket, NodeWebSocket;
 if (typeof self === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(122);
+    NodeWebSocket = __webpack_require__(123);
   } catch (e) { }
 } else {
   BrowserWebSocket = self.WebSocket || self.MozWebSocket;
@@ -36224,13 +36278,13 @@ WS.prototype.check = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports) {
 
 module.exports = toArray
@@ -36249,7 +36303,7 @@ function toArray(list, index) {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports) {
 
 

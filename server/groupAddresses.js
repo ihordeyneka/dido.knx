@@ -79,17 +79,18 @@ module.exports = {
     "Light off": "0/3/12",
     "Floor 1 off": "0/3/13",
     "Billiard off": "0/3/14",
-    "Floor 2 off": "0/3/15",
-    "Panic silent on": "0/7/3",
-    "Panic audible on": "0/7/4",
-    "Vacation mode on": "0/7/5",
-    "Vacation mode off": "0/7/5",
+    "Floor 2 off": "0/3/15"
   },
   alarm: {
     "Arm": "0/7/1",
     "Disarm": "0/7/2",
+    "Panic silent on": "0/7/3",
+    "Panic audible on": "0/7/4",
+    "Vacation mode on": "0/7/5",
+    "Vacation mode off": "0/7/5",
     "Garage sensor": "0/7/6",
     "Entrance sensor": "0/7/7",
-    "Kitchen sensor": "0/7/8"
+    "Kitchen sensor": "0/7/8",
+    "Shower sensor": "0/7/9"
   }
 };

@@ -2,10 +2,14 @@ require('dotenv').config();
 
 var groupAddresses = require('./server/groupAddresses');
 var didoKnx = require('./server/didoKnx');
-var interaction = require('./server/interaction');
+var engine = require('./server/engine');
 var restify = require('restify');
 var restifyCookies = require('restify-cookies');
 var cleanup = require('node-cleanup');
+var _ = require("lodash");
+var twilio = require('twilio');
+
+var securityCodes = [];
 
 var server = restify.createServer();
 
@@ -49,6 +53,40 @@ server.get('/api/hello/:name', function (req, res, next) {
   next();
 });
 
+var getRandomCode = function() {
+  var result = "";
+  for (var i = 0; i < 6; i++) {
+    var digit = Math.floor(Math.random() * 10);
+    result = result + digit;
+  }
+  return result; //6-digit code
+};
+
+server.get('/api/sms', function(req, res, next) {
+  var code = getRandomCode();
+
+  const accountSid = process.env.TWILIO_SID;
+  const authToken = process.env.TWILIO_KEY;
+  const client = twilio(accountSid, authToken);
+
+  client.messages.create({
+    body: code + ' - dido.knx - your security code.',
+    to: process.env.TWILIO_TO, //from env
+    from: process.env.TWILIO_FROM //from env
+  })
+  .then((message) => {
+    securityCodes.push(code);
+    _.delay(function() { _.remove(securityCodes, (c) => c == code) }, 30*60*1000); //sms code valid for 30min
+
+    res.send(200, 'Check your SMS');
+    next();
+  })
+  .catch(() => {
+    res.send(500, 'Twilio could not send SMS');
+    next();
+  });  
+});
+
 server.get('/api/:category/:name', function (req, res, next) {
   var address = groupAddresses[req.params.category][req.params.name];
   didoKnx.state(address).then(function (result) {
@@ -67,7 +105,7 @@ var guessCommand = function(name) {
   if (name.endsWith("off"))
     return "off";
   
-  return null;
+  return "on";
 }
 
 server.get('/api/:category', function (req, res, next) {
@@ -85,9 +123,14 @@ server.get('/api/:category', function (req, res, next) {
 server.post('/api/:category/:command/:name', function (req, res, next) {
   var category = req.params.category;
   var command = req.params.command;
+  var code = req.params.code;
   
-  if (category == "Alarm") {
-    res.send(403, "Access denied");
+  if (category == "alarm") {
+    if (_.every(securityCodes, (c) => c != code)) {
+      res.send(403, "Invalid code");
+      next();
+      return;
+    }
   }
 
   if (category == "blinds" && command == "stop") {
@@ -166,7 +209,7 @@ cleanup(function (exitCode, signal) {
     didoKnx.connection.Disconnect();
 });
 
-interaction.listen(server.server);
+engine.start(server.server);
 
 server.listen(process.env.KNX_HTTP_PORT || 8787, function () {
   console.log('%s listening at %s', server.name, server.url);
