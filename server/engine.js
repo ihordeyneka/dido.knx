@@ -80,10 +80,12 @@ var handleChange = function (addr, value) {
   }
 
   //3b. block automatic turn on for 2min if we deliberately turn off
-  if (sensor && value == 0) {
-    clearTimeout(sensor.cooldown);
-    sensor.cooldown = _.delay(function() {
-      sensor.cooldown = null;
+  var linkedSensorAddr = _.find(Object.keys(sensorsMap), k => sensorsMap[k].target == addr);
+  if (linkedSensorAddr && value == 0) {
+    var linkedSensor = sensorsMap[linkedSensorAddr];
+    clearTimeout(linkedSensor.cooldown);
+    linkedSensor.cooldown = _.delay(function() {
+      linkedSensor.cooldown = null;
     }, 120*1000);
   }
 }
