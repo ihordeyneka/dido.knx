@@ -1,7 +1,7 @@
 {
   "name": "dido.knx",
-  "version": "0.1.0",
-  "description": "KNX home automation project",
+  "version": "1.0.0",
+  "description": "KNX home automation",
   "main": "server/bootstrap.js",
   "scripts": {
     "server": "node ./bootstrap.js",

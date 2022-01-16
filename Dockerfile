@@ -15,5 +15,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+RUN npm run client
+
 EXPOSE 8787
 CMD [ "node", "bootstrap.js" ]

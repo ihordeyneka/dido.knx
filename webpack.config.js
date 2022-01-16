@@ -5,7 +5,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: "source-map",
-  watch: true,
+  watch: false,
   context: path.resolve(__dirname, "client/scripts"),
   entry: {
     main: "./startup",
