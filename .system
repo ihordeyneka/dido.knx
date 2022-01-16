@@ -1,0 +1,7 @@
+- RaspberryPi 3B
+- Raspbian 9 (stretch)
+- nginx
+- cron jobs
+- LetsEncrypt SSL
+
+- Docker
