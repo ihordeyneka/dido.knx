@@ -15,7 +15,7 @@ services:
   node:
     depends_on:
       - nginx
-    image: ihordeyneka/didoknx:latest
+    build: .
     ports:
       - "8787:8787"
 volumes:
