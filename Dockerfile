@@ -8,9 +8,12 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+# node-sass doesn't work well on RaspberryPi
+RUN mkdir -p node_modules/node-sass/vendor/linux-x64-72
+RUN curl -L https://github.com/sass/node-sass/releases/download/v7.0.1/linux-x64-72_binding.node -o node_modules/node-sass/vendor/linux-x64-72/binding.node
+
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+RUN npm rebuild node-sass
 
 # Bundle app source
 COPY . .
