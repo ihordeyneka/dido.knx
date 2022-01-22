@@ -4,6 +4,8 @@ services:
   nginx:
     image: jonasal/nginx-certbot:latest
     restart: always
+    environment:
+      TZ: "Europe/Kiev"
     env_file:
       - ./nginx-certbot.env
     ports:
@@ -17,6 +19,8 @@ services:
       - nginx
     build: .
     restart: always
+    environment:
+      TZ: "Europe/Kiev"
     ports:
       - "8787:8787"
 volumes:
