@@ -75,7 +75,7 @@ var handleChange = function (addr, value) {
   if (sensor && value == 1 && (addr == groupAddresses.alarm["Shower sensor"] || !isDaylight())) {
     if (!sensor.cooldown) {
       didoKnx.commands.on(sensor.target);
-      delayedTurnOff(120, sensor.target);
+      delayedTurnOff(900, sensor.target);
     }
   }
 
