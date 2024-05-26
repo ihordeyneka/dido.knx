@@ -132,7 +132,7 @@ var self = {
     });
 
     //blinds 1 down, light off and arm at 00:55AM
-    schedule.scheduleJob({hour: 07, minute: 00}, function() { //blinds 1 up and disarm at 07:00AM
+    schedule.scheduleJob({hour: 06, minute: 30}, function() { //blinds 1 up and disarm at 06:30AM
       if (nightBlindsOn) {
         didoKnx.commands.up(groupAddresses.scenes["Blinds 1 up"]);
         didoKnx.commands.on(groupAddresses.alarm.Disarm); //ignored during vacation
