@@ -21,7 +21,7 @@ var sensorsMap = {};
 var setSensors = function() {
   sensorsMap[groupAddresses.alarm["Garage sensor"]] = { cooldown: null, target: groupAddresses.light.Garage };
   sensorsMap[groupAddresses.alarm["Entrance sensor"]] = { cooldown: null, target: groupAddresses.light.Entrance };
-  sensorsMap[groupAddresses.alarm["Kitchen sensor"]] = { cooldown: null, target: groupAddresses.light["Kitchen Island"] };
+  //sensorsMap[groupAddresses.alarm["Kitchen sensor"]] = { cooldown: null, target: groupAddresses.light["Kitchen Island"] };
   sensorsMap[groupAddresses.alarm["Shower sensor"]] = { cooldown: null, target: groupAddresses.vents["Shower Vent"] };
 }
 
