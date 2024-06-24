@@ -30,4 +30,4 @@ server_name for SSL needs to be set properly.
 2. Configure A record on the DNS and point it the required machine. If machine is hidden behind NAT, then proper port forwarding must be configured.
 
 ## Running
-In the root directory execute _docker-compose up_. This should set up an nginx reverse proxy and an underlying node.js server and configure LetsEncrypt SSL certificates with autorenewal on the given machine.
+In the root directory execute _docker-compose up_. This should set up an nginx reverse proxy and an underlying node.js server and configure LetsEncrypt SSL certificates with autorenewal on the given machine. If clean-up is needed, then executed _docker-compose down_ and _docker image rm didoknx_node_.
